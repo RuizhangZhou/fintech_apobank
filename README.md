@@ -1,6 +1,6 @@
 # Using Git
 ## General commands
-1. Clone a repository into a newly created directory (on your PC): `~$ git clone <link>`, for example the project "data" via `~$ git clone git@git.rwth-aachen.de:swc/teaching/winter-term-20-21/lab-data-analytics/group-team-zelda/data-service.git`
+1. Clone a repository into a newly created directory (on your PC): `~$ git clone <link>`, for example the project "web-application" via `~$ git clone git@git.rwth-aachen.de:swc/teaching/winter-term-20-21/lab-data-analytics/group-team-zelda/web-application.git` (with SSH)
 2. Incorporate changes of a project: `~$ git pull`
 3. Show changed files: `~$ git status`
 4. Upload changes to the project: update the index to prepare the content staged for the next commit `~$ git add <filepath/filename>` (or, if all changed files are to be uploaded  `~$ git add .` - rather check with `~$ git status` if really wanted!), add commit `~$ git commit -m "<commit message>"` (commit message: description of change, usually infinitive+noun), upload changes: `~$ git push` 
