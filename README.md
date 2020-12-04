@@ -9,7 +9,7 @@
     3. Upload changes: `~$ git push` 
 
 ## Structure of our project
-Our application is initially located in two folders: "Frontend" and "Backend". These will be divided into branches. In each of these branches you should work on a specific feature (one branch should be created for each feature). The branch for a feature should be named `<feature>` to make it consistent (where `<feature>` should be replaced by the name of the concrete name of the feature).
+Our application is initially located in two folders: "Frontend" and "Backend". These will be divided into branches. In each of these branches you should work on a specific feature (one branch should be created for each feature). The branch for a feature should simply be named `<feature>` to make it consistent (where `<feature>` should be replaced by the concrete name of the feature).
 
 You can create the corresponding project branch in the shell by running the command `~$ git branch feature` and switch to it by running `~$ git checkout <feature>`. Afterwards, the synchronization with this repository must be configured in the branch itself via `~$ git push --set-upstream origin <feature>`. To delete a branch (Attention!) you have to execute `~$ git push --delete origin <feature>`.
 When a feature version is developed so far that no more errors occur in the context of the application, you can switch to the master branch and run `~$ git merge <feature>` to integrate `<feature>` into the master branch.
