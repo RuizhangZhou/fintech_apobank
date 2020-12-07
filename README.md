@@ -13,3 +13,5 @@ Our application is initially located in two folders: "Frontend" and "Backend". T
 
 You can create the corresponding project branch in the shell by running the command `~$ git branch <feature>` and switch to it by running `~$ git checkout <feature>`. Afterwards, the synchronization with this repository must be configured in the branch itself via `~$ git push --set-upstream origin <feature>`. To delete a branch (Attention!) you have to execute `~$ git push --delete origin <feature>`.
 When a feature version is developed so far that no more errors occur in the context of the application, you can switch to the master branch and run `~$ git merge <feature>` to integrate `<feature>` into the master branch.
+
+It is possible to arrange branches hierarchically. This can be realized by merging branches at a lower level of the hierarchy with the one above (and then with the one above this one and so on). In concrete terms, the procedure is the same as for merging with the master branch: First you switch to the next higher branch (with which you want to merge) and then execute the merge command.
