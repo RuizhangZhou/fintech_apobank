@@ -13,16 +13,19 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class BusinessLogicApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(BusinessLogicApplication.class);
+	//private static final Logger log = LoggerFactory.getLogger(BusinessLogicApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(BusinessLogicApplication.class, args);
 	}
 
+/*
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
+
 
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
@@ -32,5 +35,6 @@ public class BusinessLogicApplication {
 			log.info(customer.toString());
 		};
 	}
+*/
 
 }
