@@ -1,4 +1,4 @@
-package de.rwth.swc.lab.ws2021.daifu.businesslogic;
+package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;

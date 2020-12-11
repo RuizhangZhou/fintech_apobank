@@ -1,6 +1,5 @@
-package de.rwth.swc.lab.ws2021.daifu.businesslogic;
+package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic;
 
-import de.rwth.swc.lab.ws2021.daifu.businesslogic.sqlapiconsume.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

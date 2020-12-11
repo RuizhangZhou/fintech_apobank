@@ -1,7 +1,7 @@
-package de.rwth.swc.lab.ws2021.daifu.businesslogic.api;
+package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
-import de.rwth.swc.lab.ws2021.daifu.businesslogic.sqlapiconsume.Customer;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
