@@ -9,6 +9,9 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+# ignore IntelliJ config files of root project
+/.idea/
+
 # Generated files
 .idea/**/contentModel.xml
 
