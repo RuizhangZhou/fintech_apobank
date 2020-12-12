@@ -41,6 +41,6 @@ public class CustomerController {
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<Customer>(customerResponseEntity.getBody(), HttpStatus.OK);
+        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
     }
 }
