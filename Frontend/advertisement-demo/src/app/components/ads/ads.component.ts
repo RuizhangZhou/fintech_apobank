@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdsComponent implements OnInit {
 
-  public health:boolean = true;//=needHealth();call the method to get the result from decison of machine learning model
-  public digital:boolean = true;//=needDigital();
+  public health:boolean = false;//=needHealth();call the method to get the result from decison of machine learning model
+  public digital:boolean = false;//=needDigital();
 
   constructor() { }
 
