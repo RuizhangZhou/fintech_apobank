@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket api(TypeResolver typeResolver) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic"))
                 .paths(PathSelectors.any())
                 .build()
                 .additionalModels(typeResolver.resolve(Customer.class));
