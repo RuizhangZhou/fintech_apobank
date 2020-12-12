@@ -34,7 +34,7 @@ public class AdvertismentController {
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
         }
         Customer customer = (Customer) customerResponseEntity.getBody();
-        return new ResponseEntity<>((CostumerAdvertisment) customer.getCustomerAdvertisments(), HttpStatus.OK);
+        return new ResponseEntity<>(customer.getCustomerAdvertisments(), HttpStatus.OK);
         /*  There's a warning that casting like this may produce a NullPointerException.
             If the error handling of CustomerController.getCustomer() works correctly this shouldn't happen, because this is only executed with a good HttpStatus.
          */
