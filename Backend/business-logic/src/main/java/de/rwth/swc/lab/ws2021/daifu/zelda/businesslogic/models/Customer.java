@@ -1,11 +1,12 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
 import java.time.LocalDate;
+import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
@@ -20,9 +21,7 @@ public class Customer {
     private Job job;
     private RelationshipStatus relationshipStatus;
     private Education education;
-    //private Set<Account> accounts;
-    //private Set<Loan> loans;
-    //private Set<CustomerAdvertisement> customerAdvertisements;
+    private Set<Account> accounts;
 
     public Customer() {
     }
@@ -57,6 +56,14 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public Float getMonthlyIncome() {
