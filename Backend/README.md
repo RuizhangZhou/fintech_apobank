@@ -11,11 +11,10 @@ Sending requests to Business-Logic:
 Base url: 
         http://localhost:8081/business-logic/v1/ 
 
-The base url shouldn't show anything fo now.
+The base url shouldn't show anything for now.
 
-Customer request url: 
+Example with Customer request url: 
     http://localhost:8081/business-logic/v1/customer?id=100002
 
-The number in the end is the customer_number from database.
-
-For now a false customer_number doesn't return anuthing, in the future it should return a "Error 404".  
+Swagger: 
+    http://localhost:8081/business-logic/v1/swagger-ui/index.html#/
