@@ -3,6 +3,7 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CostumerAdvertisment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class Customer {
     private String lastName;
     private Float monthlyIncome;
     private LocalDate birthday;
+    private Set<CostumerAdvertisment> customerAdvertisments;
     private Integer numberOfChildren;
     private Address address;
     private Job job;
@@ -81,6 +83,15 @@ public class Customer {
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
+
+    public Set<CostumerAdvertisment> getCustomerAdvertisments() {
+        return customerAdvertisments;
+    }
+
+    public void setCustomerAdvertisments(Set<CostumerAdvertisment> customerAdvertisments) {
+        this.customerAdvertisments = customerAdvertisments;
+    }
+
 
     public Integer getNumberOfChildren() {
         return numberOfChildren;
