@@ -5,13 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { SalesComponent } from './sales/sales.component';
+import { TransfersComponent } from './transfers/transfers.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    SalesComponent,
+    TransfersComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
