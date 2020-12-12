@@ -24,9 +24,9 @@ public class CustomerController {
             //TODO add authentication header here
     )
     @ResponseBody
-    public ResponseEntity<?> getCustomer(@RequestParam(value = "id", required = false, defaultValue = "0") String id ) {
-        String urlString = "http://localhost:8080/api/v1/customers/"+ id + "?getBy=customer_number";
-        if(id.equals("0")){
+    public ResponseEntity<?> getCustomer(@RequestParam(value = "customer_number", required = false, defaultValue = "0") String customer_number ) {
+        String urlString = "http://localhost:8080/api/v1/customers/"+ customer_number + "?getBy=customer_number";
+        if(customer_number.equals("0")){
             return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No customer_number was provided" , HttpStatus.BAD_REQUEST);
         }
 
