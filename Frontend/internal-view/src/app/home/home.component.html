@@ -22,4 +22,30 @@
         </nav>
     </body>
 
+
+    <h1>permanent advertisement</h1>
+
+    <img src="assets/images/image01.png" alt="permanent" />
+
+
+
+    <h1>personalized advertisement</h1>
+
+    <div *ngIf="health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" alt="digital" />
+            <img src="assets/images/image03.png" alt="health" />
+        </div>
+
+        <div *ngIf="!digital">
+            <img src="assets/images/image03.png" alt="health" />
+        </div>
+    </div>
+
+    <div *ngIf="!health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" alt="digital" />
+        </div>
+    </div>
+
 </html>
