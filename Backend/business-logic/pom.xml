@@ -9,7 +9,7 @@
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>de.rwth.swc.lab.ws2021.daifu</groupId>
+	<groupId>de.rwth.swc.lab.ws2021.daifu.zelda</groupId>
 	<artifactId>business-logic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>business-logic</name>
