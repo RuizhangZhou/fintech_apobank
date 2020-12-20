@@ -10,6 +10,6 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "inputData", path = "inputData")
 public interface InputDataRepository extends MongoRepository<InputData, Integer> {
 
-    List<InputData> findByID(@Param("ID") Integer ID);
+    InputData findByID(@Param("ID") Integer ID);
 
 }

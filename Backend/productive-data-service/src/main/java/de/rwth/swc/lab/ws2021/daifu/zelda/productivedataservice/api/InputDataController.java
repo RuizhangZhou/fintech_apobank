@@ -22,7 +22,7 @@ public class InputDataController {
             value = "/{id}"
     )
     @ResponseBody
-    public ResponseEntity<?> getInputDataByID_(@RequestParam(value = "ID") Integer ID) {
+    public ResponseEntity<?> getInputDataByID(@RequestParam(value = "ID") Integer ID) {
         try{
             return new ResponseEntity<>(inputDataRepository.findByID(ID), HttpStatus.OK);
         }
@@ -42,6 +42,24 @@ public class InputDataController {
         }
         catch (Exception e){
             return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            produces = "application/json",
+            value = "/{id}"
+    )
+    public ResponseEntity<?> deleteInputData(@RequestParam(value = "ID") Integer ID) {
+        try{
+            inputDataRepository.delete(inputDataRepository.findByID(ID));
+            return new ResponseEntity<>("InputData with ID "+ID+" successfully deleted.", HttpStatus.OK);
+        }
+        catch (Exception e){
+            if (e.toString().equals("java.lang.IllegalArgumentException: The given entity must not be null!")){
+                return new ResponseEntity<>("No InputData with ID "+ID+" found.", HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
         }
     }
 }
