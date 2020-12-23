@@ -1,14 +1,13 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice.models;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice.models.enums.*;
-import org.springframework.data.annotation.Id;
 
 public class InputData {
     /*
         variable names and types DON'T rely on the data dictionary but on the training set (datasets_marketing_dataset.csv)
      */
 
-    @Id private Integer ID;
+    private Integer ID;
     private Float age;
     private String job;
     private MaritalStatus marital;
