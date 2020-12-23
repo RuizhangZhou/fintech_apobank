@@ -1,6 +1,6 @@
 body {
     background-color: white;
-    --nav-width: 200px; /*weg für oben*/
+    --nav-width: 150px; /*weg für oben*/
     margin: 0 0 0 var(--nav-width); /*weg für oben*/
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
