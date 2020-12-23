@@ -2,7 +2,7 @@ body {
     background-color: white;
     --nav-width: 150px; /*weg für oben*/
     margin: 0 0 0 var(--nav-width); /*weg für oben*/
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /*apo*/
     font-size: 18px;
 }
 

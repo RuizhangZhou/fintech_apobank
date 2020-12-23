@@ -31,3 +31,28 @@ h1{
 a {
     color: #0f2350;
 }
+
+table {
+    border: 1px solid;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #003669;
+}
+
+tr {
+    border: 1px solid #a0a0a0;
+    color: white;
+    font-weight: 500;
+}
+
+th {
+    font-weight: normal;
+    text-align: left;
+}
+
+td {
+    font-weight: normal;
+    text-align: right;
+}
