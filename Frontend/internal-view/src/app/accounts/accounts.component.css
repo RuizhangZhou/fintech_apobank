@@ -56,3 +56,11 @@ td {
     font-weight: normal;
     text-align: right;
 }
+
+tbody tr:hover { 
+    background-color: #0f2350;
+}
+  
+tbody td:hover { 
+    background-color: #a0a0a0; 
+}
