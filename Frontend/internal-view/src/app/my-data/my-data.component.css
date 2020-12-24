@@ -1,25 +1,22 @@
 body {
     background-color: white;
-    --nav-width: 150px; /*weg für oben*/
-    margin: 0 0 0 var(--nav-width); /*weg für oben*/
+    --nav-width: 150px;
+    margin: 0 0 0 var(--nav-width);
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
 }
 
-/*navigation menu*/
 nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: var(--nav-width); /*oder "auto;"(apo)?, vieeeele für oben*/
-    height: 100%; /*oder "vh" statt "%"(apo), ODER: Angabe in px, wenn nur Bereich bis bestimmte Länge (zB 40px für oben)*/
-    background: #003669; /*apo*/
+    width: var(--nav-width);
+    height: 100%;
+    background: #003669;
 }
 
 .nav__link {
-    /*display: inline;            /* Listenelemente nebeneinander */
-    /*list-style-type: none;      /* Aufzählungszeichen entfernen */
-    display: block; /*weg für oben*/
+    display: block;
     padding: 12px 18px;
     text-decoration: none;
     color: #A9ADB4;
@@ -29,13 +26,57 @@ nav {
 h1{
     color: #003669;
     margin-left: 20px;
-    /*text-align: center;*/
 }
 
 a {
-    color: #0f2350; /*apo*/
+    color: #0f2350;
 }
 
-/*oder direkt in ...component.html durch <style> dann ctrl+v von hier </style>
-ODER halt <h1 style="color:...;margin-left:...;">heading</h1>
-Spätere Definitionen überschreiben vorherige (also evtl auch externe interne oder andersherum)*/
+table {
+    border: 1px solid;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #003669;
+    border-spacing: 10px;
+}
+
+thead {
+    font-size: 25px;
+}
+
+tr {
+    border: 1px solid #a0a0a0;
+    color: white;
+    font-weight: 500;
+}
+
+th {
+    font-weight: normal;
+    text-align: left;
+    color: white;
+    font-weight: 500;
+}
+
+td {
+    font-weight: normal;
+    text-align: right;
+}
+
+tbody tr:hover { 
+    background-color: #0f2350;
+}
+  
+tbody td:hover { 
+    background-color: #a0a0a0; 
+}
+
+button {
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #A9ADB4;
+    color: #0f2350;
+}

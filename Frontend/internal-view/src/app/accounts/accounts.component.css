@@ -39,12 +39,17 @@ table {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: #003669;
+    border-spacing: 10px;
 }
 
 tr {
     border: 1px solid #a0a0a0;
     color: white;
     font-weight: 500;
+}
+
+thead {
+    font-size: 25px;
 }
 
 th {
