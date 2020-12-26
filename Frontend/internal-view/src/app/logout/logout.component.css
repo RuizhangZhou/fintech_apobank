@@ -1,4 +1,4 @@
-body {
+/*body {
     background-color: white;
     --nav-width: 150px;
     margin: 0 0 0 var(--nav-width);
@@ -21,13 +21,13 @@ nav {
     text-decoration: none;
     color: #A9ADB4;
     font-weight: 500;
-}
+}*/
 
 h1{
     color: #003669;
-    margin-left: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
-a {
+/*a {
     color: #0f2350;
-}
+} */
