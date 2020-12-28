@@ -151,4 +151,6 @@ public class InputData {
     public void setPoutcome(Outcome poutcome) {
         this.poutcome = poutcome;
     }
+
+
 }

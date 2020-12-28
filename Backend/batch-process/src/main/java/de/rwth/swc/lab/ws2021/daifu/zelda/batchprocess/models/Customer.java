@@ -68,4 +68,20 @@ public class Customer {
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<CustomerAdvertisement> getCustomerAdvertisements() {
+        return customerAdvertisements;
+    }
+
+    public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
+        this.customerAdvertisements = customerAdvertisements;
+    }
 }

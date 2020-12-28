@@ -6,13 +6,15 @@ import java.time.Period;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
 
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 import java.util.Set;
 
 
 public class transformInputController {
 
-    public InputData transformIntoInput(Customer c, Set<AdvertisementCampaign> campaigns){
+    public InputData transformIntoInput(Customer c, AdvertisementCampaign aCampaign, Set<AdvertisementCampaign> campaigns){
 
         InputData input = new InputData();
 
@@ -28,13 +30,15 @@ public class transformInputController {
         input.setHousing(hasConstructionLoan(c.getLoans()));
         input.setLoan(hasPrivateLoan(c.getLoans()));
 
-        Integer contact_day = 0;
-        String contact_month = "";
-        Integer campaign = 0;
+        CustomerAdvertisement aAdvert = getCustomerAdvertisementForCampaign(aCampaign,c);
+        input.setDay(getDayLastContact(aAdvert));
+        input.setMonth(getMonthLastContact(aAdvert));
+        input.setCampaign(getContacts(aAdvert)+0f);
 
-        input.setPdays(getPdays(campaigns)+0f);
-        input.setPrevious(getPrevious(campaigns));
-        input.setPoutcome(getPoutcome(campaigns));
+        CustomerAdvertisement lAdvert = getCustomerAdvertisementForLastCampaign(campaigns,c);
+        input.setPdays(getPdays(lAdvert)+0f);
+        input.setPrevious(getPrevious(lAdvert));
+        input.setPoutcome(getPoutcome(lAdvert));
 
         return input;
     }
@@ -92,32 +96,68 @@ public class transformInputController {
         return balanceSum;
     }
 
-    private AdvertisementCampaign getLastCampaign(Set<AdvertisementCampaign> campaigns){
-        AdvertisementCampaign last = null;
+    private CustomerAdvertisement getCustomerAdvertisementForCampaign(AdvertisementCampaign campaign, Customer c){
+        for(CustomerAdvertisement ca : c.getCustomerAdvertisements()){
+            if(ca.getId().getAdvertisementCampaignId() == campaign.getId()) {
+                return ca;
+            }
+        }
+        return null;
+    }
+
+    private Integer getDayLastContact(CustomerAdvertisement ca){
+        return ca.getLastDisplayDate().getDayOfMonth();
+    }
+
+    private Month getMonthLastContact(CustomerAdvertisement ca){
+        return Month.valueOf(ca.getLastDisplayDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH).toLowerCase());
+    }
+
+    private Integer getContacts(CustomerAdvertisement ca){
+        return ca.getNumberOfTimesDisplayed();
+    }
+
+    private CustomerAdvertisement getCustomerAdvertisementForLastCampaign(Set<AdvertisementCampaign> campaigns, Customer c){
         int minDaysOver = Integer.MAX_VALUE;
-        for(AdvertisementCampaign campaign : campaigns){
-            if(campaign.getEndDate().compareTo(LocalDate.now()) < 0){
-                int daysOver = (int)ChronoUnit.DAYS.between(campaign.getEndDate(), LocalDate.now());
-                if(daysOver<minDaysOver){
-                    minDaysOver=daysOver;
-                    last = campaign;
+        CustomerAdvertisement advert = null;
+        for(CustomerAdvertisement ca : c.getCustomerAdvertisements()){
+            for(AdvertisementCampaign campaign : campaigns) {
+                if(ca.getId().getAdvertisementCampaignId() == campaign.getId()) {
+                    if (campaign.getEndDate().compareTo(LocalDate.now()) < 0) {
+                        int daysOver = (int) ChronoUnit.DAYS.between(campaign.getEndDate(), LocalDate.now());
+                        if (daysOver < minDaysOver) {
+                            minDaysOver = daysOver;
+                            advert = ca;
+                        }
+                    }
                 }
             }
         }
-        return last;
+        return advert;
     }
 
-
-    private Integer getPdays(Set<AdvertisementCampaign> campaigns){
-        return (int)ChronoUnit.DAYS.between(getLastCampaign(campaigns).getEndDate(), LocalDate.now());
+    private Integer getPdays(CustomerAdvertisement advert){
+        return (int)ChronoUnit.DAYS.between(advert.getLastDisplayDate(),LocalDate.now());
     }
 
-    private Integer getPrevious(Set<AdvertisementCampaign> campaigns){
-        return 0;
+    private Integer getPrevious(CustomerAdvertisement advert){
+        return advert.getNumberOfTimesDisplayed();
     }
 
-    private Outcome getPoutcome(Set<AdvertisementCampaign> campaigns){
-        return Outcome.SUCCESS;
+    private Outcome getPoutcome(CustomerAdvertisement advert){
+        CustomerAdvertisementStatus status = advert.getStatus();
+        if(status == CustomerAdvertisementStatus.SUCCESS) {
+            return Outcome.SUCCESS;
+        }
+        else if(status == CustomerAdvertisementStatus.FAILURE){
+            return Outcome.FAILURE;
+        }
+        else if(status == CustomerAdvertisementStatus.UNKNOWN){
+            return Outcome.UNKNOWN;
+        }
+        else{
+            return Outcome.OTHER;
+        }
     }
 
 }

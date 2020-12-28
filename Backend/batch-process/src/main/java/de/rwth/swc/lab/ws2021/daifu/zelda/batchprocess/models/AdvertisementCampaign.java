@@ -36,4 +36,12 @@ public class AdvertisementCampaign {
     public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
         this.customerAdvertisements = customerAdvertisements;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

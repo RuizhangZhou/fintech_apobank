@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 public class CustomerAdvertisement {
 
+    private CustomerAdvertisementKey id;
+
     private AdvertisementCampaign advertisementCampaign;
 
     private LocalDate lastDisplayDate;
@@ -35,5 +37,13 @@ public class CustomerAdvertisement {
 
     public void setStatus(CustomerAdvertisementStatus status) {
         this.status = status;
+    }
+
+    public CustomerAdvertisementKey getId() {
+        return id;
+    }
+
+    public void setId(CustomerAdvertisementKey id) {
+        this.id = id;
     }
 }
