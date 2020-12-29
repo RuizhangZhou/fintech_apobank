@@ -52,7 +52,13 @@ public class CustomerController {
     @ResponseBody
     public ResponseEntity<?> loginTest(@RequestParam(value = "customer_number", required = false, defaultValue = "0") String customer_number ) {
         //TODO if sucessful return {sucessfull:true}, else return {sucess}
-        return new ResponseEntity<>("Not yet implemented! :(", HttpStatus.NOT_IMPLEMENTED);
+        ResponseEntity<?> response = getCustomer(customer_number);
+        if( ( response.getStatusCode() == HttpStatus.OK ) && ( !response.getBody().toString().toLowerCase().contains("error") ) ){
+            return new ResponseEntity<>("Login, sucessfull", HttpStatus.OK);
+        }
+        else{
+            return response;
+        }
     }
 
 
