@@ -68,18 +68,16 @@ public class CustomerController {
             value = "register"
     )
     @ResponseBody
-    public ResponseEntity<?> registerCustomer(@RequestParam(value = "customer_number", required = false, defaultValue = "0") String customer_number ) {
-        /*
-        String urlString = "http://localhost:8080/api/v1/customers/"+ customer_number + "?getBy=customer_number";
-        if(customer_number.equals("0")){
-            return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No customer_number was provided" , HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<?> registerCustomer(@RequestBody Customer customer){
+        String urlString = "http://localhost:8080/api/v1/customers";
         ResponseEntity<Customer> customerResponseEntity;
+
+        //TODO create an account for the customer
+
         try {
-            customerResponseEntity = restTemplate.getForEntity(urlString, Customer.class);
+            customerResponseEntity = restTemplate.postForEntity(urlString, customer, Customer.class);
         }catch (Exception e){
-            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error: customer not created", HttpStatus.BAD_REQUEST);
         }
 
         if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
@@ -87,9 +85,6 @@ public class CustomerController {
         }
 
         return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
-        */
-        //TODO if successful return the customer_number asigned to the new customer, otherwise return some error
-        return new ResponseEntity<>("Not yet implemented! :(", HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

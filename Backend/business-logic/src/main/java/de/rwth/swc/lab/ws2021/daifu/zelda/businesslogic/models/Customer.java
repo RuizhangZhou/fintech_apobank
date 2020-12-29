@@ -6,6 +6,9 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Relationshi
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CostumerAdvertisment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
+import org.springframework.lang.NonNull;
+
+import java.lang.annotation.Native;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -13,15 +16,31 @@ import java.util.Set;
 public class Customer {
     private Integer id;
     private Integer customerNumber;
+
+    @NonNull
     private String firstName;
+
+    @NonNull
     private String lastName;
+
     private Float monthlyIncome;
+
     private LocalDate birthday;
+
     private Set<CostumerAdvertisment> customerAdvertisments;
+
     private Integer numberOfChildren;
+
+    @NonNull
     private Address address;
+
+    @NonNull
     private Job job;
+
+    @NonNull
     private RelationshipStatus relationshipStatus;
+
+    @NonNull
     private Education education;
     private Set<Account> accounts;
 
