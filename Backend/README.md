@@ -17,8 +17,8 @@ Swagger UI for _data-service_ is accessible at http://localhost:8080/api/v1/swag
 
 `$ ./stop.sh` will terminate those 2 containers.
 ## "web-application" project
-### 2. Full Backend [_business-logic_], [_mongodb_], [productive-data-service], [_batch-process_]
-All of our microservices have Dockerfiles so they can be run in docker containers:
+### 2. Full Backend [_business-logic_], [_mongodb_], [_productive-data-service_], [_batch-process_]
+All of our microservices have Dockerfiles, so they can be run in docker containers:
 
 `$ ./rebuild.sh` will rebuild all maven projects and update the docker containers.
 
