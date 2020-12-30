@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "+ stopping \"mongodb\" container..."
-docker container stop mongodb
+echo "+ stopping \"business-logic\", \"mongodb\", \"productive-data-service\" and \"batch-process\" container..."
+docker container stop business-logic mongodb productive-data-service batch-process
