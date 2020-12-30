@@ -15,7 +15,7 @@ _(press ENTER to return to your console)_
 
 Swagger UI for _data-service_ is accessible at http://localhost:8080/api/v1/swagger-ui/
 
-`$ ./stop.sh` will terminate those 2 containers if you are done working.
+`$ ./stop.sh` will terminate those 2 containers.
 ## "web-application" project
 ### 2. Full Backend [_business-logic_], [_mongodb_], [productive-data-service], [_batch-process_]
 All of our microservices have Dockerfiles so they can be run in docker containers:
@@ -25,10 +25,10 @@ All of our microservices have Dockerfiles so they can be run in docker container
 `$ ./start.sh` will run all docker containers at once.\
 (This may be visually confusing because all containers print their outputs into the same terminal, but it's the easiest way to conveniently run every thing at once :) )
 
-`$ ./stop.sh` will terminate those 4 containers if you are done working.
+`$ ./stop.sh` will terminate those 4 containers.
 #### 2.1. Business Logic [_business-logic_]
 Swagger UI for _business-logic_ is accessible at http://localhost:8081/business-logic/v1/swagger-ui/
-#### 2.2. mongoDB [_mongodb_] und Productive-Data-Service [productive-data-service]
-Swagger UI for _mongodb_ is accessible at http://localhost:8082/productive-data-service/v1/swagger-ui/
+#### 2.2. mongoDB [_mongodb_] und Productive-Data-Service [_productive-data-service_]
+Swagger UI for _productive-data-service_ is accessible at http://localhost:8082/productive-data-service/v1/swagger-ui/
 #### 2.3. Batch Process [_batch-process_]
 Swagger UI for _batch-process_ is accessible at http://localhost:8083/batch-process/v1/swagger-ui/
