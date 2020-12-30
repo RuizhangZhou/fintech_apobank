@@ -10,6 +10,23 @@ public class AdvertismentCampaign {
     private String endDate;
     private Product product;
     private String startDate;
+    private Integer id;
+
+    public Set<CustomerAdvertisement> getCustomerAdvertisements() {
+        return customerAdvertisements;
+    }
+
+    public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
+        this.customerAdvertisements = customerAdvertisements;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Set<CustomerAdvertisement> getCostumerAdvertisments() {
         return customerAdvertisements;
