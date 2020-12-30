@@ -6,27 +6,27 @@ public class CustomerAdvertisementData {
     @Id
     private String id;
     /*
-        customer number and id of the product that is advertised by the campaign should identify each inputData instance
+        customerId and advertisementCampaignId identify each inputData instance
      */
-    private Integer customerNumber;
-    private Integer productId;
+    private Integer customerId;
+    private Integer advertisementCampaignId;
 
     private InputData inputData;
 
-    public Integer getCustomerNumber() {
-        return customerNumber;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerNumber(Integer customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getAdvertisementCampaignId() {
+        return advertisementCampaignId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setAdvertisementCampaignId(Integer advertisementCampaignId) {
+        this.advertisementCampaignId = advertisementCampaignId;
     }
 
     public InputData getInputData() {
