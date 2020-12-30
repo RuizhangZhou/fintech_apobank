@@ -18,7 +18,10 @@ Swagger UI for _data-service_ is accessible at http://localhost:8080/api/v1/swag
 `$ ./stop.sh` will terminate those 2 containers.
 ## "web-application" project
 ### 2. Full Backend [_business-logic_], [_mongodb_], [_productive-data-service_], [_batch-process_]
-All of our microservices have Dockerfiles, so they can be run in docker containers:
+**!
+DISCLAIMER: running docker files like this won't support connectivity between microservices as they send all their requests to `localhost`.
+!**\
+We could probably use some form of docker-compose together with Alex' data project to accomplish this. Another solution could be sending requests to the hostnames of the containers.
 
 `$ ./rebuild.sh` will rebuild all maven projects and update the docker containers.
 
