@@ -3,12 +3,9 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CostumerAdvertisment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
 import org.springframework.lang.NonNull;
 
-import java.lang.annotation.Native;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -27,7 +24,7 @@ public class Customer {
 
     private LocalDate birthday;
 
-    private Set<CostumerAdvertisment> customerAdvertisments;
+    private Set<CustomerAdvertisement> customerAdvertisments;
 
     private Integer numberOfChildren;
 
@@ -103,11 +100,11 @@ public class Customer {
         this.birthday = birthday;
     }
 
-    public Set<CostumerAdvertisment> getCustomerAdvertisments() {
+    public Set<CustomerAdvertisement> getCustomerAdvertisments() {
         return customerAdvertisments;
     }
 
-    public void setCustomerAdvertisments(Set<CostumerAdvertisment> customerAdvertisments) {
+    public void setCustomerAdvertisments(Set<CustomerAdvertisement> customerAdvertisments) {
         this.customerAdvertisments = customerAdvertisments;
     }
 

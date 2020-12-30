@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.AdvertismentStatus;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CostumerAdvertisment {
+public class CustomerAdvertisement {
     private AdvertismentCampaign advertismentCampaign;
     private Customer costumer;
     private String lastDisplayDate;
