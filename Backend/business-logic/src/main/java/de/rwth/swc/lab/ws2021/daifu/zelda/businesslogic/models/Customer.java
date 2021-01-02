@@ -26,7 +26,7 @@ public class Customer {
 
     private LocalDate birthday;
 
-    private Set<CostumerAdvertisment> customerAdvertisments;
+    private Set<CustomerAdvertisement> customerAdvertisments;
 
     private Integer numberOfChildren;
 
@@ -101,11 +101,11 @@ public class Customer {
         this.birthday = birthday;
     }
 
-    public Set<CostumerAdvertisment> getCustomerAdvertisments() {
+    public Set<CustomerAdvertisement> getCustomerAdvertisments() {
         return customerAdvertisments;
     }
 
-    public void setCustomerAdvertisments(Set<CostumerAdvertisment> customerAdvertisments) {
+    public void setCustomerAdvertisments(Set<CustomerAdvertisement> customerAdvertisments) {
         this.customerAdvertisments = customerAdvertisments;
     }
 

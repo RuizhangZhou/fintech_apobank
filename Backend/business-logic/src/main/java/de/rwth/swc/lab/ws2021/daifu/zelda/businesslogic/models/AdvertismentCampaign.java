@@ -6,17 +6,34 @@ import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AdvertismentCampaign {
-    private Set<CostumerAdvertisment> costumerAdvertisments;
+    private Set<CustomerAdvertisement> customerAdvertisements;
     private String endDate;
     private Product product;
     private String startDate;
+    private Integer id;
 
-    public Set<CostumerAdvertisment> getCostumerAdvertisments() {
-        return costumerAdvertisments;
+    public Set<CustomerAdvertisement> getCustomerAdvertisements() {
+        return customerAdvertisements;
     }
 
-    public void setCostumerAdvertisments(Set<CostumerAdvertisment> costumerAdvertisments) {
-        this.costumerAdvertisments = costumerAdvertisments;
+    public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
+        this.customerAdvertisements = customerAdvertisements;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<CustomerAdvertisement> getCostumerAdvertisments() {
+        return customerAdvertisements;
+    }
+
+    public void setCostumerAdvertisments(Set<CustomerAdvertisement> customerAdvertisements) {
+        this.customerAdvertisements = customerAdvertisements;
     }
 
     public String getEndDate() {
