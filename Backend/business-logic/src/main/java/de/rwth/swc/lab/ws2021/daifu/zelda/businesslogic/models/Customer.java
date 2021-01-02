@@ -1,14 +1,14 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CostumerAdvertisment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
-import org.springframework.lang.NonNull;
 
-import java.lang.annotation.Native;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -17,10 +17,9 @@ public class Customer {
     private Integer id;
     private Integer customerNumber;
 
-    @NonNull
     private String firstName;
 
-    @NonNull
+
     private String lastName;
 
     private Float monthlyIncome;
@@ -31,17 +30,16 @@ public class Customer {
 
     private Integer numberOfChildren;
 
-    @NonNull
     private Address address;
 
-    @NonNull
     private Job job;
 
-    @NonNull
     private RelationshipStatus relationshipStatus;
 
-    @NonNull
     private Education education;
+
+    @JsonManagedReference(value = "customer-accounts")
+    @ApiModelProperty(example = "[ {'id': 1} ]")
     private Set<Account> accounts;
 
     public Customer() {

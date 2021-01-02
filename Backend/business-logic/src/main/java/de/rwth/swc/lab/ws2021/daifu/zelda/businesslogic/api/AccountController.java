@@ -2,16 +2,12 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Account;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import java.util.Set;
 
 @RestController
 public class AccountController {
@@ -56,5 +52,7 @@ public class AccountController {
 
         return new ResponseEntity<>(customerResponseEntity.getBody().getAccounts(), HttpStatus.OK);
     }
+
+
 
 }
