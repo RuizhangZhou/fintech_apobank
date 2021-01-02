@@ -5,14 +5,47 @@ import java.time.Period;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-
+@RestController
 public class transformInputController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    public Set<Customer> getCustomerFromData(){
+
+        String urlString = "http://localhost:8080/api/v1/customers/1?getBy=id";
+
+        //ResponseEntity<CustomerPage> customerResponseEntity = null;
+        ResponseEntity<Object> customerResponseEntity = null;
+        try {
+            System.out.println("Abfrage Test");
+            customerResponseEntity = restTemplate.getForEntity(urlString, Object.class);
+            System.out.println("Abfrage Funktioniert");
+            //System.out.println(customerResponseEntity.getBody().getBirthday().toString());
+            /*Set<Customer> s = new HashSet<Customer>(customerResponseEntity.getBody().getContent());
+            for(Customer c : s) {
+                System.out.println(c.getBirthday().toString());
+            }
+            return s;
+             */
+            return null;
+        }catch (Exception e){
+                System.out.println("Problem!!!" + e.toString());
+        }
+
+        return null;
+    }
 
     public InputData transformIntoInput(Customer c, AdvertisementCampaign aCampaign, Set<AdvertisementCampaign> campaigns){
 
