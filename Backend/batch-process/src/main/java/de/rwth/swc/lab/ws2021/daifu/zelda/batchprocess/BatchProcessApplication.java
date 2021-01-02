@@ -12,8 +12,6 @@ public class BatchProcessApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BatchProcessApplication.class, args);
-		transformInputController t = new transformInputController();
-		Set<Customer> s = t.getCustomerFromData();
 	}
 
 }

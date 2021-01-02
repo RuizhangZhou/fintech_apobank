@@ -7,6 +7,13 @@ public class CustomerAdvertisementKey {
 
     private Integer advertisementCampaignId;
 
+    public CustomerAdvertisementKey(){}
+
+    public CustomerAdvertisementKey(Integer customerId, Integer advertisementCampaignId) {
+        this.customerId = customerId;
+        this.advertisementCampaignId = advertisementCampaignId;
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }
