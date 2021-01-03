@@ -3,11 +3,13 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
 
 @RestController
 public class AccountController {
@@ -53,6 +55,65 @@ public class AccountController {
         return new ResponseEntity<>(customerResponseEntity.getBody().getAccounts(), HttpStatus.OK);
     }
 
+    @PutMapping("/accounts")
+    public ResponseEntity<?> transferMoney(@ApiParam(example = "10000000") final @RequestParam(value = "account_number", required = true, defaultValue = "0") String account_number,
+                                           @ApiParam(example = "10000001") final @RequestParam(value = "send_to", required = true, defaultValue = "0") String sendTo,
+                                           @ApiParam(example = "99.99") final @RequestParam(value = "amount", required = true, defaultValue = "-1") double amount) {
+        ResponseEntity<?> accSender = getAccount(account_number);
+        if(!accSender.getStatusCode().equals(HttpStatus.OK) || !(accSender.getBody() instanceof Account)){
+            String message = accSender.getBody().toString();
+            message += " (sender account)";
+            new ResponseEntity<>(message, accSender.getStatusCode());
+        }
 
+        ResponseEntity<?> accReceiver = getAccount(sendTo);
+        if(!accReceiver.getStatusCode().equals(HttpStatus.OK) || !(accSender.getBody() instanceof Account)){
+            String message = accReceiver.getBody().toString();
+            message += " (receiver account)";
+            new ResponseEntity<>(message, accReceiver.getStatusCode());
+        }
+
+        if(amount <= 0){
+            new ResponseEntity<>("Provide a valid amount!", HttpStatus.BAD_REQUEST);
+        }
+
+        Account sender = (Account) accSender.getBody();
+        if(sender.getBalance()< amount){
+            return new ResponseEntity<>("Error: Sender doesn't have enough money.", HttpStatus.BAD_REQUEST);
+        }
+        sender.setBalance(sender.getBalance() - amount);
+        ResponseEntity<?> updatedSender = updateAcc(sender);
+
+        if(!(updatedSender.getStatusCode() == HttpStatus.OK)){
+            return new ResponseEntity<>("Error while updating sender account:" + updatedSender.getBody().toString(), HttpStatus.BAD_REQUEST);
+        }
+
+        Account receiver = (Account) accReceiver.getBody();
+        receiver.setBalance(receiver.getBalance() + amount);
+
+        ResponseEntity<?> updatedReceiver = updateAcc(receiver);
+        if(!(updatedReceiver.getStatusCode() ==  HttpStatus.OK)){
+            return new ResponseEntity<>("Error while updating receiver account:" + updatedReceiver.getBody().toString(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("Transfer was successful", HttpStatus.OK);
+    }
+
+    private ResponseEntity<?> updateAcc(Account account){
+        String accountId = String.valueOf(account.getId().toString());
+        String urlString = "http://localhost:8080/api/v1/accounts/"+ account.getId().toString();/* + "?account=" + account;*/
+
+        ResponseEntity<Void> accountResponseEntity;
+        RequestEntity<Account> entity = new RequestEntity<Account>(account, HttpMethod.PUT, URI.create(urlString));
+        try {
+            accountResponseEntity = restTemplate.exchange(urlString, HttpMethod.PUT, entity, Void.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid account_number", HttpStatus.NOT_FOUND);
+        }
+        if(!accountResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + accountResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("", HttpStatus.OK);
+    }
 
 }
