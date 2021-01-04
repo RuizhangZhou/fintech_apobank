@@ -7,6 +7,7 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Relationshi
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.loans.Loan;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class Customer {
 
     private Float monthlyIncome;
 
+    @ApiModelProperty(notes = "Birthday in format yyyy-MM-dd")
     private LocalDate birthday;
 
     private Set<CustomerAdvertisement> customerAdvertisments;
@@ -41,6 +43,30 @@ public class Customer {
     @JsonManagedReference(value = "customer-accounts")
     @ApiModelProperty(example = "[ {'id': 1} ]")
     private Set<Account> accounts;
+
+    @JsonManagedReference(value = "customer-loans")
+    @ApiModelProperty(example = "[ {'id': 1} ]")
+    private Set<Loan> loans;
+
+    @JsonManagedReference(value = "customer-investments")
+    @ApiModelProperty(example = "[ {'id': 1} ]")
+    private Set<Investment> investments;
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public Set<Investment> getInvestments() {
+        return investments;
+    }
+
+    public void setInvestments(Set<Investment> investments) {
+        this.investments = investments;
+    }
 
     public Customer() {
     }

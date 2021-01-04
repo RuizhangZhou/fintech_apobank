@@ -1,15 +1,28 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Address;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CustomerAdvertisement;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.CurrentAccount;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 
 @RestController
 @RequestMapping("/customer")
@@ -68,11 +81,73 @@ public class CustomerController {
             value = "register"
     )
     @ResponseBody
-    public ResponseEntity<?> registerCustomer(@RequestBody Customer customer){
+    /*public ResponseEntity<?> registerCustomer(@RequestBody Customer customer){*/
+    public ResponseEntity<?> registerCustomer(@RequestParam(value = "first_name", required = false, defaultValue = "")@ApiParam(value = "first_name", example = "Test") String firstName,
+                                              @RequestParam(value = "last_name", required = false, defaultValue = "")@ApiParam(value = "last_name", example = "Tester") String lastName,
+                                              @RequestParam(value = "birthday", required = false, defaultValue = "")@ApiParam(value = "birthday", example = "2021-01-20") String birthday,
+                                              @RequestParam(value = "street", required = false, defaultValue = "")@ApiParam(value = "street", example = "Fakestreet") String street,
+                                              @RequestParam(value = "house_number", required = false, defaultValue = "0")@ApiParam(value = "house_number", example = "1") String houseNumber,
+                                              @RequestParam(value = "zip_code", required = false, defaultValue = "-1")@ApiParam(value = "zip_code", example = "12345") Integer zipCode,
+                                              @RequestParam(value = "city", required = false, defaultValue = "")@ApiParam(value = "city", example = "Faketown") String city/*,
+                                              @RequestParam(value = "education", required = false, defaultValue = "UNKNOWN") Education education,
+                                              @RequestParam(value = "job", required = false, defaultValue = "UNKNOWN") Job job,
+                                              @RequestParam(value = "monthly_income", required = false, defaultValue = "0") Float monthlyIncome,
+                                              @RequestParam(value = "relationship_status", required = false, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
+                                              @RequestParam(value = "number_of_children", required = false, defaultValue = "0") String numberOfChildren*/){
         String urlString = "http://localhost:8080/api/v1/customers";
         ResponseEntity<Customer> customerResponseEntity;
 
-        //TODO create an account for the customer
+        if(firstName.equals("")){
+            return new ResponseEntity<>("Error: No first name was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(lastName.equals("")){
+            return new ResponseEntity<>("Error: No last name was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(birthday.equals("")){
+            return new ResponseEntity<>("Error: No birthday was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(street.equals("")){
+            return new ResponseEntity<>("Error: No street was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(houseNumber.equals("")){
+            return new ResponseEntity<>("Error: No house number was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(zipCode == -1){
+            return new ResponseEntity<>("Error: No zip code was provided.", HttpStatus.BAD_REQUEST);
+        }
+        if(city.equals("")){
+            return new ResponseEntity<>("Error: No city was provided.", HttpStatus.BAD_REQUEST);
+        }
+
+
+        Customer customer = new Customer();
+        customer.setId(0);
+        customer.setCustomerNumber(0);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //convert String to LocalDate
+        LocalDate localDate = LocalDate.parse(birthday, formatter);
+        customer.setBirthday(localDate);
+
+        //set address
+        Address address = new Address();
+        address.setStreet(street);
+        address.setHouseNumber(houseNumber);
+        address.setZipCode(zipCode);
+        address.setCity(city);
+        customer.setAddress(address);
+
+        customer.setEducation(Education.UNKNOWN);
+        customer.setRelationshipStatus(RelationshipStatus.SINGLE);
+        customer.setJob(Job.UNKNOWN);
+        customer.setMonthlyIncome(0f);
+        customer.setNumberOfChildren(0);
+        customer.setCustomerAdvertisments(new HashSet<>());
+        customer.setAccounts(new HashSet<>());
+        customer.setLoans(new HashSet<>());
+        customer.setInvestments(new HashSet<>());
 
         try {
             customerResponseEntity = restTemplate.postForEntity(urlString, customer, Customer.class);
@@ -81,7 +156,7 @@ public class CustomerController {
         }
 
         if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
-            return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString() + ", " + customerResponseEntity.getBody(), HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
