@@ -2,7 +2,7 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.*;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.HashSet;
 
 @RestController
 public class AccountController {
@@ -53,6 +57,80 @@ public class AccountController {
         }
 
         return new ResponseEntity<>(customerResponseEntity.getBody().getAccounts(), HttpStatus.OK);
+    }
+
+    @PostMapping("/accounts")
+    public ResponseEntity<?> createAccount(@RequestParam(value = "customer_number", defaultValue = "0") String customer_number,
+                                           @RequestParam(value = "type", defaultValue = "currentAccount") String type) {
+        if(customer_number.equals("0")){
+            return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No customer_number was provided" , HttpStatus.BAD_REQUEST);
+        }
+
+        //get Customer
+        String customerUrlString = "http://localhost:8080/api/v1/customers/"+ customer_number + "?getBy=customer_number";
+        if(customer_number.equals("0")){
+            return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No customer_number was provided" , HttpStatus.BAD_REQUEST);
+        }
+
+        ResponseEntity<Customer> customerResponseEntity;
+        try {
+            customerResponseEntity = restTemplate.getForEntity(customerUrlString, Customer.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+        }
+
+        if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+        }
+        //if code reaches here, Customer was requested successfully
+        Account acc;
+        switch(type){
+            case "currentAccount":
+                acc = new CurrentAccount();
+                CurrentAccount currAcc = (CurrentAccount) acc;
+                acc.setBalance(0.0);
+                acc.setCustomer(customerResponseEntity.getBody());
+                currAcc.setCreditCards(new HashSet<>());
+                currAcc.setOverdraftInterest(3.5);
+                break;
+            case "callMoneyAccount":
+                acc = new CallMoneyAccount();
+                CallMoneyAccount callAcc = (CallMoneyAccount) acc;
+                callAcc.setBalance(0.0);
+                callAcc.setCustomer(customerResponseEntity.getBody());
+                callAcc.setInterest(1.5f);
+                break;
+            case "fixedDepositAccount":
+                acc = new FixedDepositAccount();
+                FixedDepositAccount fixedAcc = (FixedDepositAccount) acc;
+                fixedAcc.setInterest(1.5f);
+                fixedAcc.setCustomer(customerResponseEntity.getBody());
+                fixedAcc.setBalance(0.0);
+                break;
+            case "savingsBook":
+                acc = new SavingsBook();
+                SavingsBook bookAcc = (SavingsBook) acc;
+                bookAcc.setInterest(1.5f);
+                bookAcc.setBalance(0.0);
+                bookAcc.setCustomer(customerResponseEntity.getBody());
+                break;
+            default:
+                return new ResponseEntity<>("Error: No Such account type", HttpStatus.BAD_REQUEST);
+        }
+
+        String urlString = "http://localhost:8080/api/v1/accounts";
+        ResponseEntity<Account> accResponseEntity;
+        try {
+            accResponseEntity = restTemplate.postForEntity(urlString, acc,  Account.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString()+": acc couldn't be created", HttpStatus.BAD_REQUEST);
+        }
+
+        if(!accResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + accResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(accResponseEntity.getBody(), HttpStatus.OK);
     }
 
     @PutMapping("/accounts")
@@ -115,5 +193,7 @@ public class AccountController {
         }
         return new ResponseEntity<>("", HttpStatus.OK);
     }
+
+
 
 }
