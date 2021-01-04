@@ -4,7 +4,10 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.*;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Info;
+import io.swagger.annotations.SwaggerDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -20,8 +23,8 @@ public class AccountController {
 
     @Autowired RestTemplate restTemplate;
 
-    @GetMapping("/account")
-    public ResponseEntity<?> getAccount(@RequestParam(value = "account_number", defaultValue = "0") String account_number ) {
+    @GetMapping("/accounts/{account_number}")
+    public ResponseEntity<?> getAccount(@PathVariable(value = "account_number") String account_number ) {
         String urlString = "http://localhost:8080/api/v1/accounts/"+ account_number + "?getBy=account_number";
         if(account_number.equals("0")){
             return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No account_number was provided" , HttpStatus.BAD_REQUEST);
