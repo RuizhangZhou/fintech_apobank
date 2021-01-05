@@ -19,7 +19,23 @@ public class CustomerAdvertisementDataController {
     @RequestMapping(
             method = RequestMethod.GET,
             produces = "application/json",
-            value = "get"
+            value = "getAll"
+    )
+    @ResponseBody
+    public ResponseEntity<?> getAllCustomerAdvertisementData() {
+        try{
+            List<CustomerAdvertisementData> customerAdvertisementDataList = customerAdvertisementDataRepository.findAll();
+            return new ResponseEntity<>(customerAdvertisementDataList, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = "application/json",
+            value = "getSpecific"
     )
     @ResponseBody
     public ResponseEntity<?> getCustomerAdvertisementData(@RequestParam(value = "customerId") Integer customerId, @RequestParam(value = "advertisementCampaignId") Integer advertisementCampaignId) {
@@ -43,10 +59,10 @@ public class CustomerAdvertisementDataController {
     @RequestMapping(
             method = RequestMethod.GET,
             produces = "application/json",
-            value = "getBycustomerId"
+            value = "getByCustomerId"
     )
     @ResponseBody
-    public ResponseEntity<?> getCustomerAdvertisementDataBycustomerId(@RequestParam(value = "customerId") Integer customerId) {
+    public ResponseEntity<?> getCustomerAdvertisementDataByCustomerId(@RequestParam(value = "customerId") Integer customerId) {
         try{
             List<CustomerAdvertisementData> customerAdvertisementDataList = customerAdvertisementDataRepository.findByCustomerId(customerId);
             if(customerAdvertisementDataList.isEmpty()){
@@ -62,10 +78,10 @@ public class CustomerAdvertisementDataController {
     @RequestMapping(
             method = RequestMethod.GET,
             produces = "application/json",
-            value = "getByadvertisementCampaignId"
+            value = "getByAdvertisementCampaignId"
     )
     @ResponseBody
-    public ResponseEntity<?> getCustomerAdvertisementDataByadvertisementCampaignId(@RequestParam(value = "advertisementCampaignId") Integer advertisementCampaignId) {
+    public ResponseEntity<?> getCustomerAdvertisementDataByAdvertisementCampaignId(@RequestParam(value = "advertisementCampaignId") Integer advertisementCampaignId) {
         try{
             List<CustomerAdvertisementData> customerAdvertisementDataList = customerAdvertisementDataRepository.findByAdvertisementCampaignId(advertisementCampaignId);
             if(customerAdvertisementDataList.isEmpty()){
@@ -96,16 +112,32 @@ public class CustomerAdvertisementDataController {
     @RequestMapping(
             method = RequestMethod.DELETE,
             produces = "application/json",
-            value = "delete"
+            value = "deleteAll"
+    )
+    @ResponseBody
+    public ResponseEntity<?> deleteCustomerAllAdvertisementData() {
+        try{
+            customerAdvertisementDataRepository.deleteAll();
+            return new ResponseEntity<>("Successfully deleted all CustomerAdvertisementData", HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            produces = "application/json",
+            value = "deleteSpecific"
     )
     @ResponseBody
     public ResponseEntity<?> deleteCustomerAdvertisementData(@RequestParam(value = "customerId") Integer customerId, @RequestParam(value = "advertisementCampaignId") Integer advertisementCampaignId) {
         try{
-            List<CustomerAdvertisementData> bycustomerId = customerAdvertisementDataRepository.findByCustomerId(customerId);
-            List<CustomerAdvertisementData> byadvertisementCampaignId = customerAdvertisementDataRepository.findByAdvertisementCampaignId(advertisementCampaignId);
+            List<CustomerAdvertisementData> byCustomerId = customerAdvertisementDataRepository.findByCustomerId(customerId);
+            List<CustomerAdvertisementData> byAdvertisementCampaignId = customerAdvertisementDataRepository.findByAdvertisementCampaignId(advertisementCampaignId);
 
-            for (CustomerAdvertisementData cN : bycustomerId) {
-                for (CustomerAdvertisementData cP : byadvertisementCampaignId)
+            for (CustomerAdvertisementData cN : byCustomerId) {
+                for (CustomerAdvertisementData cP : byAdvertisementCampaignId)
                     if((cN.getCustomerId().equals(cP.getCustomerId())) && (cN.getAdvertisementCampaignId().equals(cP.getAdvertisementCampaignId()))) {
                         customerAdvertisementDataRepository.delete(cN);
                         return new ResponseEntity<>("Successfully deleted CustomerAdvertisementData with customerId "+customerId+" and advertisementCampaignId "+advertisementCampaignId, HttpStatus.OK);
@@ -121,10 +153,10 @@ public class CustomerAdvertisementDataController {
     @RequestMapping(
             method = RequestMethod.DELETE,
             produces = "application/json",
-            value = "deleteBycustomerId"
+            value = "deleteByCustomerId"
     )
     @ResponseBody
-    public ResponseEntity<?> deleteCustomerAdvertisementDataBycustomerId(@RequestParam(value = "customerId") Integer customerId) {
+    public ResponseEntity<?> deleteCustomerAdvertisementDataByCustomerId(@RequestParam(value = "customerId") Integer customerId) {
         try{
             List<CustomerAdvertisementData> customerAdvertisementDataList = customerAdvertisementDataRepository.findByCustomerId(customerId);
             if(customerAdvertisementDataList.isEmpty()){
