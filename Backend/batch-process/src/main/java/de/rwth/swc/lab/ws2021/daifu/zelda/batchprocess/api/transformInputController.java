@@ -5,14 +5,80 @@ import java.time.Period;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
-
+@RestController
 public class transformInputController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/pelikan")
+    private Set<CustomerAdvertisementData> showInputData(){
+        return getInputData();
+    }
+
+
+    private Set<CustomerAdvertisementData> getInputData(){
+        List<CustomerAdvertisementData> input = new ArrayList<>();
+        System.out.println("Abfrage Test");
+        Set<Customer> customers = getCustomerFromData();
+        Set<AdvertisementCampaign> campaigns = getCampaignsFromData();
+        System.out.println("Abfrage Funktioniert");
+        for(Customer costumer : customers) {
+            for(CustomerAdvertisement advert : costumer.getCustomerAdvertisements()){
+                for(AdvertisementCampaign campaign : campaigns) {
+                    if(campaign.getId() == advert.getId().getAdvertisementCampaignId() && campaign.getEndDate().compareTo(LocalDate.now()) >= 0) {
+                        System.out.println("InputData(costumerId = "+ costumer.getId() + ", campaignId = " + campaign.getId() +")");
+                        input.add(new CustomerAdvertisementData(new CustomerAdvertisementKey(costumer.getId(),campaign.getId()),transformIntoInput(costumer, campaign, campaigns)));
+                    }
+                }
+            }
+        }
+        return new HashSet<>(input);
+    }
+
+    @GetMapping("/pinguin")
+    public boolean postIntoDatabase(){
+        Set<CustomerAdvertisementData> input = getInputData();
+        for(CustomerAdvertisementData data : input){
+
+        }
+        return true;
+    }
+
+
+    private Set<Customer> getCustomerFromData(){
+        String urlString = "http://localhost:8080/api/v1/customers";
+        ResponseEntity<CustomerPage> customerResponseEntity = null;
+        try {
+            customerResponseEntity = restTemplate.getForEntity(urlString, CustomerPage.class);
+            return new HashSet<>(customerResponseEntity.getBody().getContent());
+        }catch (Exception e){
+                System.out.println("Problem!!!" + e.toString());
+        }
+        return null;
+    }
+
+    private Set<AdvertisementCampaign> getCampaignsFromData(){
+        String urlString = "http://localhost:8080/api/v1/advertisementCampaigns";
+        ResponseEntity<CampaignPage> campaignResponseEntity = null;
+        try {
+            campaignResponseEntity = restTemplate.getForEntity(urlString, CampaignPage.class);
+            return new HashSet<>(campaignResponseEntity.getBody().getContent());
+        }catch (Exception e){
+            System.out.println("Problem!!!" + e.toString());
+        }
+        return null;
+    }
 
     public InputData transformIntoInput(Customer c, AdvertisementCampaign aCampaign, Set<AdvertisementCampaign> campaigns){
 
@@ -110,7 +176,7 @@ public class transformInputController {
     }
 
     private Month getMonthLastContact(CustomerAdvertisement ca){
-        return Month.valueOf(ca.getLastDisplayDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH).toLowerCase());
+        return Month.valueOf(ca.getLastDisplayDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH).toUpperCase());
     }
 
     private Integer getContacts(CustomerAdvertisement ca){

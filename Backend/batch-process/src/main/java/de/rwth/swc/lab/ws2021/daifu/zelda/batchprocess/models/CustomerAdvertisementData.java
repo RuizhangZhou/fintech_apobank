@@ -2,29 +2,23 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models;
 
 public class CustomerAdvertisementData {
 
-    private String id;
-    /*
-        customer number and id of the product that is advertised by the campaign should identify each inputData instance
-     */
-    private Integer customerNumber;
-    private Integer productId;
-
+    private CustomerAdvertisementKey key;
     private InputData inputData;
 
-    public Integer getCustomerNumber() {
-        return customerNumber;
+
+    public CustomerAdvertisementData(){}
+
+    public CustomerAdvertisementData(CustomerAdvertisementKey key, InputData inputData){
+        this.key = key;
+        this.inputData = inputData;
     }
 
-    public void setCustomerNumber(Integer customerNumber) {
-        this.customerNumber = customerNumber;
+    public CustomerAdvertisementKey getKey() {
+        return key;
     }
 
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setKey(CustomerAdvertisementKey key) {
+        this.key = key;
     }
 
     public InputData getInputData() {

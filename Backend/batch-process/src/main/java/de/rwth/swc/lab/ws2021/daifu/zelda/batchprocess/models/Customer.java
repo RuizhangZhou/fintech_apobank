@@ -1,10 +1,11 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
 import java.time.LocalDate;
 import java.util.Set;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
 
     private Integer id;
@@ -83,5 +84,13 @@ public class Customer {
 
     public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
         this.customerAdvertisements = customerAdvertisements;
+    }
+
+    public Integer getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
     }
 }

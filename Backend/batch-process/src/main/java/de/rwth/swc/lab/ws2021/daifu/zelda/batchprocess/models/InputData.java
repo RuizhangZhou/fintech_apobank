@@ -7,7 +7,6 @@ public class InputData {
         variable names and types DON'T rely on the data dictionary but on the training set (datasets_marketing_dataset.csv)
      */
 
-    private Integer ID;
     private Float age;
     private Job job;
     private MaritalStatus marital;
@@ -16,21 +15,13 @@ public class InputData {
     private Float balance;
     private BooleanString housing;
     private BooleanString loan;
-    private Contact contact;
+    //private Contact contact;
     private Integer day;
     private Month month;
     private Float campaign;
     private Float pdays;
     private Integer previous;
     private Outcome poutcome;
-
-    public Integer getID() {
-        return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
 
     public Float getAge() {
         return age;
@@ -94,14 +85,6 @@ public class InputData {
 
     public void setLoan(BooleanString loan) {
         this.loan = loan;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Integer getDay() {
