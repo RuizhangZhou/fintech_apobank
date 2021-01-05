@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "--- Rebuilding \"mongodb\" and \"productive-data-service\":"
-./stop_productive-data-service.sh
+./stop_productive-data.sh
 
 echo "+ removing containers..."
 docker container rm mongodb productive-data-service
