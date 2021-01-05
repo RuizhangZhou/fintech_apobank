@@ -4,7 +4,7 @@
 The database for customer data is managed in Alex' separate "data" project.
 In the root folder of the **master branch** you can find bash scripts to build the maven project and run the docker containers:
 
-`$ ./rebuild.sh` will rebuild the project and update the docker containers.\
+`$ ./rebuild.sh` will rebuild the _data-service_ and update the docker containers.\
 (If you have done this before and nothing was changed in the project files, there's no need to run this.)
 
 `$ ./start_database.sh` will start up the container running a mysql database.\
@@ -29,13 +29,13 @@ Swagger UI for _business-logic_ is accessible at http://localhost:8081/business-
 
 To stop the application, press `Ctrl+C`.
 #### 2.2. mongoDB [_mongodb_] und Productive-Data-Service [_productive-data-service_]
-`$ ./rebuild_productive-data-processor.sh` will rebuild the project and update the docker containers.
+`$ ./rebuild_productive-data.sh` will rebuild the _productive-data-service_ and update the docker containers.
 
-`$ ./start_productive-data-service.sh` will start up both docker containers.
+`$ ./start_productive-data.sh` will start up both docker containers.
 
 Swagger UI for _productive-data-service_ is accessible at http://localhost:8082/productive-data-service/v1/swagger-ui/
 
-`$ ./stop_productive-data-service.sh` will terminate both docker containers.
+`$ ./stop_productive-data.sh` will terminate both docker containers.
 #### 2.3. Batch Process [_batch-process_]
 `$ ./run_batch-process.sh` will build and run the _batch-process_ application.
 
