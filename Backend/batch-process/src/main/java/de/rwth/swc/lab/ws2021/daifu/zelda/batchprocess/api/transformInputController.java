@@ -38,7 +38,7 @@ public class transformInputController {
                 for(AdvertisementCampaign campaign : campaigns) {
                     if(campaign.getId() == advert.getId().getAdvertisementCampaignId() && campaign.getEndDate().compareTo(LocalDate.now()) >= 0) {
                         System.out.println("InputData(costumerId = "+ costumer.getId() + ", campaignId = " + campaign.getId() +")");
-                        input.add(new CustomerAdvertisementData(new CustomerAdvertisementKey(costumer.getId(),campaign.getId()),transformIntoInput(costumer, campaign, campaigns)));
+                        input.add(new CustomerAdvertisementData(costumer.getId(),campaign.getId(),transformIntoInput(costumer, campaign, campaigns)));
                     }
                 }
             }
