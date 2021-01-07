@@ -3,35 +3,38 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.AdvertismentStatus;
 
+import java.time.LocalDate;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CostumerAdvertisment {
-    private AdvertismentCampaign advertismentCampaign;
-    private Customer costumer;
-    private String lastDisplayDate;
+public class CustomerAdvertisement {
+    private CustomerAdvertisementKey id = new CustomerAdvertisementKey();
+    private Customer customer;
+    //private AdvertisementCampaign advertisementCampaign;
+    private LocalDate lastDisplayDate;
     private Integer numberOfTimesDisplayed;
     private AdvertismentStatus status;
 
-    public AdvertismentCampaign getAdvertismentCampaign() {
-        return advertismentCampaign;
+    public CustomerAdvertisementKey getId() {
+        return id;
     }
 
-    public void setAdvertismentCampaign(AdvertismentCampaign advertismentCampaign) {
-        this.advertismentCampaign = advertismentCampaign;
+    public void setId(CustomerAdvertisementKey id) {
+        this.id = id;
     }
 
-    public Customer getCostumer() {
-        return costumer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCostumer(Customer costumer) {
-        this.costumer = costumer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getLastDisplayDate() {
+    public LocalDate getLastDisplayDate() {
         return lastDisplayDate;
     }
 
-    public void setLastDisplayDate(String lastDisplayDate) {
+    public void setLastDisplayDate(LocalDate lastDisplayDate) {
         this.lastDisplayDate = lastDisplayDate;
     }
 

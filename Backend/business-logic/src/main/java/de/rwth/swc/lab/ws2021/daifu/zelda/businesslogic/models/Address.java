@@ -9,6 +9,8 @@ public class Address {
     private Integer zipCode;
     private String city;
 
+    public Address(){ }
+
     public String getStreet() {
         return street;
     }

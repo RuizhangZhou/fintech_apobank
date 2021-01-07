@@ -8,6 +8,7 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,7 +17,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @RestController
-public class transformInputController {
+public class TransformInputController {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -30,15 +31,15 @@ public class transformInputController {
     private Set<CustomerAdvertisementData> getInputData(){
         List<CustomerAdvertisementData> input = new ArrayList<>();
         System.out.println("Abfrage Test");
-        Set<Customer> customers = getCustomerFromData();
+        Set<Customer> customers = getCustomersFromData();
         Set<AdvertisementCampaign> campaigns = getCampaignsFromData();
         System.out.println("Abfrage Funktioniert");
-        for(Customer costumer : customers) {
-            for(CustomerAdvertisement advert : costumer.getCustomerAdvertisements()){
+        for(Customer customer : customers) {
+            for(CustomerAdvertisement advert : customer.getCustomerAdvertisements()){
                 for(AdvertisementCampaign campaign : campaigns) {
                     if(campaign.getId() == advert.getId().getAdvertisementCampaignId() && campaign.getEndDate().compareTo(LocalDate.now()) >= 0) {
-                        System.out.println("InputData(costumerId = "+ costumer.getId() + ", campaignId = " + campaign.getId() +")");
-                        input.add(new CustomerAdvertisementData(new CustomerAdvertisementKey(costumer.getId(),campaign.getId()),transformIntoInput(costumer, campaign, campaigns)));
+                        System.out.println("InputData(costumerId = "+ customer.getId() + ", campaignId = " + campaign.getId() +")");
+                        input.add(new CustomerAdvertisementData(customer.getId(),campaign.getId(),transformIntoInput(customer, campaign, campaigns)));
                     }
                 }
             }
@@ -46,22 +47,83 @@ public class transformInputController {
         return new HashSet<>(input);
     }
 
-    @GetMapping("/pinguin")
-    public boolean postIntoDatabase(){
-        Set<CustomerAdvertisementData> input = getInputData();
-        for(CustomerAdvertisementData data : input){
+    private Set<CustomerAdvertisementData> getCustomerInputData(Integer customerId){
+        List<CustomerAdvertisementData> input = new ArrayList<>();
+        System.out.println("Abfrage Test");
+        Customer customer = getCustomerFromData(customerId);
+        Set<AdvertisementCampaign> campaigns = getCampaignsFromData();
+        System.out.println("Abfrage Funktioniert");
+        for(CustomerAdvertisement advert : customer.getCustomerAdvertisements()){
+            for(AdvertisementCampaign campaign : campaigns) {
+                if(campaign.getId() == advert.getId().getAdvertisementCampaignId() && campaign.getEndDate().compareTo(LocalDate.now()) >= 0) {
+                    System.out.println("InputData(costumerId = "+ customer.getId() + ", campaignId = " + campaign.getId() +")");
+                    input.add(new CustomerAdvertisementData(customer.getId(),campaign.getId(),transformIntoInput(customer, campaign, campaigns)));
+                }
+            }
+        }
+        return new HashSet<>(input);
+    }
 
+    @GetMapping("/panther")
+    public boolean updateCustomerDatabase(@RequestParam(value = "customerId") Integer customerId){
+        String urlDeleteBase = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/deleteByCustomerId?customerId=";
+        restTemplate.delete(urlDeleteBase + customerId.toString());
+        String urlCreate = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/create";
+        ResponseEntity<CustomerAdvertisementData> dataResponseEntity;
+        Set<CustomerAdvertisementData> input = getInputData();
+        for(CustomerAdvertisementData data : input) {
+            try {
+                dataResponseEntity = restTemplate.postForEntity(urlCreate, data, CustomerAdvertisementData.class);
+            } catch (Exception e) {
+                return false;
+            }
         }
         return true;
     }
 
-
-    private Set<Customer> getCustomerFromData(){
-        String urlString = "http://localhost:8080/api/v1/customers";
-        ResponseEntity<CustomerPage> customerResponseEntity = null;
+    @GetMapping("/pinguin")
+    public boolean postIntoDatabase(){
+        String urlDeleteAll = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/deleteAll";
         try {
-            customerResponseEntity = restTemplate.getForEntity(urlString, CustomerPage.class);
-            return new HashSet<>(customerResponseEntity.getBody().getContent());
+            restTemplate.delete(urlDeleteAll);
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        String urlCreate = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/create";
+        ResponseEntity<CustomerAdvertisementData> dataResponseEntity;
+        Set<CustomerAdvertisementData> input = getInputData();
+        for(CustomerAdvertisementData data : input) {
+            try {
+                dataResponseEntity = restTemplate.postForEntity(urlCreate, data, CustomerAdvertisementData.class);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                return false;
+            }
+        }
+        System.out.println("postIntoDatabase fertig");
+        return true;
+    }
+
+    private Customer getCustomerFromData(Integer customerId){
+        String customerUrlString = "http://localhost:8080/api/v1/customers/"+ customerId+ "?getBy=customerId";
+        ResponseEntity<Customer> customerResponseEntity;
+        try {
+            customerResponseEntity = restTemplate.getForEntity(customerUrlString, Customer.class);
+            return customerResponseEntity.getBody();
+        }catch (Exception e){
+            System.out.println("Problem!!!" + e.toString());
+        }
+        return null;
+    }
+
+
+    private Set<Customer> getCustomersFromData(){
+        String urlString = "http://localhost:8080/api/v1/customers";
+        ResponseEntity<CustomerPage> customersResponseEntity;
+        try {
+            customersResponseEntity = restTemplate.getForEntity(urlString, CustomerPage.class);
+            return new HashSet<>(customersResponseEntity.getBody().getContent());
         }catch (Exception e){
                 System.out.println("Problem!!!" + e.toString());
         }
@@ -70,10 +132,10 @@ public class transformInputController {
 
     private Set<AdvertisementCampaign> getCampaignsFromData(){
         String urlString = "http://localhost:8080/api/v1/advertisementCampaigns";
-        ResponseEntity<CampaignPage> campaignResponseEntity = null;
+        ResponseEntity<CampaignPage> campaignsResponseEntity;
         try {
-            campaignResponseEntity = restTemplate.getForEntity(urlString, CampaignPage.class);
-            return new HashSet<>(campaignResponseEntity.getBody().getContent());
+            campaignsResponseEntity = restTemplate.getForEntity(urlString, CampaignPage.class);
+            return new HashSet<>(campaignsResponseEntity.getBody().getContent());
         }catch (Exception e){
             System.out.println("Problem!!!" + e.toString());
         }
@@ -99,12 +161,18 @@ public class transformInputController {
         CustomerAdvertisement aAdvert = getCustomerAdvertisementForCampaign(aCampaign,c);
         input.setDay(getDayLastContact(aAdvert));
         input.setMonth(getMonthLastContact(aAdvert));
-        input.setCampaign(getContacts(aAdvert)+0f);
+        input.setCampaign(getContacts(aAdvert) + 0f);
 
         CustomerAdvertisement lAdvert = getCustomerAdvertisementForLastCampaign(campaigns,c);
-        input.setPdays(getPdays(lAdvert)+0f);
-        input.setPrevious(getPrevious(lAdvert));
-        input.setPoutcome(getPoutcome(lAdvert));
+        if(lAdvert==null){
+            input.setPdays(-1f);
+            input.setPrevious(0);
+            input.setPoutcome(Outcome.UNKNOWN);
+        } else {
+            input.setPdays(getPdays(lAdvert) + 0f);
+            input.setPrevious(getPrevious(lAdvert));
+            input.setPoutcome(getPoutcome(lAdvert));
+        }
 
         return input;
     }
@@ -164,7 +232,7 @@ public class transformInputController {
 
     private CustomerAdvertisement getCustomerAdvertisementForCampaign(AdvertisementCampaign campaign, Customer c){
         for(CustomerAdvertisement ca : c.getCustomerAdvertisements()){
-            if(ca.getId().getAdvertisementCampaignId() == campaign.getId()) {
+            if(ca.getId().getAdvertisementCampaignId().intValue() == campaign.getId().intValue()) {
                 return ca;
             }
         }
@@ -188,7 +256,7 @@ public class transformInputController {
         CustomerAdvertisement advert = null;
         for(CustomerAdvertisement ca : c.getCustomerAdvertisements()){
             for(AdvertisementCampaign campaign : campaigns) {
-                if(ca.getId().getAdvertisementCampaignId() == campaign.getId()) {
+                if(ca.getId().getAdvertisementCampaignId().intValue() == campaign.getId().intValue()) {
                     if (campaign.getEndDate().compareTo(LocalDate.now()) < 0) {
                         int daysOver = (int) ChronoUnit.DAYS.between(campaign.getEndDate(), LocalDate.now());
                         if (daysOver < minDaysOver) {
@@ -203,7 +271,7 @@ public class transformInputController {
     }
 
     private Integer getPdays(CustomerAdvertisement advert){
-        return (int)ChronoUnit.DAYS.between(advert.getLastDisplayDate(),LocalDate.now());
+        return (int) ChronoUnit.DAYS.between(advert.getLastDisplayDate(), LocalDate.now());
     }
 
     private Integer getPrevious(CustomerAdvertisement advert){

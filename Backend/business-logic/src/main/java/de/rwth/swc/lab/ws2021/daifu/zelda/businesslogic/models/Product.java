@@ -6,19 +6,11 @@ import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
-    private Set<AdvertismentCampaign> advertismentCampaigns;
     private String description;
     private Integer id;
     private String name;
     private String type;
-
-    public Set<AdvertismentCampaign> getAdvertismentCampaigns() {
-        return advertismentCampaigns;
-    }
-
-    public void setAdvertismentCampaigns(Set<AdvertismentCampaign> advertismentCampaigns) {
-        this.advertismentCampaigns = advertismentCampaigns;
-    }
+    private Set<AdvertisementCampaign> advertisementCampaigns;
 
     public String getDescription() {
         return description;
@@ -50,5 +42,13 @@ public class Product {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Set<AdvertisementCampaign> getAdvertisementCampaigns() {
+        return advertisementCampaigns;
+    }
+
+    public void setAdvertisementCampaigns(Set<AdvertisementCampaign> advertisementCampaigns) {
+        this.advertisementCampaigns = advertisementCampaigns;
     }
 }
