@@ -28,7 +28,7 @@ public class Customer {
     @ApiModelProperty(notes = "Birthday in format yyyy-MM-dd")
     private LocalDate birthday;
 
-    private Set<CustomerAdvertisement> customerAdvertisments;
+    private Set<CustomerAdvertisement> customerAdvertisements;
 
     private Integer numberOfChildren;
 
@@ -127,14 +127,13 @@ public class Customer {
         this.birthday = birthday;
     }
 
-    public Set<CustomerAdvertisement> getCustomerAdvertisments() {
-        return customerAdvertisments;
+    public Set<CustomerAdvertisement> getCustomerAdvertisements() {
+        return customerAdvertisements;
     }
 
-    public void setCustomerAdvertisments(Set<CustomerAdvertisement> customerAdvertisments) {
-        this.customerAdvertisments = customerAdvertisments;
+    public void setCustomerAdvertisements(Set<CustomerAdvertisement> customerAdvertisements) {
+        this.customerAdvertisements = customerAdvertisements;
     }
-
 
     public Integer getNumberOfChildren() {
         return numberOfChildren;
