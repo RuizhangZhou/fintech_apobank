@@ -80,9 +80,7 @@ public class AdvertisementController {
             }
             if(fakeML((InputData) response.getBody())){
                 // create AdvertisementInfo
-                AdvertisementInfo advertisementInfo = new AdvertisementInfo();
-                advertisementInfo.setProduct(campaign.getProduct());
-                advertisementInfo.setEndDate(campaign.getEndDate());
+                AdvertisementInfo advertisementInfo = new AdvertisementInfo(campaign.getId(), campaign.getStartDate(), campaign.getEndDate());
                 result.add(advertisementInfo);
             }
         }
