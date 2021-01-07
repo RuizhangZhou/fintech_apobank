@@ -144,6 +144,8 @@ public class CustomerController {
         customer.setMonthlyIncome(0f);
         customer.setNumberOfChildren(0);
         customer.setCustomerAdvertisments(new HashSet<>());
+
+        //TODO add Customer Advertisement
         customer.setAccounts(new HashSet<>());
         customer.setLoans(new HashSet<>());
         customer.setInvestments(new HashSet<>());
@@ -200,13 +202,39 @@ public class CustomerController {
             value = "/{customer_number}/personal-info"
     )
     public ResponseEntity<?> updatePersonalInfo(@PathVariable(value = "customer_number")String customer_number,
-                                           @RequestParam(value = "education", required = false, defaultValue = "UNKNOWN") Education education,
-                                           @RequestParam(value = "job", required = false, defaultValue = "UNKNOWN") Job job,
-                                           @RequestParam(value = "monthly_income", required = false, defaultValue = "0") Float monthlyIncome,
-                                           @RequestParam(value = "relationship_status", required = false, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
-                                           @RequestParam(value = "number_of_children", required = false, defaultValue = "0") String numberOfChildren){
+                                           @RequestParam(value = "education", required = true, defaultValue = "UNKNOWN") Education education,
+                                           @RequestParam(value = "job", required = true, defaultValue = "UNKNOWN") Job job,
+                                           @RequestParam(value = "monthly_income", required = true, defaultValue = "0") Float monthlyIncome,
+                                           @RequestParam(value = "relationship_status", required = true, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
+                                           @RequestParam(value = "number_of_children", required = true, defaultValue = "0") Integer numberOfChildren){
+        ResponseEntity<?> customerResponse = getCustomer(String.valueOf(customer_number));
+        if(customerResponse.getStatusCode()!=HttpStatus.OK || !(customerResponse.getBody() instanceof Customer)){
+            return new ResponseEntity<>(customerResponse.getBody(), customerResponse.getStatusCode());
+        }
+        Customer customer = (Customer) customerResponse.getBody();
+        customer.setEducation(education);
+        customer.setJob(job);
+        customer.setMonthlyIncome(monthlyIncome);
+        customer.setRelationshipStatus(relationshipStatus);
+        customer.setNumberOfChildren(numberOfChildren);
 
-        return new ResponseEntity<>("", HttpStatus.NOT_IMPLEMENTED);
+        String updateUrl = "http://localhost:8080/api/v1/customers/"+ customer.getId();
+
+        ResponseEntity<Customer> customerResponseEntity;
+        RequestEntity<Customer> entity = new RequestEntity<>(customer, HttpMethod.PUT, URI.create(updateUrl));
+        try {
+            customerResponseEntity = restTemplate.exchange(updateUrl, HttpMethod.PUT, entity, Customer.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+        }
+
+        if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
+
+        //return new ResponseEntity<>("", HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
