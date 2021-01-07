@@ -1,10 +1,6 @@
-package de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice.models;
-
-import org.springframework.data.annotation.Id;
+package de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models;
 
 public class CustomerAdvertisementData {
-    @Id
-    private String id;
     /*
         customerId and advertisementCampaignId identify each inputData instance
      */
@@ -12,6 +8,12 @@ public class CustomerAdvertisementData {
     private Integer advertisementCampaignId;
 
     private InputData inputData;
+
+    public CustomerAdvertisementData(Integer customerId, Integer advertisementCampaignId, InputData inputData) {
+        this.customerId = customerId;
+        this.advertisementCampaignId = advertisementCampaignId;
+        this.inputData = inputData;
+    }
 
     public Integer getCustomerId() {
         return customerId;

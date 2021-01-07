@@ -11,6 +11,6 @@ import java.util.stream.Collectors;
 @RepositoryRestResource(collectionResourceRel = "customerAdvertisementData", path = "customerAdvertisementData")
 public interface CustomerAdvertisementDataRepository extends MongoRepository<CustomerAdvertisementData, Integer> {
 
-    List<CustomerAdvertisementData> findByCustomerNumber(@Param("customerNumber") Integer customerNumber);
-    List<CustomerAdvertisementData> findByProductId(@Param("productId") Integer productId);
+    List<CustomerAdvertisementData> findByCustomerId(@Param("customerId") Integer customerId);
+    List<CustomerAdvertisementData> findByAdvertisementCampaignId(@Param("advertisementCampaignId") Integer advertisementCampaignId);
 }

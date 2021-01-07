@@ -3,23 +3,15 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Address;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CustomerAdvertisement;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.CurrentAccount;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
 import io.swagger.annotations.ApiParam;
-import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -143,9 +135,9 @@ public class CustomerController {
         customer.setJob(Job.UNKNOWN);
         customer.setMonthlyIncome(0f);
         customer.setNumberOfChildren(0);
-        customer.setCustomerAdvertisments(new HashSet<>());
 
-        //TODO add Customer Advertisement
+        customer.setCustomerAdvertisements(new HashSet<>());
+
         customer.setAccounts(new HashSet<>());
         customer.setLoans(new HashSet<>());
         customer.setInvestments(new HashSet<>());
