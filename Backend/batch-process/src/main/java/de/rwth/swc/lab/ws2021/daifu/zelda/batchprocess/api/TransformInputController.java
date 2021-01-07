@@ -84,7 +84,12 @@ public class TransformInputController {
     @GetMapping("/pinguin")
     public boolean postIntoDatabase(){
         String urlDeleteAll = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/deleteAll";
-        restTemplate.delete(urlDeleteAll);
+        try {
+            restTemplate.delete(urlDeleteAll);
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
         String urlCreate = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/create";
         ResponseEntity<CustomerAdvertisementData> dataResponseEntity;
         Set<CustomerAdvertisementData> input = getInputData();
@@ -92,9 +97,11 @@ public class TransformInputController {
             try {
                 dataResponseEntity = restTemplate.postForEntity(urlCreate, data, CustomerAdvertisementData.class);
             } catch (Exception e) {
+                System.out.println(e.toString());
                 return false;
             }
         }
+        System.out.println("postIntoDatabase fertig");
         return true;
     }
 
