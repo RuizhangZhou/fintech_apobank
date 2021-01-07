@@ -1,0 +1,54 @@
+<head>
+
+    <link rel="stylesheet" href="reg.component.scss" type="text/scss">
+    
+    </head>
+    
+    <body> 
+           
+                <header>   
+                <div id="reghl">Registrierung</div>    
+                </header>
+                <section> 
+                    
+                <div id="formgroup2">
+                     <form [formGroup]="formm3">
+    
+                   <! Value: {{ formm.value | json }} >
+    
+    
+                        <mat-form-field>
+                            <input matInput placeholder="E-Mail" formControlName="E1">
+                        
+                         </mat-form-field>
+                        
+                     </form>
+                                 <br>        
+                     <form [formGroup]="formm2">
+                       <! Value: {{ formm1.value | json }} >
+                         <mat-form-field>
+                            <input matInput placeholder="E-Mail Wiederholen" formControlName="E2">
+    
+                         </mat-form-field>
+    
+                      </form>
+    
+    
+                    <button >Registrieren </button>
+                    
+                    
+                  </div>
+             
+    
+                    </section>
+    
+    
+     <footer>
+    
+     </footer>
+        
+        
+       
+    
+    
+    </body>
