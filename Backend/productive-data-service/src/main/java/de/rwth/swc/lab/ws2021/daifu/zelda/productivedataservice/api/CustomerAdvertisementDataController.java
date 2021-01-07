@@ -110,9 +110,9 @@ public class CustomerAdvertisementDataController {
     }
 
     @RequestMapping(
-            method = RequestMethod.DELETE,
+            value = "deleteAll",
             produces = "application/json",
-            value = "deleteAll"
+            method = {RequestMethod.DELETE, RequestMethod.GET}
     )
     @ResponseBody
     public ResponseEntity<?> deleteCustomerAllAdvertisementData() {
@@ -126,9 +126,9 @@ public class CustomerAdvertisementDataController {
     }
 
     @RequestMapping(
-            method = RequestMethod.DELETE,
+            value = "deleteSpecific",
             produces = "application/json",
-            value = "deleteSpecific"
+            method = {RequestMethod.DELETE, RequestMethod.GET}
     )
     @ResponseBody
     public ResponseEntity<?> deleteCustomerAdvertisementData(@RequestParam(value = "customerId") Integer customerId, @RequestParam(value = "advertisementCampaignId") Integer advertisementCampaignId) {
@@ -151,9 +151,10 @@ public class CustomerAdvertisementDataController {
     }
 
     @RequestMapping(
-            method = RequestMethod.DELETE,
+            value = "deleteByCustomerId",
             produces = "application/json",
-            value = "deleteByCustomerId"
+            method = {RequestMethod.DELETE, RequestMethod.GET}
+
     )
     @ResponseBody
     public ResponseEntity<?> deleteCustomerAdvertisementDataByCustomerId(@RequestParam(value = "customerId") Integer customerId) {
