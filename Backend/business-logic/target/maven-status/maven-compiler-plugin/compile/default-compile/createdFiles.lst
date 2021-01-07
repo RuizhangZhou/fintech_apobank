@@ -1,0 +1,16 @@
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/AdvertismentController.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/BusinessLogicApplication.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/AdvertismentStatus.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Product.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/AdvertismentCampaign.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/Job.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Customer.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/CustomerController.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/RestTemplateConfig.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/SwaggerConfig.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/RelationshipStatus.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Account.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/AccountController.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/CostumerAdvertisment.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Address.class
+de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/Education.class

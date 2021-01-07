@@ -1,0 +1,16 @@
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Customer.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/BusinessLogicApplication.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/AccountController.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/AdvertismentStatus.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Address.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/AdvertismentCampaign.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/AdvertismentController.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Product.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/Education.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/Job.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/api/CustomerController.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/CostumerAdvertisment.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/enums/RelationshipStatus.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/SwaggerConfig.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/models/Account.java
+/home/a/ws20/spp-ws20/web-application/Backend/business-logic/src/main/java/de/rwth/swc/lab/ws2021/daifu/zelda/businesslogic/RestTemplateConfig.java
