@@ -31,3 +31,9 @@ h1{
 a {
     color: #0f2350;
 }
+
+.picture {
+    width: 50%;
+    height: auto;
+}
+
