@@ -3,6 +3,8 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.AdvertisementCampaign;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CustomerAdvertisement;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Product;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.frontend.AdvertisementInfo;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.InputData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RestController
-@RequestMapping("/advertisment")
+@RequestMapping("/advertisement")
 public class AdvertisementController {
 
     @Autowired
@@ -66,7 +68,7 @@ public class AdvertisementController {
             }
         }
         // check for ML response
-        List<AdvertisementCampaign> result = new ArrayList<>();
+        List<AdvertisementInfo> result = new ArrayList<>();
         for (AdvertisementCampaign campaign: runningCampaigns) {
             // get productive data
             url = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/getSpecific?advertisementCampaignId="+campaign.getId()+"&customerId="+customer.getId();
@@ -77,7 +79,11 @@ public class AdvertisementController {
                 return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
             if(fakeML((InputData) response.getBody())){
-                result.add(campaign);
+                // create AdvertisementInfo
+                AdvertisementInfo advertisementInfo = new AdvertisementInfo();
+                advertisementInfo.setProduct(campaign.getProduct());
+                advertisementInfo.setEndDate(campaign.getEndDate());
+                result.add(advertisementInfo);
             }
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
