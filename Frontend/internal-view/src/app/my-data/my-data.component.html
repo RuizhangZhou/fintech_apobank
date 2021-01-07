@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <!-- Make website work on all devices and screen resolutions -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="my-data.component.css">
+
+    <body>
+        <nav class="nav">
+            <img src="assets/images/Apobank_logo.png"/>
+            <a href="/" class="nav__link" data-link>Übersicht</a>
+            <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
+            <a href="/accounts" class="nav__link" data-link>Konten</a>
+            <a href="/credits" class="nav__link" data-link>Kredite</a>        
+            <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
+            <br>
+            <a href="/logout" class="nav__link" data-link>Ausloggen</a> 
+        </nav>
+
+        <h1>Kundendaten</h1>
+
+        <table>
+            <thead>
+            <th>Ihre persönlichen Daten &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button">ändern</button></th>
+            </thead>
+            <tbody>
+                <tr><th>Vorname</th></tr>
+                <tr><th>Nachname</th></tr>
+                <tr><th>Geburtsdatum</th></tr>
+                <tr><th>Familienstand</th></tr>
+                <tr><th>Kinder</th></tr>
+                <tr><th>Ausbildung</th></tr>
+                <tr><th>Berufliche Stellung</th></tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table>
+            <thead>
+            <th>Adressdaten &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button">ändern</button></th>
+            </thead>
+            <tbody>
+                <tr><th>Hauptanschrift</th></tr>
+                <tr><th>Mobil, privat</th></tr>
+                <tr><th>E-Mail</th></tr>
+            </tbody>
+        </table>
+    </body>
+
+</html>
