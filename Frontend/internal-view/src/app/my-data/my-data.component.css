@@ -40,6 +40,9 @@ table {
     border-bottom-right-radius: 15px;
     background-color: #003669;
     border-spacing: 10px;
+    position: relative;
+	top: 5%;
+	left: 15%;
 }
 
 thead {

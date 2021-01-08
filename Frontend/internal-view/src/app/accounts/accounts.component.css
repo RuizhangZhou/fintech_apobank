@@ -26,6 +26,7 @@ nav {
 h1{
     color: #003669;
     margin-left: 20px;
+   
 }
 
 a {
@@ -40,6 +41,10 @@ table {
     border-bottom-right-radius: 15px;
     background-color: #003669;
     border-spacing: 10px;
+    position: relative;
+	top: 5%;
+	left: 15%;
+	
 }
 
 tr {
