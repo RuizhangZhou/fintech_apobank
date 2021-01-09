@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+#wrapper{
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#formgroup {
+	background-color: rgb(0, 0, 0);
+	height: 25%;
+	width: 15%;
+	margin-right: auto;
+	margin-left: auto;
+	position: absolute;
+	top: 35%;
+	left:40%;
+	
+	
+}
+#back{
+	color: #373a3c;
+	height: 30%;
+	width: 25%;
+}
+#loginhl{
+	color:#004893 ;
+	font-size: 50px;
+	position: absolute;
+	top: 5%;
+	left: 45%;
+	
+}
+header {
+	background-color: rgb(255, 255, 255);
+	height: 15%;
+	
+	
+}
+section{
+	width: auto;
+	height: 75%;
+	clear: both;
+	background-color: rgb(255, 255, 255);
+}
+footer{
+	height: 10%;
+	clear: both;
+	background-color: #004893;
+}
+mat-form-field.mat-form-field {
+    font-size: 20px;
+    color: rgb(233, 164, 17);
+}

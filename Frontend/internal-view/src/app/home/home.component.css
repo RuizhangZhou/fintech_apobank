@@ -4,6 +4,9 @@ body {
     margin: 0 0 0 var(--nav-width); /*weg für oben*/
     font-family: 'Roboto', sans-serif; /*apo*/
     font-size: 18px;
+    margin-left: 150px;
+    margin-right: auto;
+    text-align: center;
 }
 
 /*navigation menu*/
@@ -28,8 +31,9 @@ nav {
 
 h1{
     color: #003669;
-    margin-left: 20px;
-    /*text-align: center;*/
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 a {
