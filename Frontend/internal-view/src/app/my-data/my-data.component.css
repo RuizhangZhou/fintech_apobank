@@ -50,20 +50,19 @@ table {
     text-align: center;
 }
 
-thead {
-    font-size: 25px;
-}
-
 tr {
     border: 1px solid #a0a0a0;
     color: white;
     font-weight: 500;
 }
 
+thead {
+    font-size: 25px;
+}
+
 th {
     font-weight: normal;
     text-align: left;
-    color: white;
 }
 
 td {
