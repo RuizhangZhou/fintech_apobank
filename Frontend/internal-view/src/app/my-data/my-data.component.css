@@ -90,7 +90,7 @@ button {
 }
 
 .bg-image {
-    background-image: url("../../assets/images/MeineDaten/background_placeholder.png");
+    background-image: url("../../assets/images/MeineDaten/my-data_placeholder.png");
     background-position: center;
     background-size: cover;
     position: relative;
