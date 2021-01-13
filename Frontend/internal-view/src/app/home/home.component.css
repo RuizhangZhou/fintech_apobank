@@ -34,6 +34,7 @@ h1{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    text-shadow: 0 0 5px white;
 }
 
 a {
@@ -43,3 +44,10 @@ a {
 /*oder direkt in ...component.html durch <style> dann ctrl+v von hier </style>
 ODER halt <h1 style="color:...;margin-left:...;">heading</h1>
 Spätere Definitionen überschreiben vorherige (also evtl auch externe interne oder andersherum)*/
+
+.bg-image {
+    background-image: url("../../assets/images/Uebersicht/background_placeholder.png");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
