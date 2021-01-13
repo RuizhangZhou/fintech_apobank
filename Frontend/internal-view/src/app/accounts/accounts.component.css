@@ -1,4 +1,4 @@
-body {
+body {    
     background-color: white;
     --nav-width: 150px;
     margin: 0 0 0 var(--nav-width);
@@ -86,4 +86,12 @@ button {
     background-color: #A9ADB4;
     color: #0f2350;
 
+}
+
+.bg-image {
+    background-image: url("../../assets/images/Konten/background_placeholder.png");
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
