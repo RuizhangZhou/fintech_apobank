@@ -12,7 +12,7 @@ public class NightlyTrigger {
     private TransformInputController transformInputController;
 
 
-    @Scheduled(fixedRate = 20000, initialDelay = 20000)
+    @Scheduled(fixedRate = 120000, initialDelay = 20000)
     public void nightlyUpdateDatabaseTest(){
         System.out.println("Test PostIntoDatabase");
         transformInputController.postIntoDatabase();
