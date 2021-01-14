@@ -1,4 +1,4 @@
-body {
+body {    
     background-color: white;
     --nav-width: 150px;
     margin: 0 0 0 var(--nav-width);
@@ -31,6 +31,7 @@ h1{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    text-shadow: 0 0 5px white;
 }
 
 a {
@@ -43,11 +44,11 @@ table {
     border-top-right-radius: 15px; 
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: #003669;
+    background-color: rgba(0, 54, 105, 0.8);
     border-spacing: 10px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: right;
 }
 
 tr {
@@ -85,4 +86,13 @@ button {
     border-bottom-right-radius: 15px;
     background-color: #A9ADB4;
     color: #0f2350;
+
+}
+
+.bg-image {
+    background-image: url("../../assets/images/Konten/accounts_placeholder.png");
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
