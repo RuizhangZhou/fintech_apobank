@@ -1,116 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
     <meta charset="UTF-8">
     <!-- Make website work on all devices and screen resolutions -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="home.component.css">
-    <script>
-      window.onload = function () {
-        //需求：无缝滚动。
-        //思路：赋值第一张图片放到ul的最后，然后当图片切换到第五张的时候
-        //     直接切换第六章，再次从第一张切换到第二张的时候先瞬间切换到
-        //     第一张图片，然后滑动到第二张
-        //步骤：
-        //1.获取事件源及相关元素。（老三步）
-        //2.复制第一张图片所在的li,添加到ul的最后面。
-        //3.给ol中添加li，ul中的个数-1个，并点亮第一个按钮。
-        //4.鼠标放到ol的li上切换图片
-        //5.添加定时器
-        //6.左右切换图片（鼠标放上去隐藏，移开显示）
-        var screen = document.getElementById("screen");
-        var ul = screen.children[0];
-        var ol = screen.children[1];
-        var div = screen.children[2];
-        var imgWidth = screen.offsetWidth;
-
-        //2
-        var tempLi = ul.children[0].cloneNode(true);
-        ul.appendChild(tempLi);
-        //3
-        for(var i = 0; i < ul.children.length - 1; i++) {
-          var newOlLi = document.createElement("li");
-          newOlLi.innerHTML = i + 1;
-          ol.appendChild(newOlLi);
-        }
-        var olLiArr = ol.children;
-        olLiArr[0].className = "current";
-        //4
-        for(var i = 0, len = olLiArr.length; i < len; i++) {
-          olLiArr[i].index = i;
-          olLiArr[i].onmouseover = function (ev) {
-            for(var j = 0; j < len; j++) {
-              olLiArr[j].className = "";
-            }
-            this.className = "current";
-            key = square = this.index;
-            animate(ul, -this.index * imgWidth);
-          }
-        }
-        //5
-        var key = 0;
-        var square = 0;
-        var timer = setInterval(autoPlay, 8000);
-        screen.onmouseover = function (ev) {
-          clearInterval(timer);
-          div.style.display = "block";
-        }
-        screen.onmouseout = function (ev) {
-          timer = setInterval(autoPlay, 8000);
-          div.style.display = "none";
-        }
-        //6
-        var divArr = div.children;
-        divArr[0].onclick = function (ev) {
-          key--;
-          if(key < 0) {
-            ul.style.left = -(ul.children.length-1) * imgWidth + "px";
-            key = 4;
-          }
-          animate(ul, -key * imgWidth);
-          square--;
-          if(square < 0) {
-            square = 4;
-          }
-          for(var k = 0; k < len; k++) {
-            olLiArr[k].className = "";
-          }
-          olLiArr[square].className = "current";
-        }
-        divArr[1].onclick = autoPlay;
-        function autoPlay() {
-          key++;
-          //当不满足下面的条件是时候，轮播图到了最后一个孩子，进入条件中后，瞬移到
-          //第一张，继续滚动。
-          if(key > ul.children.length - 1) {
-            ul.style.left = 0;
-            key = 1;
-          }
-          animate(ul, -key * imgWidth);
-          square++;
-          if(square > 4) {
-            square = 0;
-          }
-          for(var k = 0; k < len; k++) {
-            olLiArr[k].className = "";
-          }
-          olLiArr[square].className = "current";
-        }
-        function animate(ele,target){
-          clearInterval(ele.timer);
-          var speed = target>ele.offsetLeft?10:-10;
-          ele.timer = setInterval(function () {
-            var val = target - ele.offsetLeft;
-            ele.style.left = ele.offsetLeft + speed + "px";
-            if(Math.abs(val)<Math.abs(speed)){
-              ele.style.left = target + "px";
-              clearInterval(ele.timer);
-            }
-          },10)
-        }
-      }
-    </script>
-    </head>
 
     <body>
         <div class=bg-image>
@@ -118,20 +11,20 @@
         <!--<p>
             aktueller Kontostand oder was halt so interessant für die Willkommensseite ist
         </p>
-
+    
         <p>
             <a href="/sales" data-link>Beispiellink: letzte Umsätze anzeigen</a>.
         </p>-->
-          <nav class="nav">
-              <img src="assets/images/Apobank_logo.png"/>
-              <a href="/home" class="nav__link" data-link>Übersicht</a>
-              <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
-              <a href="/accounts" class="nav__link" data-link>Konten</a>
-              <a href="/credits" class="nav__link" data-link>Kredite</a>
-              <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
-              <br>
-              <a href="/logout" class="nav__link" data-link>Ausloggen</a>
-          </nav>
+            <nav class="nav">
+                <img src="assets/images/Apobank_logo.png"/>
+                <a href="/home" class="nav__link" data-link>Übersicht</a>
+                <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
+                <a href="/accounts" class="nav__link" data-link>Konten</a>
+                <a href="/credits" class="nav__link" data-link>Kredite</a>        
+                <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
+                <br>
+                <a href="/logout" class="nav__link" data-link>Ausloggen</a> 
+            </nav>
             <br>
             <br>
             <br>
@@ -166,63 +59,48 @@
             <br>
             <br>
             <br>
-        </div>
-
-        <div class="all" id='all'>
-          <div class="screen" id="screen">
-            <ul id="ul">
-              <li style="background-image: url('../../assets/images/Advertisement/AD1.jpg')">
-                <a href="http://www.apobank.de" target="_blank">
-                  <button class="button"><span>weiter erfahren</span></button>
-                </a>
-                <h1>Geldanlage
-                </h1>
-                <h2>"Anlegen. Jeder hat eine Meinung. Aber wer hat Ahnung?“</h2>
-                <h3>Gemeinsam finden wir die passende Geldanlage für Sie </h3>
-                <h3>mit den Chancen im Fokus und den Risiken im Blick. </h3>
-              </li>
-              <li style="background-image: url('../../assets/images/Advertisement/AD2.jpg')">
-                <a href="http://www.apobank.de" target="_blank">
-                  <button class="button"><span>weiter erfahren</span></button>
-                </a>
-                <h1>Immobilien
-                </h1>
-                <h2>"Mieten oder kaufen - was lohnt sich mehr?"</h2>
-                <h3>Wohneigentum oder Immobilie als Kapitalanlage? </h3>
-                <h3>Was Sie bei Immobilienfinanzierung beachten sollten?</h3>
-              </li>
-              <li style="background-image: url('../../assets/images/Advertisement/AD3.jpg')">
-                <a href="http://www.apobank.de" target="_blank">
-                  <button class="button"><span>weiter erfahren</span></button>
-                </a>
-                <h1>Nachhaltigkeit
-                </h1>
-                <h2>"Banking und Nachhaltigkeit - wie passt das zusammen?"</h2>
-                <h3>Wir zeigen, wie Sie Ihr Leben einfach und unkompliziert nachhaltiger gestalten konnen.</h3>
-              </li>
-            </ul>
-            <ol>
-
-            </ol>
-            <div id="arr">
-              <span id="left"><</span>
-              <span id="right">></span>
             </div>
-          </div>
-          <a id="schliessen"; title="Close" onclick="this.style.display='none';document.getElementById('all').style.display='none'" href="javascript:void(0)">x</a>
+        </body>
+
+
+    <div *ngIf="health">
+        <div id="ycxfxxk" style="display: block;max-width: 392px;width: 392px;height: auto;z-index: 1000;border: 5px solid #194dbd;right: 15px;position: fixed;bottom: 30px;background: #fff;">
+            <div>
+                <img src="assets/images/image03.png" alt="Download" width="110" height="110" style="float: left;position: absolute;left: -60px;top: -12px;border-radius: 50%;border: 5px solid #2138b8;background: #fff;" scale="0">
+                <div style="max-width: 319px;float: right;margin-top: 5px;font-size: 14px;">Gut Nachricht! Zinse: <strong style="color: #f00;">5%/Jahre</strong> , Apo-versicherung <strong style="color: #f00;">100 €/Monate</strong></div>
+                <div class="link" style="float: right;"><a href="https://www.apobank.de/" rel="nofollow noopener" target="_blank" rel="nofollow noopener"><span style="color: #f00;">weiter informieren</span></a></div>
+            </div>
+            <div style="position: absolute;top: -15px;right: -14px;text-align: center;width: 24px;line-height: 16px;background: #fff;color: #203cb9;border: 3px solid #1a42af;border-radius: 50%;font-size: 15px; cursor: pointer; padding-bottom: 2px;"><a title="schließen" onclick="this.style.display='none';document.getElementById('ycxfxxk').style.display='none'" href="javascript:void(0)">x</a></div>
+        </div>
+    </div>
+
+    <div *ngIf="digital">
+        <div id="ycxfxxk" style="display: block;max-width: 392px;width: 392px;height: auto;z-index: 1000;border: 5px solid #245fb8;right: 15px;position: fixed;bottom: 30px;background: #fff;">
+            <div>
+                <img src="assets/images/image02.png" alt="Download" width="110" height="110" style="float: left;position: absolute;left: -60px;top: -12px;border-radius: 50%;border: 5px solid #2138b8;background: #fff;" scale="0">
+                <div style="max-width: 319px;float: right;margin-top: 5px;font-size: 14px;">Gut Nachricht! Zinse: <strong style="color: #f00;">5%/Monate</strong> , Online-shopping <strong style="color: #f00;">max. 24 Monate Abzahlung </strong></div>
+                <div class="link" style="float: right;"><a href="https://www.apobank.de/" rel="nofollow noopener" target="_blank" rel="nofollow noopener"><span style="color: #f00;">weiter informieren</span></a></div>
+            </div>
+            <div style="position: absolute;top: -15px;right: -14px;text-align: center;width: 24px;line-height: 16px;background: #fff;color: #203cb9;border: 3px solid #1a42af;border-radius: 50%;font-size: 15px; cursor: pointer; padding-bottom: 2px;"><a title="schließen" onclick="this.style.display='none';document.getElementById('ycxfxxk').style.display='none'" href="javascript:void(0)">x</a></div>
+        </div>
+    </div>
+
+
+    <!-- <div *ngIf="health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" style="float:down; margin: 5px;"  />
+            <img src="assets/images/image03.png" style="float:down; margin: 5px;" />
         </div>
 
-        <div id="sidead" style="background-image: url('../../assets/images/Advertisement/sidead.jpg')">
-          <a href="http://www.apobank.de" target="_blank"><button class="button"><span>weiter erfahren</span></button></a>
-
+        <div *ngIf="!digital">
+            <img src="assets/images/image03.png" style="float:down; margin: 5px;" />
         </div>
+    </div>
 
-    </body>
-
-
-
-
-
-
+    <div *ngIf="!health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" style="float:down; margin: 5px;" />
+        </div>
+    </div>  -->
 
 </html>
