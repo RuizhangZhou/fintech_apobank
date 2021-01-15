@@ -16,7 +16,7 @@ public class InputData {
     private Float balance;
     private BooleanString housing;
     private BooleanString loan;
-    private Contact contact;
+    //private Contact contact;
     private Integer day;
     private Month month;
     private Float campaign;
@@ -96,13 +96,13 @@ public class InputData {
         this.loan = loan;
     }
 
-    public Contact getContact() {
+    /*public Contact getContact() {
         return contact;
     }
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }
+    }*/
 
     public Integer getDay() {
         return day;

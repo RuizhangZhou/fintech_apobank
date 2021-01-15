@@ -14,7 +14,7 @@ public class SwaggerConfig {
     public Docket api(TypeResolver typeResolver) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice"))
+                .apis(RequestHandlerSelectors.basePackage("de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess"))
                 .paths(PathSelectors.any())
                 .build();
     }
