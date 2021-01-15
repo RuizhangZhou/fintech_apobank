@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eceed035-fe36-48f7-bece-9a1369ef6e82" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../ads/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/ads.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/app/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/assets/images/ad1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/assets/images/ad2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/assets/images/ad3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ads/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/components/ads/ads.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/components/ads/ads.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/components/ads/ads.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/app/components/ads/ads.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/assets/images/Apobank_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/assets/images/image01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/assets/images/image02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/assets/images/image03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../advertisement-demo/tslint.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1mjYaFq7aW25ajmITsyQu1gWeEn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Users\76985\OneDrive - rwth-aachen.de\Ruizhang Zhou\Studieren\Studieren in Deutchland in 2019\RWTH\Wintersemester 2020-2021 Semester 3\Software-Praktikum\web-application\Frontend\CarouselAds\CarouselDemo\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="E2E Tests (CarouselDemo)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eceed035-fe36-48f7-bece-9a1369ef6e82" name="Default Changelist" comment="" />
+      <created>1610008528497</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610008528497</updated>
+      <workItem from="1610008530084" duration="3111000" />
+      <workItem from="1610011926971" duration="698000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="511" y="1352" key="#TSLint" timestamp="1610008738153">
+      <screen x="0" y="1080" width="1280" height="720" />
+    </state>
+    <state x="511" y="1352" key="#TSLint/0.1080.1280.720/0.0.1920.1080@0.1080.1280.720" timestamp="1610008738153" />
+    <state x="421" y="1196" key="FileChooserDialogImpl" timestamp="1610011642979">
+      <screen x="0" y="1080" width="1280" height="720" />
+    </state>
+    <state x="421" y="1196" key="FileChooserDialogImpl/0.1080.1280.720/0.0.1920.1080@0.1080.1280.720" timestamp="1610011642979" />
+  </component>
+</project>
