@@ -6,7 +6,7 @@ body {
     font-size: 18px;
     margin-left: 150px;
     margin-right: auto;
-    text-shadow: 0 0 5px black;
+    text-align: center;
 }
 
 /*navigation menu*/
@@ -29,13 +29,12 @@ nav {
     font-weight: 500;
 }
 
-
-#welcome{
-  color: #003669;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  text-shadow: 0 0 5px white;
+h1{
+    color: #003669;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-shadow: 0 0 5px white;
 }
 
 a {
@@ -93,7 +92,6 @@ Spätere Definitionen überschreiben vorherige (also evtl auch externe interne o
 }
 
 *{ padding:0; margin:0; list-style:none; border:0;}
-
 .all{
   width:1280px;
   height:560px;
