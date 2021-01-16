@@ -43,7 +43,7 @@ public class CustomerController {
         try {
             customerResponseEntity = restTemplate.getForEntity(urlString, Customer.class);
         }catch (Exception e){
-            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
