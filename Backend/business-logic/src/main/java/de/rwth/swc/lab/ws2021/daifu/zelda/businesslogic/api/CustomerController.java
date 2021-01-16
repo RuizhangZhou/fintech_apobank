@@ -172,7 +172,13 @@ public class CustomerController {
             return new ResponseEntity<>("Error: " + updatedCustomerRE.getStatusCode().toString() + ", " + updatedCustomerRE.getBody(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(updatedCustomerRE.getBody(), HttpStatus.OK);
+        if(genereateProductiveData(savedCustomer.getId())){
+            return new ResponseEntity<>(updatedCustomerRE.getBody(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Error: " + "couln't generate productive data!", HttpStatus.BAD_REQUEST);
+        }
+
+
     }
 
     /**
@@ -225,6 +231,26 @@ public class CustomerController {
             custAdv.add(custAdvRespEnt.getBody());
         }
         return custAdv;
+    }
+
+    private boolean genereateProductiveData(Integer customerId){
+        String urlString = "http://localhost:8083/batch-process/v1/updateCustomerProduktiveKennzahlen?customerId=" + customerId;
+
+        ResponseEntity<?> customerResponseEntity = null;
+        try {
+            customerResponseEntity = restTemplate.getForEntity(urlString,Void.class);
+        }catch (Exception e){
+            //return new ResponseEntity<>("Error: customer not created3", HttpStatus.BAD_REQUEST);
+            System.out.println("Error1: Productive data for user couldn't be geerated");
+            return false;
+        }
+
+        if(customerResponseEntity!=null && !customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            System.out.println("Error2: Productive data for user couldn't be geerated");
+            return false;
+        }
+
+        return true;
     }
 
     @RequestMapping(
