@@ -76,16 +76,15 @@ public class AdvertisementController {
             } catch (Exception e) {
                 return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
-            if(fakeML((InputData) response.getBody())){
-                // create AdvertisementInfo
-                ResponseEntity<?> productResponse = getProductByAdvertisementCampaignId(campaign.getId());
-                if(productResponse.getStatusCode()!=HttpStatus.OK){
-                    return productResponse;
-                }
-                Product product = (Product) productResponse.getBody();
-                AdvertisementInfo advertisementInfo = new AdvertisementInfo(campaign.getId(), campaign.getStartDate(), campaign.getEndDate(), product.getId(), product.getDescription(), product.getName(), product.getType());
-                result.add(advertisementInfo);
+            // create AdvertisementInfo
+            ResponseEntity<?> productResponse = getProductByAdvertisementCampaignId(campaign.getId());
+            if(productResponse.getStatusCode()!=HttpStatus.OK){
+                return productResponse;
             }
+            Product product = (Product) productResponse.getBody();
+            AdvertisementInfo advertisementInfo = new AdvertisementInfo(campaign.getId(), campaign.getStartDate(), campaign.getEndDate(), product.getId(), product.getDescription(), product.getName(), product.getType());
+            advertisementInfo.setShouldShow(fakeML((InputData) response.getBody()));
+            result.add(advertisementInfo);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

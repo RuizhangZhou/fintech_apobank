@@ -3,6 +3,7 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.frontend;
 import java.time.LocalDate;
 
 public class AdvertisementInfo {
+    private boolean shouldShow;
     private Integer advertisementCampaignId;
     private LocalDate advertisementCampaignStartDate;
     private LocalDate advertisementCampaignEndDate;
@@ -19,6 +20,14 @@ public class AdvertisementInfo {
         this.productDescription = productDescription;
         this.productName = productName;
         this.productType = productType;
+    }
+
+    public boolean isShouldShow() {
+        return shouldShow;
+    }
+
+    public void setShouldShow(boolean shouldShow) {
+        this.shouldShow = shouldShow;
     }
 
     public Integer getAdvertisementCampaignId() {
