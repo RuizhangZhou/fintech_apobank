@@ -1,7 +1,7 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice.models.enums;
 
 public enum Outcome {
-    SUCCES("succes"),
+    SUCCESS("success"),
     FAILURE("failure"),
     OTHER("other"),
     UNKNOWN("unknown");
