@@ -1,8 +1,8 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Address;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.*;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.AdvertismentStatus;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
@@ -18,7 +18,9 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
@@ -86,7 +88,7 @@ public class CustomerController {
                                               @RequestParam(value = "zip_code", required = false, defaultValue = "-1")@ApiParam(value = "zip_code", example = "12345") Integer zipCode,
                                               @RequestParam(value = "city", required = false, defaultValue = "")@ApiParam(value = "city", example = "Faketown") String city){
         String urlString = "http://localhost:8080/api/v1/customers";
-        ResponseEntity<Customer> customerResponseEntity;
+
 
         if(firstName.equals("")){
             return new ResponseEntity<>("Error: No first name was provided.", HttpStatus.BAD_REQUEST);
@@ -122,14 +124,13 @@ public class CustomerController {
         LocalDate localDate = LocalDate.parse(birthday, formatter);
         customer.setBirthday(localDate);
 
-        //set address
+        //set Variables for the new Customer
         Address address = new Address();
         address.setStreet(street);
         address.setHouseNumber(houseNumber);
         address.setZipCode(zipCode);
         address.setCity(city);
         customer.setAddress(address);
-
         customer.setEducation(Education.UNKNOWN);
         customer.setRelationshipStatus(RelationshipStatus.SINGLE);
         customer.setJob(Job.UNKNOWN);
@@ -140,17 +141,90 @@ public class CustomerController {
         customer.setLoans(new HashSet<>());
         customer.setInvestments(new HashSet<>());
 
+        //create customer
+        ResponseEntity<Customer> customerResponseEntity;
         try {
             customerResponseEntity = restTemplate.postForEntity(urlString, customer, Customer.class);
         }catch (Exception e){
-            return new ResponseEntity<>("Error: customer not created", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error: customer not created3", HttpStatus.BAD_REQUEST);
         }
 
         if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString() + ", " + customerResponseEntity.getBody(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
+        Customer savedCustomer = customerResponseEntity.getBody();
+        //create customer advertiesements for the savedCustomer
+        savedCustomer.setCustomerAdvertisements(new HashSet<>(createCAsForCustomer(savedCustomer)));
+
+        //update the customer
+        String updateString = urlString + "/" + savedCustomer.getId();
+        ResponseEntity<Customer> updatedCustomerRE;
+        RequestEntity<Customer> entity = new RequestEntity<>(savedCustomer, HttpMethod.PUT, URI.create(updateString));
+        try {
+            //updatedCustomerRE = restTemplate.postForEntity(updateString, customer, Customer.class);
+            updatedCustomerRE = restTemplate.exchange(updateString, HttpMethod.PUT, entity, Customer.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error: customer not created4", HttpStatus.BAD_REQUEST);
+        }
+
+        if(!updatedCustomerRE.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + updatedCustomerRE.getStatusCode().toString() + ", " + updatedCustomerRE.getBody(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(updatedCustomerRE.getBody(), HttpStatus.OK);
+    }
+
+    /**
+     * create CustomerAdvertisements for every Campaign and the give customer
+     * @param customer the customer, for which the CAs have to be created
+    * */
+    private List<CustomerAdvertisement> createCAsForCustomer(Customer customer){
+
+        //get all AdvertisementCampaigns
+        //customer.setCustomerAdvertisements(new HashSet<>());
+        ResponseEntity<AdvertisementCampaignPage> advertisementCampaignResponseEntity;
+        String urlAdvString = "http://localhost:8080/api/v1/advertisementCampaigns";
+        advertisementCampaignResponseEntity = restTemplate.getForEntity(urlAdvString, AdvertisementCampaignPage.class);
+        try {
+
+        }catch (Exception e){
+            //return new ResponseEntity<>("Error: customer not created1", HttpStatus.BAD_REQUEST);
+        }
+        if(!advertisementCampaignResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            //return new ResponseEntity<>("Error: " + advertisementCampaignResponseEntity.getStatusCode().toString() + ", " + advertisementCampaignResponseEntity.getBody(), HttpStatus.BAD_REQUEST);
+        }
+        List<AdvertisementCampaign> advCamp = new ArrayList<>(advertisementCampaignResponseEntity.getBody().getContent());
+        List<CustomerAdvertisement> custAdv = new ArrayList<>();
+        //create CustomerAdvertisements for every Campaign
+        for(int i=0;i<advCamp.size();i++){
+            CustomerAdvertisement newCustAdv = new CustomerAdvertisement();
+            newCustAdv.setCustomer(customer);
+            newCustAdv.setStatus(AdvertismentStatus.UNKNOWN);
+            newCustAdv.setNumberOfTimesDisplayed(0);
+            newCustAdv.setAdvertisementCampaign(advCamp.get(i));
+
+            CustomerAdvertisementKey key = new CustomerAdvertisementKey();
+            key.setAdvertisementCampaignId(advCamp.get(i).getId());
+            key.setCustomerId(customer.getId());
+
+            newCustAdv.setId(key);
+
+            newCustAdv.setLastDisplayDate(LocalDate.now());
+            //upload custAdv
+            ResponseEntity<CustomerAdvertisement> custAdvRespEnt = null;
+            String uploadCustAdvString = "http://localhost:8080/api/v1/customerAdvertisements";
+            try {
+                custAdvRespEnt = restTemplate.postForEntity(uploadCustAdvString, newCustAdv, CustomerAdvertisement.class);
+            }catch (Exception e){
+                //return new ResponseEntity<>("Error: customer not created2", HttpStatus.BAD_REQUEST);
+            }
+            if(!custAdvRespEnt.getStatusCode().equals(HttpStatus.OK)){
+                //return new ResponseEntity<>("Error: " + custAdvRespEnt.getStatusCode().toString() + ", " + custAdvRespEnt.getBody(), HttpStatus.BAD_REQUEST);
+            }
+            custAdv.add(custAdvRespEnt.getBody());
+        }
+        return custAdv;
     }
 
     @RequestMapping(
@@ -192,13 +266,39 @@ public class CustomerController {
             value = "/{customer_number}/personal-info"
     )
     public ResponseEntity<?> updatePersonalInfo(@PathVariable(value = "customer_number")String customer_number,
-                                           @RequestParam(value = "education", required = false, defaultValue = "UNKNOWN") Education education,
-                                           @RequestParam(value = "job", required = false, defaultValue = "UNKNOWN") Job job,
-                                           @RequestParam(value = "monthly_income", required = false, defaultValue = "0") Float monthlyIncome,
-                                           @RequestParam(value = "relationship_status", required = false, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
-                                           @RequestParam(value = "number_of_children", required = false, defaultValue = "0") String numberOfChildren){
+                                           @RequestParam(value = "education", required = true, defaultValue = "UNKNOWN") Education education,
+                                           @RequestParam(value = "job", required = true, defaultValue = "UNKNOWN") Job job,
+                                           @RequestParam(value = "monthly_income", required = true, defaultValue = "0") Float monthlyIncome,
+                                           @RequestParam(value = "relationship_status", required = true, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
+                                           @RequestParam(value = "number_of_children", required = true, defaultValue = "0") Integer numberOfChildren){
+        ResponseEntity<?> customerResponse = getCustomer(String.valueOf(customer_number));
+        if(customerResponse.getStatusCode()!=HttpStatus.OK || !(customerResponse.getBody() instanceof Customer)){
+            return new ResponseEntity<>(customerResponse.getBody(), customerResponse.getStatusCode());
+        }
+        Customer customer = (Customer) customerResponse.getBody();
+        customer.setEducation(education);
+        customer.setJob(job);
+        customer.setMonthlyIncome(monthlyIncome);
+        customer.setRelationshipStatus(relationshipStatus);
+        customer.setNumberOfChildren(numberOfChildren);
 
-        return new ResponseEntity<>("", HttpStatus.NOT_IMPLEMENTED);
+        String updateUrl = "http://localhost:8080/api/v1/customers/"+ customer.getId();
+
+        ResponseEntity<Customer> customerResponseEntity;
+        RequestEntity<Customer> entity = new RequestEntity<>(customer, HttpMethod.PUT, URI.create(updateUrl));
+        try {
+            customerResponseEntity = restTemplate.exchange(updateUrl, HttpMethod.PUT, entity, Customer.class);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+        }
+
+        if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
+
+        //return new ResponseEntity<>("", HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
