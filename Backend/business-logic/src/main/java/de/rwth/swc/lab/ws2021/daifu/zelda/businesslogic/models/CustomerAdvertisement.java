@@ -7,9 +7,9 @@ import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerAdvertisement {
-    private CustomerAdvertisementKey id = new CustomerAdvertisementKey();
+    private CustomerAdvertisementKey id;
     private Customer customer;
-    //private AdvertisementCampaign advertisementCampaign;
+    private AdvertisementCampaign advertisementCampaign;
     private LocalDate lastDisplayDate;
     private Integer numberOfTimesDisplayed;
     private AdvertismentStatus status;
@@ -52,5 +52,13 @@ public class CustomerAdvertisement {
 
     public void setStatus(AdvertismentStatus status) {
         this.status = status;
+    }
+
+    public AdvertisementCampaign getAdvertisementCampaign() {
+        return advertisementCampaign;
+    }
+
+    public void setAdvertisementCampaign(AdvertisementCampaign advertisementCampaign) {
+        this.advertisementCampaign = advertisementCampaign;
     }
 }
