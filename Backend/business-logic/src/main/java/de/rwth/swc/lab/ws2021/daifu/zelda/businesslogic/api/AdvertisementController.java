@@ -1,9 +1,6 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.AdvertisementCampaign;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.CustomerAdvertisement;
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Product;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.frontend.AdvertisementInfo;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.InputData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/advertisement")
@@ -80,7 +78,12 @@ public class AdvertisementController {
             }
             if(fakeML((InputData) response.getBody())){
                 // create AdvertisementInfo
-                AdvertisementInfo advertisementInfo = new AdvertisementInfo(campaign.getId(), campaign.getStartDate(), campaign.getEndDate());
+                ResponseEntity<?> productResponse = getProductByAdvertisementCampaignId(campaign.getId());
+                if(productResponse.getStatusCode()!=HttpStatus.OK){
+                    return productResponse;
+                }
+                Product product = (Product) productResponse.getBody();
+                AdvertisementInfo advertisementInfo = new AdvertisementInfo(campaign.getId(), campaign.getStartDate(), campaign.getEndDate(), product.getId(), product.getDescription(), product.getName(), product.getType());
                 result.add(advertisementInfo);
             }
         }
@@ -88,7 +91,7 @@ public class AdvertisementController {
     }
 
     public boolean fakeML(InputData inputData){
-        Integer chance = 80; // chance in % for ML model to decide to show the advertisement
+        Integer chance = 50; // chance in % for ML model to decide to show the advertisement
         Random random = new Random();
         Integer randomNumber = random.nextInt(100);
         if(randomNumber < chance){
@@ -99,6 +102,28 @@ public class AdvertisementController {
         }
     }
 
+    public ResponseEntity<?> getProductByAdvertisementCampaignId(Integer advertisementCampaignId){
+        // get all products
+        String url = "http://localhost:8080/api/v1/products";
+        ResponseEntity<?> responseEntity;
+        try {
+            responseEntity = restTemplate.getForEntity(url, ProductPage.class);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        ProductPage productPage = (ProductPage) responseEntity.getBody();
+        List<Product> allProducts = new ArrayList<>(productPage.getContent());
+
+        // search product with fitting ids
+        for (Product product: allProducts){
+            for (AdvertisementCampaign advertisementCampaign: product.getAdvertisementCampaigns()){
+                if (advertisementCampaign.getId() == advertisementCampaignId){
+                    return new ResponseEntity<>(product, HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<>("Error: Couldn't find product of AdvertisementCampaign "+advertisementCampaignId, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @RequestMapping(
             method = RequestMethod.POST,
