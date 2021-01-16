@@ -199,10 +199,10 @@ public class CustomerController {
         //create CustomerAdvertisements for every Campaign
         for(int i=0;i<advCamp.size();i++){
             CustomerAdvertisement newCustAdv = new CustomerAdvertisement();
-            newCustAdv.setCustomer(customer);
+            //newCustAdv.setCustomer(customer);
             newCustAdv.setStatus(AdvertismentStatus.UNKNOWN);
             newCustAdv.setNumberOfTimesDisplayed(0);
-            newCustAdv.setAdvertisementCampaign(advCamp.get(i));
+            //newCustAdv.setAdvertisementCampaign(advCamp.get(i));
 
             CustomerAdvertisementKey key = new CustomerAdvertisementKey();
             key.setAdvertisementCampaignId(advCamp.get(i).getId());
