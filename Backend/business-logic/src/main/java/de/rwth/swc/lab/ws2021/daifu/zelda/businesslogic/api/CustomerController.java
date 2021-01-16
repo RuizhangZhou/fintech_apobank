@@ -45,7 +45,7 @@ public class CustomerController {
         try {
             customerResponseEntity = restTemplate.getForEntity(urlString, Customer.class);
         }catch (Exception e){
-            return new ResponseEntity<>("Error "+ HttpStatus.NOT_FOUND.toString()+": Invalid customer_number", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(!customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
@@ -172,7 +172,13 @@ public class CustomerController {
             return new ResponseEntity<>("Error: " + updatedCustomerRE.getStatusCode().toString() + ", " + updatedCustomerRE.getBody(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(updatedCustomerRE.getBody(), HttpStatus.OK);
+        if(genereateProductiveData(savedCustomer.getId())){
+            return new ResponseEntity<>(updatedCustomerRE.getBody(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Error: " + "couln't generate productive data!", HttpStatus.BAD_REQUEST);
+        }
+
+
     }
 
     /**
@@ -199,10 +205,10 @@ public class CustomerController {
         //create CustomerAdvertisements for every Campaign
         for(int i=0;i<advCamp.size();i++){
             CustomerAdvertisement newCustAdv = new CustomerAdvertisement();
-            newCustAdv.setCustomer(customer);
+            //newCustAdv.setCustomer(customer);
             newCustAdv.setStatus(AdvertismentStatus.UNKNOWN);
             newCustAdv.setNumberOfTimesDisplayed(0);
-            newCustAdv.setAdvertisementCampaign(advCamp.get(i));
+            //newCustAdv.setAdvertisementCampaign(advCamp.get(i));
 
             CustomerAdvertisementKey key = new CustomerAdvertisementKey();
             key.setAdvertisementCampaignId(advCamp.get(i).getId());
@@ -225,6 +231,26 @@ public class CustomerController {
             custAdv.add(custAdvRespEnt.getBody());
         }
         return custAdv;
+    }
+
+    private boolean genereateProductiveData(Integer customerId){
+        String urlString = "http://localhost:8083/batch-process/v1/updateCustomerProduktiveKennzahlen?customerId=" + customerId;
+
+        ResponseEntity<?> customerResponseEntity = null;
+        try {
+            customerResponseEntity = restTemplate.getForEntity(urlString,Void.class);
+        }catch (Exception e){
+            //return new ResponseEntity<>("Error: customer not created3", HttpStatus.BAD_REQUEST);
+            System.out.println("Error1: Productive data for user couldn't be geerated");
+            return false;
+        }
+
+        if(customerResponseEntity!=null && !customerResponseEntity.getStatusCode().equals(HttpStatus.OK)){
+            System.out.println("Error2: Productive data for user couldn't be geerated");
+            return false;
+        }
+
+        return true;
     }
 
     @RequestMapping(

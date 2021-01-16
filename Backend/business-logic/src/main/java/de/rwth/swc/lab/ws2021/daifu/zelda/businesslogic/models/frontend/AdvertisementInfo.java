@@ -1,18 +1,33 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.frontend;
 
-import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Product;
-
 import java.time.LocalDate;
 
 public class AdvertisementInfo {
+    private boolean shouldShow;
     private Integer advertisementCampaignId;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate advertisementCampaignStartDate;
+    private LocalDate advertisementCampaignEndDate;
+    private Integer productId;
+    private String productDescription;
+    private String productName;
+    private String productType;
 
-    public AdvertisementInfo(Integer advertisementCampaignId, LocalDate startDate, LocalDate endDate) {
+    public AdvertisementInfo(Integer advertisementCampaignId, LocalDate advertisementCampaignStartDate, LocalDate advertisementCampaignEndDate, Integer productId, String productDescription, String productName, String productType) {
         this.advertisementCampaignId = advertisementCampaignId;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.advertisementCampaignStartDate = advertisementCampaignStartDate;
+        this.advertisementCampaignEndDate = advertisementCampaignEndDate;
+        this.productId = productId;
+        this.productDescription = productDescription;
+        this.productName = productName;
+        this.productType = productType;
+    }
+
+    public boolean isShouldShow() {
+        return shouldShow;
+    }
+
+    public void setShouldShow(boolean shouldShow) {
+        this.shouldShow = shouldShow;
     }
 
     public Integer getAdvertisementCampaignId() {
@@ -23,19 +38,51 @@ public class AdvertisementInfo {
         this.advertisementCampaignId = advertisementCampaignId;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getAdvertisementCampaignStartDate() {
+        return advertisementCampaignStartDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setAdvertisementCampaignStartDate(LocalDate advertisementCampaignStartDate) {
+        this.advertisementCampaignStartDate = advertisementCampaignStartDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getAdvertisementCampaignEndDate() {
+        return advertisementCampaignEndDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setAdvertisementCampaignEndDate(LocalDate advertisementCampaignEndDate) {
+        this.advertisementCampaignEndDate = advertisementCampaignEndDate;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 }
