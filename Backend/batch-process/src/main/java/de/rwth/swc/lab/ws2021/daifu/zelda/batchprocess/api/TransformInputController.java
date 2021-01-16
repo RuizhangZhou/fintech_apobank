@@ -7,9 +7,7 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.batchprocess.models.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.format.TextStyle;
@@ -22,7 +20,12 @@ public class TransformInputController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/pelikan")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = "application/json",
+            value = "getProduktiveKennzahlen"
+    )
+    @ResponseBody
     private Set<CustomerAdvertisementData> showInputData(){
         return getInputData();
     }
@@ -64,13 +67,18 @@ public class TransformInputController {
         return new HashSet<>(input);
     }
 
-    @GetMapping("/panther")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = "application/json",
+            value = "updateCustomerProduktiveKennzahlen"
+    )
+    @ResponseBody
     public boolean updateCustomerDatabase(@RequestParam(value = "customerId") Integer customerId){
         String urlDeleteBase = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/deleteByCustomerId?customerId=";
-        restTemplate.delete(urlDeleteBase + customerId.toString());
+        restTemplate.getForEntity(urlDeleteBase + customerId.toString(), String.class);
         String urlCreate = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/create";
         ResponseEntity<CustomerAdvertisementData> dataResponseEntity;
-        Set<CustomerAdvertisementData> input = getInputData();
+        Set<CustomerAdvertisementData> input = getCustomerInputData(customerId);
         for(CustomerAdvertisementData data : input) {
             try {
                 dataResponseEntity = restTemplate.postForEntity(urlCreate, data, CustomerAdvertisementData.class);
@@ -81,7 +89,12 @@ public class TransformInputController {
         return true;
     }
 
-    @GetMapping("/pinguin")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = "application/json",
+            value = "updateProduktiveKennzahlen"
+    )
+    @ResponseBody
     public boolean postIntoDatabase(){
         String urlDeleteAll = "http://localhost:8082/productive-data-service/v1/customerAdvertisementData/deleteAll";
         try {
@@ -98,6 +111,7 @@ public class TransformInputController {
                 dataResponseEntity = restTemplate.postForEntity(urlCreate, data, CustomerAdvertisementData.class);
             } catch (Exception e) {
                 System.out.println(e.toString());
+                System.out.println("Problem hinzufügen von: (customerId:" + data.getCustomerId() + ", advertisementCampaignId: " + data.getAdvertisementCampaignId() + ")");
                 return false;
             }
         }
@@ -106,7 +120,7 @@ public class TransformInputController {
     }
 
     private Customer getCustomerFromData(Integer customerId){
-        String customerUrlString = "http://localhost:8080/api/v1/customers/"+ customerId+ "?getBy=customerId";
+        String customerUrlString = "http://localhost:8080/api/v1/customers/"+ customerId+ "?getBy=id";
         ResponseEntity<Customer> customerResponseEntity;
         try {
             customerResponseEntity = restTemplate.getForEntity(customerUrlString, Customer.class);
