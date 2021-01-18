@@ -35,6 +35,10 @@ nav {
     font-weight: 500;
 }
 
+nav a:hover {
+    background-color: #0f2350;
+}
+
 h1{
     color: #003669;
     margin-left: auto;
