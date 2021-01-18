@@ -53,7 +53,8 @@ a {
 }
 
 table {
-    border: 1px solid;
+    box-shadow: 8px 8px 12px #A9ADB4 inset;
+/*    border: 1px solid;*/
     border-top-left-radius: 15px; 
     border-top-right-radius: 15px; 
     border-bottom-left-radius: 15px;
