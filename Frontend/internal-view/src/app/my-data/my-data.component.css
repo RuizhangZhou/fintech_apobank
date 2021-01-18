@@ -18,6 +18,15 @@ nav {
     background: #003669;
 }
 
+.navu {
+    position: fixed;
+    top: 90%;
+    left: 0;
+    width: var(--nav-width);
+    height: 10%; 
+    background: #003669;
+}
+
 .nav__link {
     display: block;
     padding: 12px 18px;
