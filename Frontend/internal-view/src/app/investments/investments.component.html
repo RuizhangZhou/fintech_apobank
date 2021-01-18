@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="investments.component.css">
 
-    <body>
+    <body (click)="countdown.restart()">
         <h1>Geldanlagen</h1>
         <br>
 
-        <nav class="nav">
+        <nav class="nav" (click)="countdown.restart()">
             <img src="assets/images/Apobank_logo.png"/>
             <a routerLink="/home" class="nav__link">Übersicht</a>
             <a routerLink="/my-data" class="nav__link">Meine Daten</a>
             <a routerLink="/accounts" class="nav__link">Konten</a>
             <a routerLink="/credits" class="nav__link">Kredite</a>        
             <a routerLink="/investments" class="nav__link">Geldanlagen</a>
-            <nav class="navu">
+            <nav class="navu"> 
+                <countdown #countdown [config]="{leftTime: 300}"></countdown>
                 -Kundennummer-
                 <a routerLink="/logout" class="nav__link">Ausloggen</a> 
             </nav>

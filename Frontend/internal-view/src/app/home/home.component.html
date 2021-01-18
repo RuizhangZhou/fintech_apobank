@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="home.component.css">
 
-    <body>
+    <body (click)="countdown.restart()">
         <div class=bg-image>
         <h1>Herzlich Willkommen!</h1>
         <!--<p>
@@ -15,14 +15,15 @@
         <p>
             <a href="/sales" data-link>Beispiellink: letzte Umsätze anzeigen</a>.
         </p>-->
-        <nav class="nav">
+        <nav class="nav" (click)="countdown.restart()">
             <img src="assets/images/Apobank_logo.png"/>
             <a routerLink="/home" class="nav__link">Übersicht</a>
             <a routerLink="/my-data" class="nav__link">Meine Daten</a>
             <a routerLink="/accounts" class="nav__link">Konten</a>
             <a routerLink="/credits" class="nav__link">Kredite</a>        
             <a routerLink="/investments" class="nav__link">Geldanlagen</a>
-            <nav class="navu">
+            <nav class="navu"> 
+                <countdown #countdown [config]="{leftTime: 300}"></countdown>
                 -Kundennummer-
                 <a routerLink="/logout" class="nav__link">Ausloggen</a> 
             </nav>

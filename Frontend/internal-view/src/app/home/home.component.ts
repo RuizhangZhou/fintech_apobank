@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-home',
