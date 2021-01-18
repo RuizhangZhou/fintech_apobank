@@ -11,14 +11,15 @@
     <body>
         <nav class="nav">
             <img src="assets/images/Apobank_logo.png"/>
-            <a href="/home" class="nav__link" data-link>Übersicht</a>
-            <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
-            <a href="/accounts" class="nav__link" data-link>Konten</a>
-            <a href="/credits" class="nav__link" data-link>Kredite</a>        
-            <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
+            <a routerLink="/home" class="nav__link">Übersicht</a>
+            <a routerLink="/my-data" class="nav__link">Meine Daten</a>
+            <a routerLink="/accounts" class="nav__link">Konten</a>
+            <a routerLink="/credits" class="nav__link">Kredite</a>        
+            <a routerLink="/investments" class="nav__link">Geldanlagen</a>
             <nav class="navu">
                 -Kundennummer-
-                <a href="/logout" class="nav__link" data-link>Ausloggen</a> 
+                <a routerLink="/logout" class="nav__link">Ausloggen</a> 
+                <!--<a routerLink="/logout" class="nav__link"routerLinkActive="active">Ausloggen</a> -->
             </nav>
         </nav>
 
