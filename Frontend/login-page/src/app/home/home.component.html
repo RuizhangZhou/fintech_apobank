@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <!-- Make website work on all devices and screen resolutions -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="home.component.css">
+
+    <body>
+        <h1>Herzlich Willkommen!</h1>
+        <!--<p>
+            aktueller Kontostand oder was halt so interessant für die Willkommensseite ist
+        </p>
+    
+        <p>
+            <a href="/sales" data-link>Beispiellink: letzte Umsätze anzeigen</a>.
+        </p>-->
+            <nav class="nav">
+                <img src="assets/images/Apobank_logo.png"/>
+                <a href="/home" class="nav__link" data-link>Übersicht</a>
+                <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
+                <a href="/accounts" class="nav__link" data-link>Konten</a>
+                <a href="/credits" class="nav__link" data-link>Kredite</a>        
+                <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
+                <br>
+                <a href="/" class="nav__link" data-link>Ausloggen</a> 
+              
+            </nav>
+        </body>
+    
+
+
+
+    <img src="assets/images/image01.png" style="float:right; margin: 5px;"/>
+
+
+
+    
+
+    <div *ngIf="health">
+        <div id="ycxfxxk" style="display: block;max-width: 392px;width: 392px;height: auto;z-index: 1000;border: 5px solid #194dbd;right: 15px;position: fixed;bottom: 30px;background: #fff;">
+            <div>
+                <img src="assets/images/image03.png" alt="Download" width="110" height="110" style="float: left;position: absolute;left: -60px;top: -12px;border-radius: 50%;border: 5px solid #2138b8;background: #fff;" scale="0">
+                <div style="max-width: 319px;float: right;margin-top: 5px;font-size: 14px;">Gut Nachricht! Zinse: <strong style="color: #f00;">5%/Jahre</strong> , Apo-versicherung <strong style="color: #f00;">100 €/Monate</strong></div>
+                <div class="link" style="float: right;"><a href="https://www.apobank.de/" rel="nofollow noopener" target="_blank" rel="nofollow noopener"><span style="color: #f00;">weiter informieren</span></a></div>
+            </div>
+            <div style="position: absolute;top: -15px;right: -14px;text-align: center;width: 24px;line-height: 16px;background: #fff;color: #203cb9;border: 3px solid #1a42af;border-radius: 50%;font-size: 15px; cursor: pointer; padding-bottom: 2px;"><a title="schließen" onclick="this.style.display='none';document.getElementById('ycxfxxk').style.display='none'" href="javascript:void(0)">x</a></div>
+        </div>
+    </div>
+
+    <div *ngIf="digital">
+        <div id="ycxfxxk" style="display: block;max-width: 392px;width: 392px;height: auto;z-index: 1000;border: 5px solid #245fb8;right: 15px;position: fixed;bottom: 30px;background: #fff;">
+            <div>
+                <img src="assets/images/image02.png" alt="Download" width="110" height="110" style="float: left;position: absolute;left: -60px;top: -12px;border-radius: 50%;border: 5px solid #2138b8;background: #fff;" scale="0">
+                <div style="max-width: 319px;float: right;margin-top: 5px;font-size: 14px;">Gut Nachricht! Zinse: <strong style="color: #f00;">5%/Monate</strong> , Online-shopping <strong style="color: #f00;">max. 24 Monate Abzahlung </strong></div>
+                <div class="link" style="float: right;"><a href="https://www.apobank.de/" rel="nofollow noopener" target="_blank" rel="nofollow noopener"><span style="color: #f00;">weiter informieren</span></a></div>
+            </div>
+            <div style="position: absolute;top: -15px;right: -14px;text-align: center;width: 24px;line-height: 16px;background: #fff;color: #203cb9;border: 3px solid #1a42af;border-radius: 50%;font-size: 15px; cursor: pointer; padding-bottom: 2px;"><a title="schließen" onclick="this.style.display='none';document.getElementById('ycxfxxk').style.display='none'" href="javascript:void(0)">x</a></div>
+        </div>
+    </div>
+
+
+    <!-- <div *ngIf="health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" style="float:down; margin: 5px;"  />
+            <img src="assets/images/image03.png" style="float:down; margin: 5px;" />
+        </div>
+
+        <div *ngIf="!digital">
+            <img src="assets/images/image03.png" style="float:down; margin: 5px;" />
+        </div>
+    </div>
+
+    <div *ngIf="!health">
+        <div *ngIf="digital">
+            <img src="assets/images/image02.png" style="float:down; margin: 5px;" />
+        </div>
+    </div>  -->
+
+</html>

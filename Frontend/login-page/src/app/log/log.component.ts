@@ -20,13 +20,16 @@ import{RegComponent} from '../reg/reg.component';
   
 })
 export class LogComponent implements OnInit {
-  
+  hide = true;
   formm!: FormGroup;
   formm1!:FormGroup;
 constructor(private fb: FormBuilder,private router:Router) { }
 
 goToPage(reg:string):void{
   this.router.navigate([`${reg}`]);
+}
+goToPage2(home:string):void{
+  this.router.navigate([`${home}`]);
 }
 
    

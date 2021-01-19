@@ -7,44 +7,75 @@
 <body> 
        
             <header>  
-            <h1 id="loginhl"> Login</h1>  
+            <h1 id="loginhl" > Anmeldung</h1>  
+         
             </header>
             <section> 
-              <div id="back">
+             <div class="content">
+              
             <div id="formgroup">
-                 <form [formGroup]="formm">
-
-               <! Value: {{ formm.value | json }} >
-
-                        
-                        <mat-form-field id="test"appearence="outline">
-                          
-                    <input matInput placeholder="Benutzername" formControlName="Benutzername">
+              <div class="example-container">
+ 
+                <form [formGroup]="formm">
+                <mat-form-field >
+                  <mat-label>Benutzername</mat-label>
+                 
+                  <input matInput placeholder="" formControlName="Benutzername">
+                 
+                </mat-form-field>
+              </form>
+              <form [formGroup]="formm1">
+                <mat-form-field >
                   
-                     </mat-form-field>
-                     
-                   </form>
-                    <br>        
-                   <form [formGroup]="formm1">
-                   <! Value: {{ formm1.value | json }} >
-                   <mat-form-field>
-                    <input matInput placeholder="Passwort" formControlName="Passwort">
-
-                     </mat-form-field>
-
-                    </form>
-
-
-                <button href="/reg" class="nav_link" data-link >Login</button>
-                <button (click) = "goToPage('reg')" >Registrieren</button>
+                  <mat-label>Passwort</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="Passwort">
+                  <button mat-icon-button matSuffix type="button" class= "bu1" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </form>
+              </div>
+            </div>
+            <div id="bu21">
+              
+              <button type="button" class= "bu2" (click) = "goToPage('reg')" >Registrieren</button>
+              <button type="button" class= "bu2" (click) = "goToPage('home')" >login</button> 
+              </div>
+            
+                    
+                  </div>
                 
-                    </div>
-         
-                </div>  
+                
+                    <a href="https://www.instagram.com/apobank.de/"class="picture" >
+                    
+                       <img src="../../assets/images/links/logo-ig.svg"height="45px" width="45px" >
+                   
+                      </a>
+                      
+                  
+                  <a href="https://www.facebook.com/apobank.de" class="picture">
+                  
+                    <img src="../../assets/images/links/logo-fb.svg"height="45px" width="45px" >
+                
+                  </a>
+                  
+                  <a href="https://www.youtube.com/channel/UChIAjXTBTSGzgcYK_7F12_w" class="picture">
+                    
+                    <img src="../../assets/images/links/logo-tr.svg"height="45px" width="45px" >
+                
+                  </a>
+                  
+                  <a href="https://twitter.com/apobank" class="picture" >
+                  
+                    <img src="../../assets/images/links/logo-yt.svg"height="45px" width="45px" >
+                
+                  </a>
+               
                 </section>
-
+    
               
  <footer>
+  
 
  </footer>
 </body>

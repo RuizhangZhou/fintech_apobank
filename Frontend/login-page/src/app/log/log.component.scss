@@ -6,28 +6,28 @@
 	margin-left: auto;
 }
 #formgroup {
-	background-color: rgb(0, 0, 0);
+	background-color:#ffffff;
 	height: 25%;
 	width: 15%;
+	margin-top: 200px;
 	margin-right: auto;
-	margin-left: auto;
-	position: absolute;
-	top: 35%;
-	left:40%;
+	margin-left: 250px;
+	position: relative;
 	
-	
+
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+	background-color: rgb(218, 222, 236);
 }
-#back{
-	color: #373a3c;
-	height: 30%;
-	width: 25%;
-}
+
 #loginhl{
 	color:#004893 ;
 	font-size: 50px;
 	position: absolute;
 	top: 5%;
-	left: 45%;
+	left: 40%;
 	
 }
 header {
@@ -43,11 +43,87 @@ section{
 	background-color: rgb(255, 255, 255);
 }
 footer{
-	height: 10%;
-	clear: both;
+	
+	
 	background-color: #004893;
 }
 mat-form-field.mat-form-field {
     font-size: 20px;
-    color: rgb(233, 164, 17);
+	color: rgb(255, 174, 0);
+ 
+}
+
+  .bu2:hover {
+	background-color: #4f4f80; 
+	color: white;
+  }
+ 
+  #bu21{
+	float: left;
+	margin-top: 50px;
+	margin-right: auto;
+	margin-left: 250px;
+	position: relative;
+
+  }
+
+  .bu2{
+	background-color: #285ff7; 
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	display: inline-block;
+	
+  }
+  .bu1{
+	
+	border: none;
+	color: rgb(0, 0, 0);
+	
+	
+  }
+  .content {
+    -webkit-box-shadow: 0 0 0.75rem 0 #0d305c;
+    box-shadow: 0 0 0.75rem 0 #145bb3;
+    border-radius: 0 16px 0 0;
+    border: none;
+}
+.content {
+    position: relative;
+    border-color: #b1b3b5;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.25rem;
+	background-color: rgb(218, 222, 236);
+	height: 700px;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.content {
+    border-left-color: #b1b3b5;
+    border-left-width: 1px;
+}
+.links{
+
+	height: 45px;
+	width: 45px;
+	
+}
+
+.picture {
+    width: 45px;
+	height: auto;
+	
 }
