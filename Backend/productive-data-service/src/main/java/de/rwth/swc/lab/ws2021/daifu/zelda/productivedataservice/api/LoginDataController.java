@@ -44,7 +44,7 @@ public class LoginDataController {
             if(LoginDataList.isEmpty()){
                 return new ResponseEntity<>("Could not find LoginData with customer_number "+customer_number, HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<>(LoginDataList, HttpStatus.OK);
+            return new ResponseEntity<>(LoginDataList.get(0), HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
