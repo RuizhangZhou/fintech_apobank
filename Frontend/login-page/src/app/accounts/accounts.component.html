@@ -4,19 +4,28 @@
     <!-- Make website work on all devices and screen resolutions -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="accounts.component.css">
+    <style>
+        span{ margin-right: 1em; }
+    </style>
 
-    <body>
+    <!--<body (click)="countdown.restart()">-->
+        <body>
+        <!--<nav class="nav" (click)="countdown.restart()">-->
         <nav class="nav">
-            <img src="assets/images/Apobank_logo.png"/>
-            <a href="/home" class="nav__link" data-link>Übersicht</a>
-            <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
-            <a href="/accounts" class="nav__link" data-link>Konten</a>
-            <a href="/credits" class="nav__link" data-link>Kredite</a>        
-            <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
-            <br>
-            <a href="/" class="nav__link" data-link>Ausloggen</a> 
+            <a href="https://www.apobank.de/" target="_blank"><img src="assets/images/Apobank_logo.png" alt="deutsche apotheker- und ärztebank"/></a>
+            <a href="/home" class="nav__link">Übersicht</a>
+            <a href="/my-data" class="nav__link">Meine Daten</a>
+            <a href="/accounts" class="nav__link">Konten</a>
+            <a href="/credits" class="nav__link">Kredite</a>        
+            <a href="/investments" class="nav__link">Geldanlagen</a>
+            <nav class="navu"> 
+<!--                <countdown #countdown [config]="{leftTime: 300}"></countdown>-->
+                -Kundennummer-
+                <a href="/logout" class="nav__link">Ausloggen</a> 
+            </nav>
         </nav>
 
+        <div class="bg-image">
         <h1>Konten</h1>
 
         <table>
@@ -35,14 +44,16 @@
             </tbody>
             <tfoot>
             <tr>
-                <button type="button">Überweisung</button>
-                <button type="button">Daueraufträge</button>
+                <th><span><button type="button">Überweisung</button></span>
+                <button type="button">Daueraufträge</button></th>
                 <td><button type="button">Mehr</button></td>
             </tr>
             </tfoot>
         </table>
         <br>
-        <table>
+        <br>
+        <br>
+        <table width=80%>
             <thead>
             <tr>Girokonto 2</tr>
             </thead>
@@ -58,14 +69,16 @@
             </tbody>
             <tfoot>
             <tr>
-                <button type="button">Überweisung</button>
-                <button type="button">Daueraufträge</button>
+                <th><span><button type="button">Überweisung</button></span>
+                <button type="button">Daueraufträge</button></th>
                 <td><button type="button">Mehr</button></td>
             </tr>
             </tfoot>
         </table>
         <br>
-        <table>
+        <br>
+        <br>
+        <table width=80%>
             <thead>
             <tr>Girokonto 3</tr>
             </thead>
@@ -81,11 +94,25 @@
             </tbody>
             <tfoot>
             <tr>
-                <button type="button">Überweisung</button>
-                <button type="button">Daueraufträge</button>
+                <th><span><button type="button">Überweisung</button></span>
+                <button type="button">Daueraufträge</button></th>
                 <td><button type="button">Mehr</button></td>
             </tr>
             </tfoot>
         </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
     </body>
 </html>
