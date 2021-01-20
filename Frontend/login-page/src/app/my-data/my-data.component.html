@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="my-data.component.css">
 
     <body>
+        <!--<nav class="nav" (click)="countdown.restart()">-->
         <nav class="nav">
-            <img src="assets/images/Apobank_logo.png"/>
-            <a href="/home" class="nav__link" data-link>Übersicht</a>
-            <a href="/my-data" class="nav__link" data-link>Meine Daten</a>
-            <a href="/accounts" class="nav__link" data-link>Konten</a>
-            <a href="/credits" class="nav__link" data-link>Kredite</a>        
-            <a href="/investments" class="nav__link" data-link>Geldanlagen</a>
-            <br>
-            <a href="/" class="nav__link" data-link>Ausloggen</a> 
-         
-            
-       
-               
+            <a href="https://www.apobank.de/" target="_blank"><img src="assets/images/Apobank_logo.png" alt="deutsche apotheker- und ärztebank"/></a>
+            <a href="/home" class="nav__link">Übersicht</a>
+            <a href="/my-data" class="nav__link">Meine Daten</a>
+            <a href="/accounts" class="nav__link">Konten</a>
+            <a href="/credits" class="nav__link">Kredite</a>        
+            <a href="/investments" class="nav__link">Geldanlagen</a>
+            <nav class="navu"> 
+<!--                <countdown #countdown [config]="{leftTime: 300}"></countdown>-->
+                -Kundennummer-
+                <a href="/logout" class="nav__link">Ausloggen</a> 
+            </nav>
         </nav>
 
         <h1>Kundendaten</h1>
