@@ -1,7 +1,6 @@
 package de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice;
 
 import com.fasterxml.classmate.TypeResolver;
-import de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice.models.CustomerAdvertisementData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -17,7 +16,6 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("de.rwth.swc.lab.ws2021.daifu.zelda.productivedataservice"))
                 .paths(PathSelectors.any())
-                .build()
-                .additionalModels(typeResolver.resolve(CustomerAdvertisementData.class));
+                .build();
     }
 }
