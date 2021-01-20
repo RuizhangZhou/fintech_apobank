@@ -6,6 +6,7 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Advertismen
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.LoginData;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -61,15 +62,30 @@ public class CustomerController {
             value = "login"
     )
     @ResponseBody
-    public ResponseEntity<?> loginTest(@RequestParam(value = "customer_number", required = false, defaultValue = "0") String customer_number ) {
-        //TODO if sucessful return {sucessfull:true}, else return {sucess}
-        ResponseEntity<?> response = getCustomer(customer_number);
-        if( ( response.getStatusCode() == HttpStatus.OK ) && ( !response.getBody().toString().toLowerCase().contains("error") ) ){
-            return new ResponseEntity<>("Login, sucessfull", HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestParam(value = "customer_number") Integer customer_number, @RequestParam(value = "password") String password ) {
+        // get loginData
+        String url = "http://localhost:8082/productive-data-service/v1/loginData/get?customer_number="+customer_number;
+        ResponseEntity<?> responseEntity = new ResponseEntity<>("Unerkannter Fehler",HttpStatus.INTERNAL_SERVER_ERROR);
+        try {
+            responseEntity = restTemplate.getForEntity(url, LoginData.class);
+        }catch (Exception e){
+            // post loginData
+            String postUrl = "http://localhost:8082/productive-data-service/v1/loginData/create";
+            try {
+                responseEntity = restTemplate.postForEntity(postUrl, new LoginData(customer_number, password), LoginData.class);
+            }catch (Exception e2){
+                return new ResponseEntity<>(e.toString()+"\n"+e2.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            return new ResponseEntity<>(true,HttpStatus.OK);
         }
-        else{
-            return response;
+        if(responseEntity.getStatusCode()!=HttpStatus.OK){
+            return responseEntity;
         }
+        LoginData loginData = (LoginData) responseEntity.getBody();
+        if (password.equals(loginData.getPassword())){
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 
 
