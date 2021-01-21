@@ -16,6 +16,7 @@ nav {
     width: var(--nav-width);
     height: 100%;
     background: white;
+    box-shadow: 0 0 0.75rem 0 #145bb3;
 }
 
 .navu {

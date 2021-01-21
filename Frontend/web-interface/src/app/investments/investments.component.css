@@ -1,12 +1,21 @@
 body {    
     background-color: white;
     --nav-width: 150px;
-    margin: 0 0 0 var(--nav-width);
+  
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     margin-left: 150px;
     margin-right: auto;
     text-align: center;
+    margin: 0 0 0 var(--nav-width);
+   
+
+}
+section{
+    background-image: url('../../assets/images/Geldanlagen/investment-consulting.png');
+    
+        height: 100vh;
+     
 }
 
 nav {
@@ -16,6 +25,7 @@ nav {
     width: var(--nav-width);
     height: 100%;
     background: white;
+    box-shadow: 0 0 0.75rem 0 #145bb3;
 }
 
 .navu {
@@ -114,5 +124,47 @@ button {
 .picture {
     width: 100%;
     height: auto;
+}
+.anlagen1,.anlagen2,.anlagen3{
+    float: left;
+    position: absolute;
+    margin-right: 4%;
+    height: 500px;
+    width: 300px;
+    background-color: #ffffff;
+    margin-bottom: 20%;
+    top: 20%;
+    box-shadow: 0 0 0.75rem 0 #dad3c9;
+   
+}
+.anlagen1{
+    margin-left: 10%;
+    top: 10%;
+  
+}
+.anlagen3{
+    margin-left: 25%;
+
+  
+}
+.anlagen2{
+    margin-left: 40%;
+    top: 10%;
+ 
+}
+h2,h3,h4{
+    font-size: 25px;  
+    font-weight: 400;
+    margin-top: 10%;
+    color: #0a1530;
+}
+.text{
+    color: #0f2350;
+}
+.test1{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #ffffff;
+    height: 100vh;
 }
 

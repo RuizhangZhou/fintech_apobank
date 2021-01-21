@@ -16,6 +16,7 @@ nav {
     width: var(--nav-width);
     height: 100%;
     background: white;
+    box-shadow: 0 0 0.75rem 0 #145bb3;
 }
 
 .navu {
@@ -53,7 +54,7 @@ a {
 }
 
 table {
-    box-shadow: 8px 8px 12px #A9ADB4 inset;
+    box-shadow: 0 0 0.75rem 0 #a2a6aa;
 /*    border: 1px solid;*/
     border-top-left-radius: 15px; 
     border-top-right-radius: 15px; 
@@ -99,8 +100,8 @@ button {
     border-top-right-radius: 15px; 
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: #A9ADB4;
-    color: #0f2350;
+    background-color: #4b6da8;
+    color: #ffffff;
 }
 
 .bg-image {
