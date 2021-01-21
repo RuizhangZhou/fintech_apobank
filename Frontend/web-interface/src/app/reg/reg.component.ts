@@ -10,7 +10,7 @@ import{MatButtonModule} from '@angular/material/button'
 import{MatCheckboxModule} from '@angular/material/checkbox'
 import{MatChipsModule} from '@angular/material/chips'
 import{LogComponent} from'../log/log.component';
-import { LogoutComponent } from '../logout/logout.component';
+import { RegfinComponent } from '../regfin/regfin.component';
 
 @Component({
   selector: 'app-reg',
@@ -23,8 +23,8 @@ export class RegComponent implements OnInit {
   formm3!:FormGroup;
 constructor(private fb1: FormBuilder,private router:Router) { }
 
-goToPage(logout:string):void{
-  this.router.navigate([`${logout}`]);
+goToPage(regfin:string):void{
+  this.router.navigate([`${regfin}`]);
 }
    
 ngOnInit() {
