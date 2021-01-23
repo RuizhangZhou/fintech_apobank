@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import {getLocaleExtraDayPeriodRules} from "@angular/common";
 
 export interface CustomerAdvertisementId {
   customerId: number,
@@ -93,6 +94,24 @@ export interface AdvertisementInfo {
   productType: string
 }
 
+export interface UpdatePersonalInfo {
+  education: string,
+  job: string,
+  monthlyIncome: number,
+  numberOfChildren: number,
+  relationshipStatus: string
+}
+
+export interface RegisterCustomer {
+  birthday: string,
+  city: string,
+  firstName: string,
+  houseNumber: string,
+  lastName: string,
+  street: string,
+  zipCode: number
+}
+
 const blUrl = 'http://localhost:8081/business-logic/v1/';
 
 @Injectable({
@@ -109,14 +128,20 @@ export class RestService {
     return body || { };
   }
 
-  getCustomer(customer_number: number): Observable<any> {
-    return this.http.get<Customer>(blUrl + 'customers/' + customer_number).pipe(
+  /*
+      ACCOUNT CONTROLLER
+   */
+
+  getAccountsByCustomer(customer_number: number): Observable<any> {
+    return this.http.get<Account[]>(blUrl + 'accounts?customer_number=' + customer_number).pipe(
       catchError(this.handleError)
     );
   }
 
-  getAccountByCustomer(customer_number: number): Observable<any> {
-    return this.http.get<Account[]>(blUrl + 'accounts?customer_number=' + customer_number).pipe(
+  //TODO: createAccount Method (does not work in business-logic)
+
+  transferMoney(account_number: string, send_to: string, amount: number): Observable<any> {
+    return this.http.put<string>(blUrl + 'accounts?account_number='+account_number+'&send_to='+send_to, amount).pipe(
       catchError(this.handleError)
     );
   }
@@ -127,8 +152,22 @@ export class RestService {
     );
   }
 
+  /*
+      ADVERTISEMENT CONTROLLER
+   */
+
   getAdvertisementInfo(customer_number: number): Observable<any> {
     return this.http.get<AdvertisementInfo[]>(blUrl + 'advertisement?customer_number=' + customer_number).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /*
+      CUSTOMER CONTROLLER
+   */
+
+  getCustomer(customer_number: number): Observable<any> {
+    return this.http.get<Customer>(blUrl + 'customers/' + customer_number).pipe(
       catchError(this.handleError)
     );
   }
@@ -139,8 +178,20 @@ export class RestService {
     );
   }
 
-  checkLogin(customer_number: number, password: string): Observable<any> {
+  updatePersonalInfo(customer_number: number, updatePersonalInfo: UpdatePersonalInfo): Observable<any> {
+    return this.http.put<Customer>(blUrl + 'customers/'+customer_number+'/personal-info', updatePersonalInfo).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  login(customer_number: number, password: string): Observable<any> {
     return this.http.get<boolean>(blUrl+'customers/login?customer_number='+customer_number+'&password='+password).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  registerCustomer(registerCustomer: RegisterCustomer): Observable<any> {
+    return this.http.post<Customer>(blUrl + 'customers/register', registerCustomer).pipe(
       catchError(this.handleError)
     );
   }
