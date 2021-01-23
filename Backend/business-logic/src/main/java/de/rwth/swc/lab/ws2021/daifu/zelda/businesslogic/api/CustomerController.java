@@ -178,7 +178,8 @@ public class CustomerController {
 
         Customer savedCustomer = customerResponseEntity.getBody();
         //create customer advertiesements for the savedCustomer
-        savedCustomer.setCustomerAdvertisements(new HashSet<>(createCAsForCustomer(savedCustomer)));
+
+        //savedCustomer.setCustomerAdvertisements(new HashSet<>(createCAsForCustomer(savedCustomer))); NOT WORKING AND NO ERROR HANDLING!
 
         //update the customer
         String updateString = urlString + "/" + savedCustomer.getId();
@@ -257,6 +258,13 @@ public class CustomerController {
     }
 
     private boolean genereateProductiveData(Integer customerId){
+
+
+
+        /*
+                #   Calling this method throws an internal server error in batch process.
+                #   So i just call post into dataBase below
+
         String urlString = "http://localhost:8083/batch-process/v1/updateCustomerProduktiveKennzahlen?customerId=" + customerId;
 
         ResponseEntity<?> customerResponseEntity = null;
@@ -264,7 +272,7 @@ public class CustomerController {
             customerResponseEntity = restTemplate.getForEntity(urlString,Void.class);
         }catch (Exception e){
             //return new ResponseEntity<>("Error: customer not created3", HttpStatus.BAD_REQUEST);
-            System.out.println("Error1: Productive data for user couldn't be geerated");
+            System.out.println("Error1: Productive data for user couldn't be geerated: "+e.toString());
             return false;
         }
 
@@ -274,6 +282,15 @@ public class CustomerController {
         }
 
         return true;
+        */
+
+        try {
+            return restTemplate.getForEntity("http://localhost:8083/batch-process/v1/updateProduktiveKennzahlen",Boolean.class).getBody();
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
     @RequestMapping(
