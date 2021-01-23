@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NAVIGATION} from '../Models/Navigation';
+import {RestService} from "../rest.service";
 
 @Component({
   selector: 'app-accounts',
@@ -7,9 +8,18 @@ import {NAVIGATION} from '../Models/Navigation';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  accounts = NAVIGATION;
-  constructor() { }
+
+  accounts: Account[] = <Account[]> {};
+
+  constructor(public rest: RestService) { }
   ngOnInit(): void {
+    this.getAccounts(this.rest.test_customer_number);
   }
 
+  getAccounts(customer_number: number): void {
+    this.rest.getAccountsByCustomer(customer_number).subscribe((resp: any) => {
+      this.accounts = resp;
+      console.log(this.accounts);
+    });
+  }
 }

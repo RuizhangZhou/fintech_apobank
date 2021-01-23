@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+import {RestService, Account} from '../rest.service';
+import {NavigationComponent} from "../navigation/navigation.component";
 
 @Component({
   selector: 'app-account-item',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() accountInput!: Account;
+
+  account: Account = <Account> {};
+
+  constructor(public rest: RestService) { }
 
   ngOnInit(): void {
+    this.account = this.accountInput;
   }
 
 }
