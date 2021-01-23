@@ -14,13 +14,13 @@
       <div id="personal-info-button"><p>ändern</p></div>
       <table>
         <tbody>
-        <tr><th>Vorname</th><td>Martin</td></tr>
-        <tr><th>Nachname</th><td>Vichev</td></tr>
-        <tr><th>Geburtsdatum</th><td>30.03.1999</td></tr>
-        <tr><th>Familienstand</th><td>ledig</td></tr>
-        <tr><th>Kinder</th><td>0</td></tr>
-        <tr><th>Ausbildung</th><td>keine Angaben</td></tr>
-        <tr><th>Berufliche Stellung</th><td>keine Angaben</td></tr>
+        <tr><th>Vorname</th><td>{{customer.firstName}}</td></tr>
+        <tr><th>Nachname</th><td>{{customer.lastName}}</td></tr>
+        <tr><th>Geburtsdatum</th><td>{{customer.birthday}}</td></tr>
+        <tr><th>Familienstand</th><td>{{customer.relationshipStatus}}</td></tr>
+        <tr><th>Kinder</th><td>{{customer.numberOfChildren}}</td></tr>
+        <tr><th>Ausbildung</th><td>{{customer.education}}</td></tr>
+        <tr><th>Berufliche Stellung</th><td>{{customer.job}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -29,7 +29,7 @@
       <div id="address-info-button"><p>ändern</p></div>
       <table>
         <tbody>
-        <tr><th>Hauptanschrift</th><td>Fakestrasse 69, 52074 Aachen</td></tr>
+        <tr><th>Hauptanschrift</th><td>{{customer.address.street}} {{customer.address.houseNumber}}, {{customer.address.zipCode}} {{customer.address.city}}</td></tr>
         <tr><th>Mobil, privat</th><td>+49 1742374322</td></tr>
         <tr><th>E-Mail</th><td>suckit@gmail.com</td></tr>
         </tbody>
