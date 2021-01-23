@@ -4,18 +4,15 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.Customer;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.*;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Info;
-import io.swagger.annotations.SwaggerDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
-import org.springframework.http.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashSet;
 
 @RestController
@@ -63,8 +60,8 @@ public class AccountController {
     }
 
     @PostMapping("/accounts")
-    public ResponseEntity<?> createAccount(@RequestParam(value = "customer_number", defaultValue = "0") String customer_number,
-                                           @RequestParam(value = "type", defaultValue = "currentAccount") String type) {
+    public ResponseEntity<?> createAccount(@RequestParam(value = "customer_number", defaultValue = "100000") String customer_number,
+                                           @RequestBody String type) {
         if(customer_number.equals("0")){
             return new ResponseEntity<>("Error "+ HttpStatus.BAD_REQUEST.toString() + ": No customer_number was provided" , HttpStatus.BAD_REQUEST);
         }
@@ -139,7 +136,7 @@ public class AccountController {
     @PutMapping("/accounts")
     public ResponseEntity<?> transferMoney(@ApiParam(example = "10000000") final @RequestParam(value = "account_number", required = true, defaultValue = "0") String account_number,
                                            @ApiParam(example = "10000001") final @RequestParam(value = "send_to", required = true, defaultValue = "0") String sendTo,
-                                           @ApiParam(example = "99.99") final @RequestParam(value = "amount", required = true, defaultValue = "-1") double amount) {
+                                           @ApiParam(example = "99.99") final @RequestBody double amount) {
         ResponseEntity<?> accSender = getAccount(account_number);
         if(!accSender.getStatusCode().equals(HttpStatus.OK) || !(accSender.getBody() instanceof Account)){
             String message = accSender.getBody().toString();

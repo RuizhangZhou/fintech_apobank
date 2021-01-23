@@ -5,17 +5,16 @@ import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.frontend.Advertis
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.CustomerAdvertisementData;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.InputData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/advertisement")
@@ -144,23 +143,6 @@ public class AdvertisementController {
             }
         }
         return new ResponseEntity<>("Error: Couldn't find product of AdvertisementCampaign "+advertisementCampaignId, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @RequestMapping(
-            method = RequestMethod.POST,
-            produces = "application/json",
-            value = "recordResult"
-            //TODO add authentication header here
-    )
-    @ResponseBody
-    public ResponseEntity<?> recordAdvertisementReaction(@RequestParam(value = "customer_number", required = false, defaultValue = "0")String customer_number,
-                                                         @RequestParam(value = "campaign_number", required = false, defaultValue = "0")String campaign_number,
-                                                         @RequestParam(value = "advertisement_number", required = false, defaultValue = "0")String advertisement_number,
-                                                         @RequestParam(value = "successful", required = false, defaultValue = "false")String successful){
-        //TODO use PRIMARY KEYS of specific advertisement and campaign as parameters to identify where to record the result
-        //Alex's DataHandler has to be edied in order for this to work because there aren't any primary keys
-
-        return new ResponseEntity<>("Not yet implemented! :(", HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
