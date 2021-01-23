@@ -1,0 +1,183 @@
+.img_wrapper{
+  position: inherit;
+  width: 100%;
+  height: 400px;
+  /*box-shadow: rgba(100, 100, 111, 0.2) 2px 10px 10px 0px;*/
+  /*box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;*/
+  box-shadow: rgba(100, 100, 111, 0.2) 2px 10px 10px 0px;
+  z-index: 1;
+}
+.img_wrapper img{
+  display: block;
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+  filter: brightness(80%);
+}
+.img_wrapper h1{
+  position: absolute;
+  top: 50px;
+  left: 200px;
+  z-index: 2;
+  font-weight: bold;
+  color: #003669;
+}
+.title-div1{
+  position: absolute;
+  display: block;
+  top: 20px;
+  left: 100px;
+  width:600px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFFFFF;
+  opacity: 50%;
+  z-index: 2;
+  border-radius: 3px;
+}
+.title-div2{
+  position: absolute;
+  display: block;
+  top: 35px;
+  left: 120px;
+  width: 600px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFFFFF;
+  opacity: 50%;
+  z-index: 2;
+  border-radius: 3px;
+}
+#info-wrapper{
+  float: left;
+  width: 80%;
+}
+app-ad-right{
+  float: left;
+  width: 20%;
+  height: 100%;
+}
+#divide-center{
+  height: 800px;
+}
+#divide-center:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+#question{
+  margin: 50px 0;
+  text-align: center;
+  color: #003669;
+  font-weight: bold;
+}
+#personal-info{
+  width: 500px;
+  margin: 50px auto;
+  height: 300px;
+  background: #FFFFFF;
+  /*box-shadow: 0px 0px 3px 0px #8A8A8A;*/
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 1;
+  border-radius: 3px;
+  justify-content: center;
+}
+#personal-info h2{
+  display: block;
+  position: relative;
+  width: 200px;
+  top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#personal-info #personal-info-button{
+  position: relative;
+  width: 80px;
+  height: 30px;
+  top: -30px;
+  margin-left: auto;
+  margin-right: 20px;
+  background: #003669;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 30px;
+}
+#personal-info #personal-info-button p{
+  color: #FFFFFF;
+  text-align: center;
+}
+#personal-info table{
+  position: relative;
+  top: -10px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#personal-info table th{
+  text-align: left;
+  padding-bottom: 10px;
+}
+#personal-info table td{
+  text-align: right;
+  padding-bottom: 10px;
+}
+#address-info{
+  width: 500px;
+  margin: 50px auto;
+  height: 200px;
+  background: #FFFFFF;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 1;
+  border-radius: 3px;
+}
+#address-info h2{
+  display: block;
+  position: relative;
+  width: 200px;
+  top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+#address-info #address-info-button{
+  position: relative;
+  width: 80px;
+  height: 30px;
+  top: -30px;
+  margin-left: auto;
+  margin-right: 20px;
+  background: #003669;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 30px;
+}
+#address-info #address-info-button p{
+  color: #FFFFFF;
+  text-align: center;
+}
+#address-info table{
+  position: relative;
+  top: -10px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#address-info table th{
+  text-align: left;
+  padding-bottom: 10px;
+}
+#address-info table td{
+  text-align: right;
+  padding-bottom: 10px;
+}
+p{
+  margin: 10px;
+}
+h1{
+  margin: 20px;
+}

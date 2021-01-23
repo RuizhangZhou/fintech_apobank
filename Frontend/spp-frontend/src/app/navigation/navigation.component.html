@@ -1,0 +1,24 @@
+<nav class="nav">
+  <img src="../../assets/images/Apobank_logo.png" class="logo"/>
+  <!--
+  <a href="../home/home.component.html" class="nav__link" data-link>Übersicht</a>
+  <a href="../my-data/my-data.component.html" class="nav__link" data-link>Meine Daten</a>
+  <a href="../accounts/accounts.component.html" class="nav__link" data-link>Konten</a>
+  <a href="../credits/credits.component.html" class="nav__link" data-link>Kredite</a>
+  <a href="../investments/investments.component.html" class="nav__link" data-link>Geldanlagen</a>
+  <br>
+  <a href="../logout/logout.component.html" class="nav__link" data-link>Ausloggen</a>
+-->
+  <ul >
+    <li class="nav__link" *ngFor="let page of navigation"
+      [class.selected]="page.name === currentSelected"
+      (click)="onSelect(page)">
+      <a routerLink="{{page.path}}">{{page.name}}</a>
+    </li>
+  </ul>
+</nav>
+<div class="login" (click)="onLogin()">
+  <div class="button_wrapper">
+    <p>Ausloggen</p>
+  </div>
+</div>

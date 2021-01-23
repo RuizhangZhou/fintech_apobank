@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Einlogen</h2>
+<div mat-dialog-content>
+  <!--[formGroup]="form"-->
+  <div mat-form-field>
+    <!--<input matInput
+           placeholder="Course Description"
+           formControlName="description">-->
+    <span>Kundennummer</span><input mat-dialog-field>
+    <span>Passwort</span><input mat-dialog-field>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button class="mat-raised-button"(click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</div>
