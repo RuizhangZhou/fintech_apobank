@@ -9,7 +9,7 @@ public class InputData {
 
     private Integer ID;
     private Float age;
-    private String job;
+    private Job job;
     private MaritalStatus marital;
     private Education education;
     private BooleanString default_; // variable name in given data is "default". However in java this is not possible as a variable name.
@@ -40,11 +40,11 @@ public class InputData {
         this.age = age;
     }
 
-    public String getJob() {
+    public Job getJob() {
         return job;
     }
 
-    public void setJob(String job) {
+    public void setJob(Job job) {
         this.job = job;
     }
 
