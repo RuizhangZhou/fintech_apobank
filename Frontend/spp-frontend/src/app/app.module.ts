@@ -22,6 +22,8 @@ import {MatInputModule} from '@angular/material/input';
 import { AccountItemComponent } from './account-item/account-item.component';
 /*import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';*/
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,7 @@ import { AccountItemComponent } from './account-item/account-item.component';
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    HttpClientModule,
   ],
   entryComponents: [
     CustomerInfoPersonalComponent
