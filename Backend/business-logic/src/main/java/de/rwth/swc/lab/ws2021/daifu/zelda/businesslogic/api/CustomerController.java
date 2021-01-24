@@ -64,6 +64,13 @@ public class CustomerController {
     )
     @ResponseBody
     public ResponseEntity<?> login(@RequestParam(value = "customer_number") Integer customer_number, @RequestParam(value = "password") String password ) {
+        // check if customer number is valid
+        try{
+            ResponseEntity test = restTemplate.getForEntity("http://localhost:8080/api/v1/customers/"+ customer_number + "?getBy=customer_number", Customer.class);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>("Error: No customer found with customer number "+customer_number, HttpStatus.NOT_FOUND);
+        }
         // get loginData
         String url = "http://localhost:8082/productive-data-service/v1/loginData/get?customer_number="+customer_number;
         ResponseEntity<?> responseEntity = new ResponseEntity<>("Unerkannter Fehler",HttpStatus.INTERNAL_SERVER_ERROR);

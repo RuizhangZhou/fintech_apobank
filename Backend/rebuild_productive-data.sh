@@ -7,6 +7,8 @@ echo "+ removing containers..."
 docker container rm mongodb productive-data-service
 echo "+ removing images..."
 docker image rm mongodb productive-data-service
+echo "+ attempting to delete all unused docker volumes..."
+docker volume prune
 
 echo "+ creating docker network \"pdsn\"..."
 docker network create pdsn
