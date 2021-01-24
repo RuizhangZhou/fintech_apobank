@@ -74,12 +74,13 @@ h1{
   box-shadow: 0px 0px 0px #FFFFFF;
   margin-top: 10px;
 }
+
 #top_btn_wrapper p{
   color: #FFFFFF;
 }
 .center-center{
   padding-top: 40px;
-  background-color: #FFFFFF;
+  /*background-color: #FFFFFF;*/
 }
 .line{
   height: 10px;
@@ -87,11 +88,13 @@ h1{
 #long-div{
   width: 1000px;
   height: 400px;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 3px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 0px;
 }
 #long-div:after {
   content: "";
@@ -126,7 +129,6 @@ h1{
   align-items: center;
 }
 .row{
-  background: #FFFFFF;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -141,8 +143,9 @@ h1{
 .bot_column_div{
   width: 300px;
   height: 500px;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
   border-radius: 3px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 0px;
 }
 .bot_column_div img{
   display: block;
