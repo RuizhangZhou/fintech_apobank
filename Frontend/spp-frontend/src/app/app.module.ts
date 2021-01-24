@@ -28,6 +28,9 @@ import { InvestmentItemComponent } from './investment-item/investment-item.compo
 import {LogComponent} from "./log/log.component";
 import {MatIconModule} from "@angular/material/icon";
 
+import {RouterModule, RouterOutlet} from "@angular/router";
+import {MainComponent} from "./main/main.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,8 @@ import {MatIconModule} from "@angular/material/icon";
     AccountItemComponent,
     CreditItemComponent,
     InvestmentItemComponent,
-    LogComponent
+    LogComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatRippleModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   entryComponents: [
     CustomerInfoPersonalComponent

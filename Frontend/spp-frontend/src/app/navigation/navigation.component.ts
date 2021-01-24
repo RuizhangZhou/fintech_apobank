@@ -21,7 +21,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.location.path());
     switch (this.location.path()) {
-      case '':
+      case '/home':
         this.currentSelected = 'Übersicht';
         break;
       case '/customer-info':
