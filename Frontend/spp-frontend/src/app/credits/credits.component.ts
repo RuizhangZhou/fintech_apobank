@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NAVIGATION} from "../Models/Navigation";
 
 @Component({
   selector: 'app-credits',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./credits.component.css']
 })
 export class CreditsComponent implements OnInit {
-
+  loans = NAVIGATION;
   constructor() { }
 
   ngOnInit(): void {

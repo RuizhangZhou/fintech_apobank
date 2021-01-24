@@ -23,6 +23,7 @@ import { AccountItemComponent } from './account-item/account-item.component';
 /*import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';*/
 
 import { HttpClientModule } from '@angular/common/http';
+import { CreditItemComponent } from './credit-item/credit-item.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     AccountsComponent,
     InvestmentsComponent,
     CustomerInfoPersonalComponent,
-    AccountItemComponent
+    AccountItemComponent,
+    CreditItemComponent
   ],
   imports: [
     BrowserModule,
