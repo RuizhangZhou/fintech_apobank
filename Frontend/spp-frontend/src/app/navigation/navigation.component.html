@@ -13,7 +13,7 @@
     <li class="nav__link" *ngFor="let page of navigation"
       [class.selected]="page.name === currentSelected"
       (click)="onSelect(page)">
-      <a routerLink="{{page.path}}">{{page.name}}</a>
+      <a routerLink="{page.path}}">{{page.name}}</a>
     </li>
   </ul>
 </nav>

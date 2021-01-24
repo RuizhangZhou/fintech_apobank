@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AdRightComponent } from './ad-right/ad-right.component';
 import { FooterComponent } from './footer/footer.component';
@@ -25,6 +25,11 @@ import { AccountItemComponent } from './account-item/account-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreditItemComponent } from './credit-item/credit-item.component';
 import { InvestmentItemComponent } from './investment-item/investment-item.component';
+import {LogComponent} from "./log/log.component";
+import {MatIconModule} from "@angular/material/icon";
+
+import {RouterModule, RouterOutlet} from "@angular/router";
+import {MainComponent} from "./main/main.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +45,9 @@ import { InvestmentItemComponent } from './investment-item/investment-item.compo
     CustomerInfoPersonalComponent,
     AccountItemComponent,
     CreditItemComponent,
-    InvestmentItemComponent
+    InvestmentItemComponent,
+    LogComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +60,9 @@ import { InvestmentItemComponent } from './investment-item/investment-item.compo
     MatInputModule,
     MatRippleModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    RouterModule
   ],
   entryComponents: [
     CustomerInfoPersonalComponent
