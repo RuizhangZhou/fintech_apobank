@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AdRightComponent } from './ad-right/ad-right.component';
 import { FooterComponent } from './footer/footer.component';
@@ -23,6 +23,8 @@ import { AccountItemComponent } from './account-item/account-item.component';
 /*import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';*/
 
 import { HttpClientModule } from '@angular/common/http';
+import {LogComponent} from "./log/log.component";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     AccountsComponent,
     InvestmentsComponent,
     CustomerInfoPersonalComponent,
-    AccountItemComponent
+    AccountItemComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatRippleModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   entryComponents: [
     CustomerInfoPersonalComponent
