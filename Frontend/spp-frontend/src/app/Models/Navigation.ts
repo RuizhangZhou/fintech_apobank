@@ -1,7 +1,7 @@
 import {NavItem} from './NavItem';
 
 export const NAVIGATION: NavItem[] = [
-  {name: 'Übersicht', path: '/'},
+  {name: 'Übersicht', path: '/home'},
   {name: 'Meine Daten', path: '/customer-info'},
   {name: 'Konten', path: '/accounts'},
   {name: 'Kredite', path: '/credits'},
