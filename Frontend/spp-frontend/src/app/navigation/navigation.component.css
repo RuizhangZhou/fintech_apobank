@@ -1,5 +1,6 @@
 nav{
-  width: 15.00%;
+  min-width: 9em;
+  width: 15%;
   height: 100%;
   background: #FFFFFF;
   left: 0px;
@@ -44,6 +45,7 @@ li:active{
   margin-right: auto;
 }
 .login{
+  min-width: 9em;
   width: 15%;
   height: 200px;
   position: fixed;
@@ -54,7 +56,7 @@ li:active{
   display: flex;
 }
 .login .button_wrapper{
-  display: flex;
+  /*display: flex;*/
   background: coral;
   padding-left: 30px;
   padding-right: 30px;
