@@ -5,16 +5,24 @@
     </thead>
     <tbody>
     <tr>
-      <th>Amount</th>
-      <td>1000€</td>
+      <th>Stand</th>
+      <td>{{loan.balance}} €</td>
     </tr>
     <tr>
-      <th>Interest</th>
-      <td>0.2</td>
+      <th>Zinssatz</th>
+      <td>{{loan.interest}} %</td>
+    </tr>
+    <tr>
+      <th>Summe</th>
+      <td>{{loan.amount}} €</td>
+    </tr>
+    <tr>
+      <th>Typ</th>
+      <td>{{loan.type}}</td>
     </tr>
     <tr>
       <th>Status</th>
-      <td>active</td>
+      <td>{{loan.status}}</td>
     </tr>
     </tbody>
     <!--<tfoot>

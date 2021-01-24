@@ -12,6 +12,7 @@ export class AccountsComponent implements OnInit {
   accounts: Account[] = <Account[]> {};
 
   constructor(public rest: RestService) { }
+
   ngOnInit(): void {
     this.getAccounts(this.rest.test_customer_number);
   }

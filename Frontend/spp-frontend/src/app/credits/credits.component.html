@@ -11,7 +11,7 @@
   <div id="info-wrapper">
     <ul >
       <li class="account_item" *ngFor="let item of loans">
-        <app-credit-item></app-credit-item>
+        <app-credit-item [loanInput] = item></app-credit-item>
       </li>
     </ul>
   </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+import {Investment} from '../rest.service';
 
 @Component({
   selector: 'app-investment-item',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvestmentItemComponent implements OnInit {
 
+  @Input() investmentInput!: Investment;
+
+  investment: Investment = <Investment> {};
+
   constructor() { }
 
   ngOnInit(): void {
+    this.investment = this.investmentInput;
   }
 
 }
