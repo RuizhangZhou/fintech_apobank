@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NAVIGATION} from "../Models/Navigation";
 
 @Component({
   selector: 'app-investments',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./investments.component.css']
 })
 export class InvestmentsComponent implements OnInit {
-
+  investments = NAVIGATION;
   constructor() { }
 
   ngOnInit(): void {

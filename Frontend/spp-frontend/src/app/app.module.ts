@@ -23,6 +23,8 @@ import { AccountItemComponent } from './account-item/account-item.component';
 /*import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';*/
 
 import { HttpClientModule } from '@angular/common/http';
+import { CreditItemComponent } from './credit-item/credit-item.component';
+import { InvestmentItemComponent } from './investment-item/investment-item.component';
 import {LogComponent} from "./log/log.component";
 import {MatIconModule} from "@angular/material/icon";
 
@@ -39,6 +41,8 @@ import {MatIconModule} from "@angular/material/icon";
     InvestmentsComponent,
     CustomerInfoPersonalComponent,
     AccountItemComponent,
+    CreditItemComponent,
+    InvestmentItemComponent,
     LogComponent
   ],
   imports: [

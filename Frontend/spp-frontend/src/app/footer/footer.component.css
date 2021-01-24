@@ -2,6 +2,8 @@
   background: #5F78A5;
   box-shadow: rgba(100, 100, 111, 0.2) 2px -10px 10px 0px;
   elevation: 8deg;
+  /*could look better in my opinion, especially if the window is smaller
+  text-align: center;*/
 }
 /* Create three equal columns that floats next to each other */
 .column {

@@ -57,8 +57,8 @@ export class NavigationComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '200px';
-    dialogConfig.height = '200px';
+    dialogConfig.width = '300px';
+    dialogConfig.height = '300px';
 /*
     dialogConfig.data = {
       id: 1,

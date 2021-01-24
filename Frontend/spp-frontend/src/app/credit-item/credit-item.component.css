@@ -1,0 +1,38 @@
+p{
+  margin: 0;
+}
+table{
+  position: relative;
+  width: 420px;
+  height: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+table th{
+  width: 200px;
+  text-align: left;
+  /*padding-bottom: 10px;*/
+}
+table td{
+  width: 200px;
+  text-align: right;
+  padding-bottom: 10px;
+}
+.button{
+
+  width: 80px;
+  height: 30px;
+  background: #003669;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 30px;
+
+}
+.button p{
+  font-size: x-small;
+  color: #FFFFFF;
+}
+
