@@ -98,6 +98,25 @@ h1{
   display: table;
   clear: both;
 }
+.long-div-column{
+  display: flex;
+  float: left;
+  width: 400px;
+  height: 300px;
+  margin: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.long-div-column img{
+  width: 400px;
+  height: 250px;
+  align-self: center;
+}
+.long-div-column p{
+  color: #003669;
+  font-size: large;
+  word-spacing: 5px;
+}
 .column {
   display: flex;
   float: left;
