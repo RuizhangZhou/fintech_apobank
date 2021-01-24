@@ -24,6 +24,7 @@ import { AccountItemComponent } from './account-item/account-item.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CreditItemComponent } from './credit-item/credit-item.component';
+import { InvestmentItemComponent } from './investment-item/investment-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CreditItemComponent } from './credit-item/credit-item.component';
     InvestmentsComponent,
     CustomerInfoPersonalComponent,
     AccountItemComponent,
-    CreditItemComponent
+    CreditItemComponent,
+    InvestmentItemComponent
   ],
   imports: [
     BrowserModule,
