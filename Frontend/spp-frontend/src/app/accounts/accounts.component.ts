@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NAVIGATION} from '../Models/Navigation';
-import {RestService} from "../rest.service";
+import {RestService, Account} from "../rest.service";
 
 @Component({
   selector: 'app-accounts',
