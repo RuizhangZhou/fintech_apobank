@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.HashSet;
+import java.util.*;
 
 @RestController
 public class AccountController {
@@ -56,7 +56,21 @@ public class AccountController {
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(customerResponseEntity.getBody().getAccounts(), HttpStatus.OK);
+        return new ResponseEntity<>(sortedList(customerResponseEntity.getBody().getAccounts()), HttpStatus.OK);
+    }
+
+    private ArrayList<Account> sortedList(Set<Account> accounts){
+        ArrayList aList = new ArrayList<Account>();
+        for(Account a: accounts){
+                 aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Account>() {
+            @Override
+            public int compare(Account a1, Account a2) {
+                return a1.getAccountNumber() - a2.getAccountNumber();
+            }
+        });
+        return aList;
     }
 
     @PostMapping("/accounts")
