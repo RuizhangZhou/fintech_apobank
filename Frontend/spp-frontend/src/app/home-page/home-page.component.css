@@ -99,7 +99,7 @@ h1{
   height: 10px;
 }
 #divide-center{
-
+  width: 100%;
 }
 #center1{
  position: relative;
@@ -110,9 +110,12 @@ margin-right: auto;
 margin-bottom: 20%;
 }
 #long-div{
+<<<<<<< HEAD
   position: relative;
   top: 0px;
  
+=======
+>>>>>>> 40d31a122b3ad0fbfdfc7352032eb2b029c4ae2b
   width: 1000px;
   height: 400px;
   background-color: #FFFFFF;
@@ -199,10 +202,11 @@ margin-bottom: 20%;
 
   position: fixed;
   top:18%;
-  left:25%;
-
-  margin: auto;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2000;
+
 }
 .list{
   width: 1280px;

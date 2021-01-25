@@ -76,7 +76,7 @@ app-navigation{
 app-ad-right{
   float: left;
   width: 20%;
-  height: 100%;
+  /*height: 100%;*/
 }
 #divide-center{
   height: 800px;

@@ -4,10 +4,12 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.*;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.RequestBody.RegisterCustomer;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.RequestBody.UpdatePersonalInfo;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.AdvertismentStatus;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.loans.Loan;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.LoginData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -20,9 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/customers")
@@ -54,8 +54,73 @@ public class CustomerController {
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
+        return new ResponseEntity<>(createCustomerFE(customerResponseEntity.getBody()), HttpStatus.OK);
     }
+
+
+    private CustomerFE createCustomerFE(Customer c){
+        CustomerFE cFE = new CustomerFE();
+        cFE.setId(c.getId());
+        cFE.setAddress(c.getAddress());
+        cFE.setCustomerNumber(c.getCustomerNumber());
+        cFE.setAccounts(sortedAccountsList(c.getAccounts()));
+        cFE.setInvestments(sortedInvestmentsList(c.getInvestments()));
+        cFE.setLoans(sortedLoansList(c.getLoans()));
+        cFE.setFirstName(c.getFirstName());
+        cFE.setLastName(c.getLastName());
+        cFE.setEducation(c.getEducation());
+        cFE.setBirthday(c.getBirthday());
+        cFE.setJob(c.getJob());
+        cFE.setMonthlyIncome(c.getMonthlyIncome());
+        cFE.setRelationshipStatus(c.getRelationshipStatus());
+        cFE.setNumberOfChildren(c.getNumberOfChildren());
+        cFE.setCustomerAdvertisements(c.getCustomerAdvertisements());
+        return cFE;
+    }
+
+    private ArrayList<Account> sortedAccountsList(Set<Account> accounts){
+        ArrayList aList = new ArrayList<Account>();
+        for(Account a: accounts){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Account>() {
+            @Override
+            public int compare(Account a1, Account a2) {
+                return a1.getAccountNumber() - a2.getAccountNumber();
+            }
+        });
+        return aList;
+    }
+
+    private ArrayList<Investment> sortedInvestmentsList(Set<Investment> investments){
+        ArrayList aList = new ArrayList<Investment>();
+        for(Investment a: investments){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Investment>() {
+            @Override
+            public int compare(Investment a1, Investment a2) {
+                return a1.getId() - a2.getId();
+            }
+        });
+        return aList;
+    }
+
+    private ArrayList<Loan> sortedLoansList(Set<Loan> loans){
+        ArrayList aList = new ArrayList<Loan>();
+        for(Loan a: loans){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Loan>() {
+            @Override
+            public int compare(Loan a1, Loan a2) {
+                return a1.getId() - a2.getId();
+            }
+        });
+        return aList;
+    }
+
+
 
     @RequestMapping(
             method = RequestMethod.GET,
