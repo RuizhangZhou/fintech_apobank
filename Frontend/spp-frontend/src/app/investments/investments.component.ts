@@ -15,7 +15,7 @@ export class InvestmentsComponent implements OnInit {
     this.getInvestments(this.rest.test_customer_number);
   }
 
-  getInvestments(customer_number: number): void {
+  getInvestments(customer_number: string): void {
     this.rest.getCustomer(customer_number).subscribe((resp: any) => {
       this.investments = resp.investments;
       console.log(this.investments);

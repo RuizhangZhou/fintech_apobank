@@ -17,7 +17,7 @@ export class CreditsComponent implements OnInit {
     this.getLoans(this.rest.test_customer_number);
   }
 
-  getLoans(customer_number: number): void {
+  getLoans(customer_number: string): void {
     this.rest.getCustomer(customer_number).subscribe((resp: any) => {
       this.loans = resp.loans;
       console.log(this.loans);

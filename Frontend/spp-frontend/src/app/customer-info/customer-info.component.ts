@@ -29,7 +29,7 @@ export class CustomerInfoComponent implements OnInit {
     //this.selectedCustomer = this.customer;
   }
 
-  getCustomer(customer_number: number): void {
+  getCustomer(customer_number: string): void {
     this.rest.getCustomer(customer_number).subscribe((resp: any) => {
       this.customer = resp;
       console.log(this.customer);

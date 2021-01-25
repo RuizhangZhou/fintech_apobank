@@ -63,20 +63,22 @@ export class LogComponent implements OnInit {
       let pw = this.formm1.controls['Passwort'].value;
       this.getLogin(cn, pw);
 
-      if(this.loginResponse === true){
-        this.loginResponse = false;
-        this.goToPage2('home');
-        this.rest.test_customer_number = cn;
-      }
-      else{
-      console.log("Error: Wrong Password");
-      }
+
   }
 
   getLogin(customer_number: string, password: string): void {
     this.rest.login(customer_number, password).subscribe((resp: any) => {
       this.loginResponse = resp;
       console.log(this.loginResponse);
+
+      if(this.loginResponse === true){
+        this.loginResponse = false;
+        this.goToPage2('home');
+        this.rest.test_customer_number = customer_number;
+      }
+      else{
+        console.log("Error: Wrong Password");
+      }
     });
   }
 
