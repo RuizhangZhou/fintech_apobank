@@ -72,11 +72,35 @@
 </div>
 
 
-  
+
 
 
   <div class="wrap" id="all">
     <ul class="list">
+
+      <li class="item active" *ngFor="let item of advertisementInfoFirst">
+        <a id="firstBtn" href="http://www.apobank.de" target="_blank">
+          <button class="infoBtn"><span>Mehr erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">{{item.productType}}</h1>
+          <h2 class="adSubtitle">{{item.productDescription}}</h2>
+          <h3 class="adContent">{{item.productName}}</h3>
+        </div>
+      </li>
+
+      <li class="item" *ngFor="let item of advertisementInfoLast">
+        <a id="secondBtn" href="http://www.apobank.de" target="_blank">
+          <button class="infoBtn"><span>Mehr erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">{{item.productType}}</h1>
+          <h2 class="adSubtitle">{{item.productDescription}}</h2>
+          <h3 class="adContent">{{item.productName}}</h3>
+        </div>
+      </li>
+
+      <!--
 
       <li class="item active" >
         <a id="firstBtn" href="http://www.apobank.de" target="_blank">
@@ -113,7 +137,8 @@
           <h3 class="adContent">unkompliziert nachhaltiger gestalten konnen.</h3>
         </div>
       </li>
-    </ul>
+      --->
+</ul>
 
     <ul class="pointList">
       <li class="point active" data-index='0'></li>
@@ -141,8 +166,8 @@
       <button class="sideAdBtn">Weiter</button>
     </a>
   </div> -->
-   
- 
+
+
 
 
 </html>
