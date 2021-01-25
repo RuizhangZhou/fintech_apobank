@@ -1,3 +1,6 @@
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +13,8 @@ import{MatCheckboxModule} from '@angular/material/checkbox'
 import{MatChipsModule} from '@angular/material/chips'
 //import{RegComponent} from '../reg/reg.component';
 
-
+import {RestService, Customer} from '../rest.service';
+import { logging } from 'protractor';
 
 
 @Component({
@@ -20,10 +24,11 @@ import{MatChipsModule} from '@angular/material/chips'
 
 })
 export class LogComponent implements OnInit {
+  loginResponse: boolean = false;
   hide = true;
   formm!: FormGroup;
   formm1!:FormGroup;
-  constructor(private fb: FormBuilder,private router:Router) { }
+  constructor(private fb: FormBuilder,private router:Router,public rest: RestService) { }
 
   goToPage(reg:string):void{
     this.router.navigate([`${reg}`]);
@@ -34,6 +39,8 @@ export class LogComponent implements OnInit {
 
 
   ngOnInit() {
+
+
     this.formm = this.fb.group({
       Benutzername: '',
 
@@ -51,6 +58,26 @@ export class LogComponent implements OnInit {
   }
 
 
+  login(){
+      let cn = this.formm.controls['Benutzername'].value;
+      let pw = this.formm1.controls['Passwort'].value;
+      this.getLogin(cn, pw);
+
+      if(this.loginResponse === true){
+        this.loginResponse = false;
+        this.goToPage2('home');
+        this.rest.test_customer_number = cn;
+      }
+      else{
+      console.log("Error: Wrong Password");
+      }
+  }
+
+  getLogin(customer_number: string, password: string): void {
+    this.rest.login(customer_number, password).subscribe((resp: any) => {
+      this.loginResponse = resp;
+      console.log(this.loginResponse);
+    });
+  }
 
 }
-
