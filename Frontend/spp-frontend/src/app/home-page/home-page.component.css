@@ -110,12 +110,9 @@ margin-right: auto;
 margin-bottom: 20%;
 }
 #long-div{
-<<<<<<< HEAD
   position: relative;
   top: 0px;
- 
-=======
->>>>>>> 40d31a122b3ad0fbfdfc7352032eb2b029c4ae2b
+
   width: 1000px;
   height: 400px;
   background-color: #FFFFFF;
