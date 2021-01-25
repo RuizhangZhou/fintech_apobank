@@ -1,3 +1,6 @@
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +13,8 @@ import{MatCheckboxModule} from '@angular/material/checkbox'
 import{MatChipsModule} from '@angular/material/chips'
 //import{RegComponent} from '../reg/reg.component';
 
-
+import {RestService, Customer} from '../rest.service';
+import { logging } from 'protractor';
 
 
 @Component({
@@ -20,10 +24,11 @@ import{MatChipsModule} from '@angular/material/chips'
 
 })
 export class LogComponent implements OnInit {
+  ergebnis:boolean =false;
   hide = true;
   formm!: FormGroup;
   formm1!:FormGroup;
-  constructor(private fb: FormBuilder,private router:Router) { }
+  constructor(private fb: FormBuilder,private router:Router,public rest: RestService) { }
 
   goToPage(reg:string):void{
     this.router.navigate([`${reg}`]);
@@ -34,6 +39,8 @@ export class LogComponent implements OnInit {
 
 
   ngOnInit() {
+    
+
     this.formm = this.fb.group({
       Benutzername: '',
 
@@ -46,11 +53,26 @@ export class LogComponent implements OnInit {
     this.formm1.valueChanges.subscribe(console.log);
 
 
-
+    
 
   }
 
 
+  login(){
+    this.rest.login(this.formm.controls['Benutzername'].value ,this.formm1.controls['Passwort'].value).subscribe((resp: any) => {
+      this.ergebnis = resp;
+      console.log(this.ergebnis);
+      
+      if(this.ergebnis= true){
+      this.goToPage2('home');
+ 
+      }
+      else{
+      console.log("Error");
+          }
+          }
+    
+    );   
+  }
 
 }
-
