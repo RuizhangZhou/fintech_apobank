@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { catchError } from 'rxjs/internal/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {getLocaleExtraDayPeriodRules} from "@angular/common";
 
 export interface CustomerAdvertisementId {
@@ -121,6 +121,147 @@ export class RestService {
 
   test_customer_number: string = '0';
 
+  test_customer: Customer = <Customer> {
+    id: 1,
+    customerNumber: 100000,
+    firstName: "Martin",
+    lastName: "Vichev",
+    monthlyIncome: 50,
+    birthday: "1999-03-30",
+    customerAdvertisements: [
+      {
+        id: {
+          customerId: 1,
+          advertisementCampaignId: 3
+        },
+        lastDisplayDate: "2020-12-20",
+        numberOfTimesDisplayed: 5,
+        status: "SUCCESS"
+      },
+      {
+        id: {
+          customerId: 1,
+          advertisementCampaignId: 2
+        },
+        lastDisplayDate: "2020-12-19",
+        numberOfTimesDisplayed: 4,
+        status: "SUCCESS"
+      },
+      {
+        id: {
+          customerId: 1,
+          advertisementCampaignId: 1
+        },
+        lastDisplayDate: "2020-12-19",
+        numberOfTimesDisplayed: 14,
+        status: "SUCCESS"
+      }
+    ],
+    numberOfChildren: 1,
+    address: {
+      street: "Fakestreet",
+      houseNumber: "20",
+      zipCode: 52070,
+      city: "Yaytown"
+    },
+    job: "ENTREPRENEUR",
+    relationshipStatus: "REGISTERED_PARTNERSHIP",
+    education: "UNKNOWN",
+    accounts: [
+      {
+        type: "currentAccount",
+        id: 1,
+        accountNumber: 10000000,
+        balance: 12540.54,
+        overdraftInterest: 0.16,
+        overdraftLimit: 2000,
+        creditCards: [
+          {
+            id: 1,
+            creditCardNumber: 1111,
+            creditLine: 0.56,
+            nextDebitingDay: "2021-01-29T03:14:07.999999"
+          }
+        ]
+      },
+      {
+        type: "callMoneyAccount",
+        id: 7,
+        accountNumber: 10000006,
+        balance: 1000,
+        overdraftInterest: 1
+      }
+    ],
+    loans: [
+      {
+        type: "carLoan",
+        id: 1,
+        loanRates: [
+          {
+            id: 1,
+            dueDate: "2020-12-29",
+            payed: true,
+            dateOfPayment: "2020-12-29",
+            sum: 250
+          }
+        ],
+        amount: 10000,
+        interest: 1.5,
+        balance: 2000,
+        status: "DEFAULT"
+      }
+    ],
+    investments: [
+      {
+        id: 1,
+        sum: 10000,
+        interest: 5
+      }
+    ]
+  };
+
+  test_customer_info: AdvertisementInfo[] = [
+      {
+        "shouldShow": true,
+        "advertisementCampaignId": 3,
+        "advertisementCampaignStartDate": "2020-12-01",
+        "advertisementCampaignEndDate": "2021-12-01",
+        "productId": 3,
+        "productDescription": "Product Type",
+        "productName": "Product Description.",
+        "productType": "Product Name"
+      },
+    {
+      "shouldShow": true,
+      "advertisementCampaignId": 2,
+      "advertisementCampaignStartDate": "2020-12-01",
+      "advertisementCampaignEndDate": "2022-07-01",
+      "productId": 2,
+      "productDescription": "Aktien",
+      "productName": "Investieren Sie in einem erfolgreichen Startup aus Aachen!",
+      "productType": "Aktien"
+    }
+];
+
+  test_customer_accounts: Account[] = [
+    {
+      type: "currentAccount",
+      id: 1,
+      accountNumber: 10000000,
+      balance: 12540.54,
+      overdraftInterest: 0.16,
+      overdraftLimit: 2000,
+      creditCards: [
+        {
+          id: 1,
+          creditCardNumber: 1111,
+          creditLine: 0.56,
+          nextDebitingDay: "2021-01-29T03:14:07.999999"
+        }
+      ]
+    }
+  ];
+
   constructor(private http: HttpClient) { }
 
   private extractData(res: Response): any {
@@ -133,6 +274,9 @@ export class RestService {
    */
 
   getAccountsByCustomer(customer_number: string): Observable<any> {
+    if(customer_number === '0'){
+      return of(this.test_customer_accounts);
+    }
     return this.http.get<Account[]>(blUrl + 'accounts?customer_number=' + customer_number).pipe(
       catchError(this.handleError)
     );
@@ -157,6 +301,9 @@ export class RestService {
    */
 
   getAdvertisementInfo(customer_number: string): Observable<any> {
+    if(customer_number === '0'){
+      return of(this.test_customer_info);
+    }
     return this.http.get<AdvertisementInfo[]>(blUrl + 'advertisement?customer_number=' + customer_number).pipe(
       catchError(this.handleError)
     );
@@ -167,6 +314,9 @@ export class RestService {
    */
 
   getCustomer(customer_number: string): Observable<any> {
+    if(customer_number === '0'){
+      return of(this.test_customer);
+    }
     return this.http.get<Customer>(blUrl + 'customers/' + customer_number).pipe(
       catchError(this.handleError)
     );
