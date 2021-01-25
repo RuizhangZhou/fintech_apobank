@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RestService, AdvertisementInfo} from '../rest.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  advertisementInfo: AdvertisementInfo[] = <AdvertisementInfo[]> {};
+  advertisementInfoFirst: AdvertisementInfo[] = <AdvertisementInfo[]> {};
+  advertisementInfoLast: AdvertisementInfo[] = <AdvertisementInfo[]> {};
+
+  constructor(public rest: RestService) { }
 
   ngOnInit(): void {
-
+    this.getAdvertisementInfo(this.rest.test_customer_number);
 
    var items:any=document.getElementsByClassName('item');//图片
    var goPreBtn:any=document.getElementById('goPre');//
@@ -19,7 +24,8 @@ export class HomePageComponent implements OnInit {
    var closeBtn:any=document.getElementById('schliessen');
    var index:any=0;//index表示第几张图片在展示 ==> 第index张有active这个类名
    var time:any=0;//定时器图片跳转函数
-   
+    var n:number= this.advertisementInfo.length;
+
    var clearActive=function () {
      for(var i =0;i<items.length;i++){
        items[i].className='item';
@@ -36,13 +42,13 @@ export class HomePageComponent implements OnInit {
    }
 
    var goNext=function(){
-     index=(index+1)%3;
+     index=(index+1)%3; // TODO: replace with n
      goIndex();
      time=0;
    }
 
    var goPre=function(){
-     index=(index+2)%3;
+     index=(index+2)%3; // TODO: replace with n
      goIndex();
      time=0;
    }
@@ -55,7 +61,7 @@ export class HomePageComponent implements OnInit {
      goPre();
    })
 
-   
+
      points[0].addEventListener('click',function () {
        index=0;
       //  var pointIndex=points[i].getAttribute('data-index');
@@ -81,7 +87,7 @@ export class HomePageComponent implements OnInit {
       var CarouselAD:any=document.getElementById('all');
       CarouselAD.style.display='none';
     })
-   
+
 
    //5000ms 跳转一次
    setInterval(function (){
@@ -92,8 +98,15 @@ export class HomePageComponent implements OnInit {
      }
    },100)
 
+  }
 
-
+  getAdvertisementInfo(customer_number: string): void {
+    this.rest.getAdvertisementInfo(customer_number).subscribe((resp: any) => {
+      this.advertisementInfo = resp;
+      this.advertisementInfoFirst = this.advertisementInfo.slice(0,1);
+      this.advertisementInfoLast = this.advertisementInfo.slice(1);
+      console.log(this.advertisementInfo);
+    });
   }
 
 }
