@@ -15,15 +15,18 @@
       (click)="onSelect(page)">
       <a routerLink="{page.path}}">{{page.name}}</a>
     </li>
-  </ul>
-</nav>
-<div id=name>
+    <div id=name>
   
-   {{customer.firstName}} {{customer.lastName}} 
+      {{customer.firstName}} {{customer.lastName}} 
+   
+   </div>
+  </ul>
+  
 
-</div>
+
 <div class="login" (click)="onLogin('log')">
   <div class="button_wrapper">
     <p>Ausloggen</p>
   </div>
 </div>
+</nav>

@@ -101,9 +101,18 @@ h1{
 #divide-center{
 
 }
+#center1{
+ position: relative;
+  width: 1000px;
+  height: 1000px;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 20%;
+}
 #long-div{
   position: relative;
   top: 0px;
+ 
   width: 1000px;
   height: 400px;
   background-color: #FFFFFF;
@@ -113,19 +122,12 @@ h1{
   border-radius: 3px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 0px;
 }
-#long-div:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+
 .long-div-column{
   display: flex;
-  float: left;
-  width: 400px;
-  height: 300px;
+ 
   margin: 50px;
-  align-items: center;
-  justify-content: center;
+  
 }
 .long-div-column img{
   width: 400px;
@@ -232,6 +234,8 @@ h1{
 #goPre{
   left:0px;
 }
+
+
 #goNext{
   right:0px;
 }
