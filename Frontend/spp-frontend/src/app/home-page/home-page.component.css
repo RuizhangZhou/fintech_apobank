@@ -195,10 +195,11 @@ h1{
 
   position: fixed;
   top:18%;
-  left:25%;
-
-  margin: auto;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2000;
+
 }
 .list{
   width: 1280px;
