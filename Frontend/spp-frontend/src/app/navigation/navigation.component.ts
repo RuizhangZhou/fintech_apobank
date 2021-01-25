@@ -7,18 +7,21 @@ import { Location } from '@angular/common';
 import {CustomerInfoComponent} from '../customer-info/customer-info.component';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import {CustomerInfoPersonalComponent} from '../customer-info-personal/customer-info-personal.component';
-
+import {RestService, Customer} from '../rest.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  constructor(private router: Router, private location: Location, private dialog: MatDialog/*, public dialogRef: MatDialogRef<NavigationComponent>*/) {}
+  customer: Customer = <Customer> {};
+  pCustomer: Customer = <Customer> {};
+  constructor(private router: Router, private location: Location, public rest: RestService,private dialog: MatDialog/*, public dialogRef: MatDialogRef<NavigationComponent>*/) {}
   navigation = NAVIGATION;
   public currentSelected = '';
 
   ngOnInit(): void {
+    this.getCustomer(this.rest.test_customer_number);
     console.log(this.location.path());
     switch (this.location.path()) {
       case '/home':
@@ -38,44 +41,24 @@ export class NavigationComponent implements OnInit {
         break;
     }
   }
+  onSelect1(customer: Customer): void{
+    //this.selectedCustomer = this.customer;
+  }
 
+  getCustomer(customer_number: string): void {
+    this.rest.getCustomer(customer_number).subscribe((resp: any) => {
+      this.customer = resp;
+      console.log(this.customer);
+      
+    });
+  }
   onSelect(page: NavItem): void{
     this.currentSelected = page.name;
     this.router.navigateByUrl(page.path);
   }
 
-  onLogin(): void{/*
-    let dialogRef = dialog.open(CustomerInfoComponent, {
-      height: '400px',
-      width: '600px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
-    });
-*/
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '300px';
-    dialogConfig.height = '300px';
-/*
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-    };
-    */
-    dialogConfig.position = {
-      top: '100px',
-      left: '100px'
-    };
-
-    this.dialog.open(CustomerInfoPersonalComponent, dialogConfig);
-
-    const dialogRef = this.dialog.open(CustomerInfoPersonalComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(
-      data => console.log('Dialog output:', data)
-    );
+  onLogin(log:string): void{
+    this.router.navigate([`${log}`]);
+   ;
   }
 }

@@ -17,7 +17,12 @@
     </li>
   </ul>
 </nav>
-<div class="login" (click)="onLogin()">
+<div id=name>
+  
+   {{customer.firstName}} {{customer.lastName}} 
+
+</div>
+<div class="login" (click)="onLogin('log')">
   <div class="button_wrapper">
     <p>Ausloggen</p>
   </div>

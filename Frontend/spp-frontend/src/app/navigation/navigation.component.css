@@ -79,6 +79,23 @@ li:active{
 p{
   margin: 10px;
 }
+#name{
+  position: fixed;
+  background-color: #003669;
+  color: rgb(255, 255, 255);
+height: 50px; 
+width: 200px;
+margin-left: 85%;
+font-size: 30px;
+bottom: 95%;
+padding-left: 30px;
+padding-right: 30px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
 
 
 
