@@ -17,7 +17,7 @@ export class AccountsComponent implements OnInit {
     this.getAccounts(this.rest.test_customer_number);
   }
 
-  getAccounts(customer_number: number): void {
+  getAccounts(customer_number: string): void {
     this.rest.getAccountsByCustomer(customer_number).subscribe((resp: any) => {
       this.accounts = resp;
       console.log(this.accounts);

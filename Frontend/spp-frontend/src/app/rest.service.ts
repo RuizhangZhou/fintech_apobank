@@ -119,7 +119,7 @@ const blUrl = 'http://localhost:8081/business-logic/v1/';
 })
 export class RestService {
 
-  test_customer_number: number = 100000;
+  test_customer_number: string = '0';
 
   constructor(private http: HttpClient) { }
 
@@ -132,7 +132,7 @@ export class RestService {
       ACCOUNT CONTROLLER
    */
 
-  getAccountsByCustomer(customer_number: number): Observable<any> {
+  getAccountsByCustomer(customer_number: string): Observable<any> {
     return this.http.get<Account[]>(blUrl + 'accounts?customer_number=' + customer_number).pipe(
       catchError(this.handleError)
     );
@@ -146,7 +146,7 @@ export class RestService {
     );
   }
 
-  getAccount(account_number: number): Observable<any> {
+  getAccount(account_number: string): Observable<any> {
     return this.http.get<Account>(blUrl + 'accounts/' + account_number).pipe(
       catchError(this.handleError)
     );
@@ -156,7 +156,7 @@ export class RestService {
       ADVERTISEMENT CONTROLLER
    */
 
-  getAdvertisementInfo(customer_number: number): Observable<any> {
+  getAdvertisementInfo(customer_number: string): Observable<any> {
     return this.http.get<AdvertisementInfo[]>(blUrl + 'advertisement?customer_number=' + customer_number).pipe(
       catchError(this.handleError)
     );
@@ -166,25 +166,25 @@ export class RestService {
       CUSTOMER CONTROLLER
    */
 
-  getCustomer(customer_number: number): Observable<any> {
+  getCustomer(customer_number: string): Observable<any> {
     return this.http.get<Customer>(blUrl + 'customers/' + customer_number).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateAddress(customer_number: number, address: Address): Observable<any> {
+  updateAddress(customer_number: string, address: Address): Observable<any> {
     return this.http.put<Customer>(blUrl + 'customers/'+customer_number+'/address', address).pipe(
       catchError(this.handleError)
     );
   }
 
-  updatePersonalInfo(customer_number: number, updatePersonalInfo: UpdatePersonalInfo): Observable<any> {
+  updatePersonalInfo(customer_number: string, updatePersonalInfo: UpdatePersonalInfo): Observable<any> {
     return this.http.put<Customer>(blUrl + 'customers/'+customer_number+'/personal-info', updatePersonalInfo).pipe(
       catchError(this.handleError)
     );
   }
 
-  login(customer_number: number, password: string): Observable<any> {
+  login(customer_number: string, password: string): Observable<any> {
     return this.http.get<boolean>(blUrl+'customers/login?customer_number='+customer_number+'&password='+password).pipe(
       catchError(this.handleError)
     );

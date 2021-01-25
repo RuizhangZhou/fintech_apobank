@@ -4,6 +4,18 @@ p{
 h1{
   margin: 20px;
 }
+.center{
+  position: relative;
+  left: 15%;
+  height: 100%;
+  width: 85%;
+  padding: 0px;
+  margin: 0px;
+  z-index: -1;
+}
+app-navigation{
+  z-index: 5;
+}
 
 .img_wrapper{
   position: inherit;
