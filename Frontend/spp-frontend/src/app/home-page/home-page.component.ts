@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RestService, AdvertisementInfo} from '../rest.service';
+import {isPackageNameSafeForAnalytics} from "@angular/cli/models/analytics";
 
 @Component({
   selector: 'app-home-page',
@@ -8,6 +9,7 @@ import {RestService, AdvertisementInfo} from '../rest.service';
 })
 export class HomePageComponent implements OnInit {
 
+  advertisementInfoAll: AdvertisementInfo[] = <AdvertisementInfo[]> {};
   advertisementInfo: AdvertisementInfo[] = <AdvertisementInfo[]> {};
   advertisementInfoFirst: AdvertisementInfo[] = <AdvertisementInfo[]> {};
   advertisementInfoLast: AdvertisementInfo[] = <AdvertisementInfo[]> {};
@@ -102,10 +104,17 @@ export class HomePageComponent implements OnInit {
 
   getAdvertisementInfo(customer_number: string): void {
     this.rest.getAdvertisementInfo(customer_number).subscribe((resp: any) => {
-      this.advertisementInfo = resp;
-      this.advertisementInfoFirst = this.advertisementInfo.slice(0,1);
-      this.advertisementInfoLast = this.advertisementInfo.slice(1);
+      this.advertisementInfoAll = resp;
+      console.log(this.advertisementInfoAll);
+
+      this.advertisementInfo = this.advertisementInfoAll.filter(
+        info => info.shouldShow === true);
       console.log(this.advertisementInfo);
+
+      this.advertisementInfoFirst = this.advertisementInfo.slice(0,1);
+      console.log(this.advertisementInfoFirst);
+      this.advertisementInfoLast = this.advertisementInfo.slice(1);
+      console.log(this.advertisementInfoLast);
     });
   }
 
