@@ -195,7 +195,7 @@ h1{
 
   position: fixed;
   top:18%;
-  left:18%;
+  left:25%;
 
   margin: auto;
   z-index: 2000;
@@ -357,14 +357,10 @@ h1{
   top:17px;
 }
 
-#sidead{
+/* #sidead{
   position: absolute;
-  right:5%;
-
-  /*position:fixed;*/
-  /*right: 0px;*/
-
-  top:77%;
+  right:2%;
+  top:90%;
   z-index: 1100;
 }
 
@@ -395,5 +391,5 @@ h1{
 }
 #sideImage{
     transform: scale(1.5);
-}
+} */
 
