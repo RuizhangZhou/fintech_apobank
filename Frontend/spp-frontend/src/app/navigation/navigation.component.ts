@@ -14,7 +14,7 @@ import {CustomerInfoPersonalComponent} from '../customer-info-personal/customer-
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  constructor(private router: Router, private location: Location, private dialog: MatDialog/*public dialogRef: MatDialogRef<NavigationComponent>*/) {}
+  constructor(private router: Router, private location: Location, private dialog: MatDialog/*, public dialogRef: MatDialogRef<NavigationComponent>*/) {}
   navigation = NAVIGATION;
   public currentSelected = '';
 
@@ -55,7 +55,7 @@ export class NavigationComponent implements OnInit {
 */
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '300px';
     dialogConfig.height = '300px';

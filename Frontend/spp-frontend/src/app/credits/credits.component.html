@@ -1,19 +1,22 @@
 <app-navigation class="column"></app-navigation>
-<div class="img_wrapper">
-  <img src="../../assets/images/das_optimale_bausparkonzept-4-3-1024-768.jpg" />
-  <div class="title-div1">
+<div class="center">
+  <div class="img_wrapper">
+    <img src="../../assets/images/das_optimale_bausparkonzept-4-3-1024-768.jpg" />
+    <div class="title-div1">
+    </div>
+    <div class="title-div2">
+    </div>
+    <h1>Kredite</h1>
   </div>
-  <div class="title-div2">
+  <div id="divide-center">
+    <div id="info-wrapper">
+      <ul >
+        <li class="account_item" *ngFor="let item of loans">
+          <app-credit-item [loanInput] = item></app-credit-item>
+        </li>
+      </ul>
+    </div>
+    <app-ad-right></app-ad-right>
   </div>
-  <h1>Kredite</h1>
-</div>
-<div id="divide-center">
-  <div id="info-wrapper">
-    <ul >
-      <li class="account_item" *ngFor="let item of loans">
-        <app-credit-item [loanInput] = item></app-credit-item>
-      </li>
-    </ul>
-  </div>
-  <app-ad-right></app-ad-right>
+  <app-footer></app-footer>
 </div>

@@ -1,41 +1,44 @@
 <app-navigation class="column"></app-navigation>
-<div class="img_wrapper">
-  <img src="../../assets/images/customer-info.jpeg" />
-  <div class="title-div1">
-  </div>
-  <div class="title-div2">
-  </div>
-  <h1>Ihre Kundendaten</h1>
-</div>
-<div id="divide-center">
-  <div id="info-wrapper">
-    <h2 id="question">Sind ihre Daten aktuell?</h2>
-    <div id="personal-info">
-      <h2>Persönliche Daten</h2>
-      <div id="personal-info-button"><p>ändern</p></div>
-      <table>
-        <tbody>
-        <tr><th>Vorname</th><td>{{customer.firstName}}</td></tr>
-        <tr><th>Nachname</th><td>{{customer.lastName}}</td></tr>
-        <tr><th>Geburtsdatum</th><td>{{customer.birthday}}</td></tr>
-        <tr><th>Familienstand</th><td>{{customer.relationshipStatus}}</td></tr>
-        <tr><th>Kinder</th><td>{{customer.numberOfChildren}}</td></tr>
-        <tr><th>Ausbildung</th><td>{{customer.education}}</td></tr>
-        <tr><th>Berufliche Stellung</th><td>{{customer.job}}</td></tr>
-        </tbody>
-      </table>
+<div class="center">
+  <div class="img_wrapper">
+    <img src="../../assets/images/customer-info.jpeg" />
+    <div class="title-div1">
     </div>
-    <div id="address-info">
-      <h2>Adressdaten</h2>
-      <div id="address-info-button"><p>ändern</p></div>
-      <table>
-        <tbody>
-        <tr><th>Straße</th><td>{{customer.address.street}}</td></tr>
-        <tr><th>Hausnummer</th><td>{{customer.address.houseNumber}}</td></tr>
-        <tr><th>Ort</th><td>{{customer.address.zipCode}}, {{customer.address.city}}</td></tr>
-        </tbody>
-      </table>
+    <div class="title-div2">
     </div>
+    <h1>Ihre Kundendaten</h1>
   </div>
-  <app-ad-right></app-ad-right>
+  <div id="divide-center">
+    <div id="info-wrapper">
+      <h2 id="question">Sind ihre Daten aktuell?</h2>
+      <div id="personal-info">
+        <h2>Persönliche Daten</h2>
+        <div id="personal-info-button"><p>ändern</p></div>
+        <table>
+          <tbody>
+          <tr><th>Vorname</th><td>{{customer.firstName}}</td></tr>
+          <tr><th>Nachname</th><td>{{customer.lastName}}</td></tr>
+          <tr><th>Geburtsdatum</th><td>{{customer.birthday}}</td></tr>
+          <tr><th>Familienstand</th><td>{{customer.relationshipStatus}}</td></tr>
+          <tr><th>Kinder</th><td>{{customer.numberOfChildren}}</td></tr>
+          <tr><th>Ausbildung</th><td>{{customer.education}}</td></tr>
+          <tr><th>Berufliche Stellung</th><td>{{customer.job}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="address-info">
+        <h2>Adressdaten</h2>
+        <div id="address-info-button"><p>ändern</p></div>
+        <table>
+          <tbody>
+          <tr><th>Straße</th><td>{{customer.address.street}}</td></tr>
+          <tr><th>Hausnummer</th><td>{{customer.address.houseNumber}}</td></tr>
+          <tr><th>Ort</th><td>{{customer.address.zipCode}}, {{customer.address.city}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <app-ad-right></app-ad-right>
+  </div>
+  <app-footer></app-footer>
 </div>
