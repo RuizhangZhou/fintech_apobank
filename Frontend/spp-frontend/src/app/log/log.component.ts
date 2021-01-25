@@ -24,7 +24,7 @@ import { logging } from 'protractor';
 
 })
 export class LogComponent implements OnInit {
-  ergebnis:boolean =false;
+  loginResponse: boolean = false;
   hide = true;
   formm!: FormGroup;
   formm1!:FormGroup;
@@ -39,7 +39,7 @@ export class LogComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
 
     this.formm = this.fb.group({
       Benutzername: '',
@@ -53,26 +53,31 @@ export class LogComponent implements OnInit {
     this.formm1.valueChanges.subscribe(console.log);
 
 
-    
+
 
   }
 
 
   login(){
-    this.rest.login(this.formm.controls['Benutzername'].value ,this.formm1.controls['Passwort'].value).subscribe((resp: any) => {
-      this.ergebnis = resp;
-      console.log(this.ergebnis);
-      
-      if(this.ergebnis= true){
-      this.goToPage2('home');
- 
+      let cn = this.formm.controls['Benutzername'].value;
+      let pw = this.formm1.controls['Passwort'].value;
+      this.getLogin(cn, pw);
+
+      if(this.loginResponse === true){
+        this.loginResponse = false;
+        this.goToPage2('home');
+        this.rest.test_customer_number = cn;
       }
       else{
-      console.log("Error");
-          }
-          }
-    
-    );   
+      console.log("Error: Wrong Password");
+      }
+  }
+
+  getLogin(customer_number: string, password: string): void {
+    this.rest.login(customer_number, password).subscribe((resp: any) => {
+      this.loginResponse = resp;
+      console.log(this.loginResponse);
+    });
   }
 
 }

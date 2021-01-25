@@ -184,7 +184,7 @@ export class RestService {
     );
   }
 
-  login(customer_number: number, password: string): Observable<any> {
+  login(customer_number: string, password: string): Observable<any> {
     return this.http.get<boolean>(blUrl+'customers/login?customer_number='+customer_number+'&password='+password).pipe(
       catchError(this.handleError)
     );
