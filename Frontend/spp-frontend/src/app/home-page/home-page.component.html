@@ -75,7 +75,7 @@
 
 
 
-  <div class="wrap" id="all">
+  <div class="wrap" id="all" [hidden]="advertisementInfo.length < 1">
     <ul class="list">
 
       <li class="item active" *ngFor="let item of advertisementInfoFirst">
@@ -141,9 +141,9 @@
     </ul>
 
     <ul class="pointList">
-        <li class="point active" data-index='0'></li>
-        <li class="point" data-index='1'></li>
-        <li class="point" data-index='2'></li>
+        <li class="point active" data-index='0' [hidden]="advertisementInfo.length < 1"></li>
+        <li class="point" data-index='1' [hidden]="advertisementInfo.length < 2"></li>
+        <li class="point" data-index='2' [hidden]="advertisementInfo.length < 3"></li>
     </ul>
 
       <div id="arrow">
