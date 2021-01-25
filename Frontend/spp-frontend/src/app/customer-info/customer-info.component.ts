@@ -24,7 +24,6 @@ export class CustomerInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomer(this.rest.test_customer_number);
-    this.prettifyCustomer()
     /*this.navigation.currentSelected = 'Meine Daten';*/
   }
   onSelect(customer: Customer): void{
@@ -35,6 +34,7 @@ export class CustomerInfoComponent implements OnInit {
     this.rest.getCustomer(customer_number).subscribe((resp: any) => {
       this.customer = resp;
       console.log(this.customer);
+      this.prettifyCustomer();
     });
   }
 
@@ -91,41 +91,41 @@ export class CustomerInfoComponent implements OnInit {
     }
     switch(this.customer.relationshipStatus){
       case "MARRIED": {
-        this.pCustomer.job = "Verheiratet";
+        this.pCustomer.relationshipStatus = "Verheiratet";
         break;
       }
       case "REGISTERED_PARTNERSHIP": {
-        this.pCustomer.job = "Registrierte Partnerschaft";
+        this.pCustomer.relationshipStatus = "Registrierte Partnerschaft";
         break;
       }
       case "DIVORCED": {
-        this.pCustomer.job = "Geschieden";
+        this.pCustomer.relationshipStatus = "Geschieden";
         break;
       }
       case "SINGLE": {
-        this.pCustomer.job = "Single";
+        this.pCustomer.relationshipStatus = "Single";
         break;
       }
       case "WIDOWED": {
-        this.pCustomer.job = "Verwitwet";
+        this.pCustomer.relationshipStatus = "Verwitwet";
         break;
       }
     }
     switch(this.customer.education){
       case "PRIMARY": {
-        this.pCustomer.job = "Realschulabschluss";
+        this.pCustomer.education = "Mittlere Reife";
         break;
       }
       case "SECONDARY": {
-        this.pCustomer.job = "Abitur";
+        this.pCustomer.education = "Abitur";
         break;
       }
       case "TERTIARY": {
-        this.pCustomer.job = "Universitätsabschluss";
+        this.pCustomer.education = "Universitätsabschluss";
         break;
       }
       case "UNKNOWN": {
-        this.pCustomer.job = "Unbekannt";
+        this.pCustomer.education = "Unbekannt";
         break;
       }
     }
