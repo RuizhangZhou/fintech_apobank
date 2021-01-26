@@ -23,22 +23,27 @@
 }
 
 #loginhl{
+	background-color: rgb(255, 255, 255);
 	color:#004893 ;
 	font-size: 50px;
-	position: absolute;
-	top: 5%;
-	left: 40%;
+
+	display:flex;
+	align-items:center;
+	justify-content:center
+	
 
 }
-header {
-	background-color: rgb(255, 255, 255);
-	height: 15%;
+#headd{
+	padding-top: 5%;
 
-
+	margin-bottom: 5%;
+}
+body{
+	background-color: #ffffff;
 }
 section{
 	width: auto;
-	height: 110%;
+	height: 100%;
 	clear: both;
 	background-color: rgb(255, 255, 255);
 }
@@ -86,6 +91,7 @@ mat-form-field.mat-form-field {
 
 
   }
+  
   .content {
     -webkit-box-shadow: 0 0 0.75rem 0 #0d305c;
     box-shadow: 0 0 0.75rem 0 #145bb3;
@@ -94,7 +100,7 @@ mat-form-field.mat-form-field {
 }
 .content {
     position: relative;
-    border-color: #b1b3b5;
+    border-color: #ffffff;
     border-style: solid;
     border-width: 1px;
     border-radius: 0.25rem;
@@ -110,7 +116,7 @@ mat-form-field.mat-form-field {
 }
 
 .content {
-    border-left-color: #b1b3b5;
+    border-left-color: #ffffff;
     border-left-width: 1px;
 }
 .links{
