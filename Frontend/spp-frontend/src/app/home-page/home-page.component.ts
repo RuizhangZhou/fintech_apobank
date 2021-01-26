@@ -44,13 +44,13 @@ export class HomePageComponent implements OnInit {
    }
 
    var goNext=function(){
-     index=(index+1)%3; // TODO: replace with n
+     index=(index+1)%items.length;
      goIndex();
      time=0;
    }
 
    var goPre=function(){
-     index=(index+2)%3; // TODO: replace with n
+     index=(index+items.length-1)%items.length;
      goIndex();
      time=0;
    }
