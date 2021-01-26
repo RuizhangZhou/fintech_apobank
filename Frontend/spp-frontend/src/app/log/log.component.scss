@@ -38,15 +38,11 @@ header {
 }
 section{
 	width: auto;
-	height: 75%;
+	height: 110%;
 	clear: both;
 	background-color: rgb(255, 255, 255);
 }
-footer{
 
-
-	background-color: #004893;
-}
 mat-form-field.mat-form-field {
     font-size: 20px;
 	color: rgb(255, 174, 0);
@@ -62,7 +58,7 @@ mat-form-field.mat-form-field {
 	float: left;
 	margin-top: 50px;
 	margin-right: auto;
-	margin-left: 250px;
+	margin-left: 200px;
 	position: relative;
 
   }
@@ -107,8 +103,10 @@ mat-form-field.mat-form-field {
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: auto;
+	margin-bottom: auto;
+
+
 }
 
 .content {
