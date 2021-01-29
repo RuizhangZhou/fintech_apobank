@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Make website work on all devices and screen resolutions -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="home-page.component.css">
+
+</head>
+
+
+<app-navigation class="column"></app-navigation>
+
+
+
+<div class="center">
+  
+  <div class="img_wrapper">
+    <img src="../../assets/images/KI_Investment_shutterstock_1617331678_700.jpg" />
+    <div class="title-div1">
+    </div>
+    <div class="title-div2">
+    </div>
+    <div id="top_btn_wrapper">
+      <p>Mehr erfahren</p>
+    </div>
+    <h1>Marktturbulenzen lassen sich nicht vermeiden.</h1>
+  </div>
+
+  <div class="line"></div>
+  <div id="divide-center">
+    <div id="center1">
+    <div class="center-center">
+      <div id="long-div">
+        <div class="long-div-column">
+          <img src="../../assets/images/201123-jahreswechsel-16-9-1920-1080.jpg"/>
+        </div>
+        <div class="long-div-column">
+          <p>
+            Aktuelle Hinweise und Kontakt­möglichkeiten zu allen Themen rund um den Jahres­abschluss 2020 haben wir für Sie zusam­men­gestellt.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="bot_column_div">
+            <img src="../../assets/images/Zahnärztin erklärt Kind Röntgenbild_16-9_1280-720px.jpg"/>
+            <h2>Zahnarzt Gehalt 2020</h2>
+            <p>Was verdient ein an­ge­stellter Zahnarzt heute? Die Gehälter variieren stark - das zeigt eine aktuelle Umfrage der apoBank. Infos zu Einkommen, Arbeitszeit und Arbeitsumfeld finden Sie hier.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="bot_column_div">
+            <img src="../../assets/images/201029-apoTalk-Header3.jpg"/>
+            <h2>Ausblick: Vermögens­aufbau 2021</h2>
+            <p>Die Corona-Pandemie war das beherr­schende Thema in 2020. Was bedeutet das für Sie als Anleger? Neh­men Sie an unse­rem inter­aktiven Experten­gespräch teil.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="bot_column_div">
+            <img src="../../assets/images/210114_apoStrategie_Läufer_16-9.jpg"/>
+            <h2>Gute Gründe aufzuatmen</h2>
+            <p>Die Corona-Pandemie bereitet Deutsch­land gerade einen harten Winter. Dennoch gibt es gute Gründe aufzuatmen. Im Rück­blick hat die Pan­demie hier­zulande weniger stark gewütet als erwartet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+  </div>
+</div>
+  <app-footer></app-footer>
+
+</div>
+
+
+
+
+
+  <div class="wrap" id="all" [hidden]="advertisementInfo.length < 1">
+    <ul class="list">
+
+      <li class="item active" *ngFor="let item of advertisementInfoFirst">
+        <a id="firstBtn" href="https://www.apobank.de/unsere-leistungen/finanzierung-kredit/immobilienfinanzierung" target="_blank">
+          <button class="infoBtn"><span>Mehr erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">{{item.productName}}</h1>
+          <h2 class="adSubtitle">{{item.productType}}</h2>
+          <h3 class="adContent">{{item.productDescription}}</h3>
+        </div>
+      </li>
+
+      <li class="item" *ngFor="let item of advertisementInfoLast">
+        <a id="secondBtn" href="https://www.apobank.de/unsere-leistungen/geldanlage-vermoegen/vermoegensaufbau" target="_blank">
+          <button class="infoBtn"><span>Mehr erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">{{item.productName}}</h1>
+          <h2 class="adSubtitle">{{item.productType}}</h2>
+          <h3 class="adContent">{{item.productDescription}}</h3>
+        </div>
+      </li>
+
+      <!--
+
+      <li class="item active" >
+        <a id="firstBtn" href="http://www.apobank.de" target="_blank">
+          <button class="infoBtn"><span>Weiter erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">Geldanlage</h1>
+          <h2 class="adSubtitle">"Anlegen. Jeder hat eine Meinung. Aber wer hat Ahnung?"</h2>
+          <h3 class="adContent">Gemeinsam finden wir die passende Geldanlage für Sie </h3>
+          <h3 class="adContent">mit den Chancen im Fokus und den Risiken im Blick. </h3>
+        </div>
+      </li>
+
+      <li class="item">
+        <a id="secondBtn" href="http://www.apobank.de" target="_blank">
+          <button class="infoBtn"><span>Weiter erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">Immobilien</h1>
+          <h2 class="adSubtitle">"Mieten oder kaufen - was lohnt sich mehr?"</h2>
+          <h3 class="adContent">Wohneigentum oder Immobilie als Kapitalanlage? </h3>
+          <h3 class="adContent">Was Sie bei Immobilienfinanzierung beachten sollten?</h3>
+        </div>
+      </li>
+
+      <li class="item">
+        <a id="thirdBtn" href="http://www.apobank.de" target="_blank">
+          <button class="infoBtn"><span>Weiter erfahren</span></button>
+        </a>
+        <div class="adText">
+          <h1 class="adTitle">Nachhaltigkeit</h1>
+          <h2 class="adSubtitle">"Banking und Nachhaltigkeit - wie passt das zusammen?"</h2>
+          <h3 class="adContent">Wir zeigen, wie Sie Ihr Leben einfach und </h3>
+          <h3 class="adContent">unkompliziert nachhaltiger gestalten konnen.</h3>
+        </div>
+      </li>
+      --->
+    </ul>
+
+    <ul class="pointList">
+        <li class="point active" data-index='0' [hidden]="advertisementInfo.length < 1"></li>
+        <li class="point" data-index='1' [hidden]="advertisementInfo.length < 2"></li>
+        <li class="point" data-index='2' [hidden]="advertisementInfo.length < 3"></li>
+    </ul>
+
+      <div id="arrow">
+        <button type="button" class="pageBtn" id="goPre"><span><</span></button>
+        <button type="button" class="pageBtn" id="goNext"><span>></span></button>
+      </div>
+
+      <div>
+        <button class="pageBtn" id="schliessen" title="Close">
+          <span>x</span>
+        </button>
+      </div>
+
+    </div>
+
+  <!-- <div id="sidead">
+    <img id="sideImage" src="../../assets/images/Advertisement/sidead2.jpg"/>
+    <br>
+    <a href="http://www.apobank.de" target="_blank">
+      <button class="sideAdBtn">Weiter</button>
+    </a>
+  </div> -->
+
+
+
+
+</html>
+

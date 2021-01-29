@@ -1,0 +1,44 @@
+/* .ad{
+  display: flex;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+} */
+
+#sidead{
+  position: absolute;
+  right:5%;
+  top:60%;
+  z-index: 1100;
+}
+
+.sideAdBtn {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  position: relative;
+  left:60px;
+  top:65px;
+}
+
+.sideAdBtn:hover {background-color: skyblue}
+
+.sideAdBtn:active {
+  background-color: skyblue;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+#sideImage{
+    transform: scale(1.5);
+}

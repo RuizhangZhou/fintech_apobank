@@ -1,0 +1,66 @@
+<head>
+
+  <link rel="stylesheet" href="log.component.scss" type="text/scss">
+
+</head>
+
+
+  
+
+
+<body>
+
+<div id=headd>
+  <h1 id="loginhl" > Anmeldung</h1>
+</div>
+<section>
+  <div class="content">
+
+    <div id="formgroup">
+      <div class="example-container">
+
+        <form [formGroup]="formm">
+          <mat-form-field >
+            <mat-label>Benutzername</mat-label>
+
+            <input matInput placeholder="" formControlName="Benutzername">
+
+          </mat-form-field>
+        </form>
+        <form [formGroup]="formm1">
+          <mat-form-field >
+
+            <mat-label>Passwort</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="Passwort">
+            <button mat-icon-button matSuffix type="button" class= "bu1" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div id="bu21">
+
+      <button type="button" class= "bu2" (click) = "goToPage('reg')" >Registrieren</button>
+      &nbsp;
+      <button type="button" class= "bu2" (click) = "login()" >Anmelden</button>
+    </div>
+
+
+  </div>
+
+
+
+
+</section>
+
+
+
+<app-footer></app-footer>
+
+
+</body>
+
+
+
+

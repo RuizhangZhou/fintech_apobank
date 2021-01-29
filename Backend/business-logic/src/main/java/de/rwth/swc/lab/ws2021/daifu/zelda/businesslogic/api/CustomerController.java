@@ -2,12 +2,15 @@ package de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.api;
 
 
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.*;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.RequestBody.RegisterCustomer;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.RequestBody.UpdatePersonalInfo;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.accounts.Account;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.AdvertismentStatus;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Education;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.Job;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.enums.RelationshipStatus;
+import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.loans.Loan;
 import de.rwth.swc.lab.ws2021.daifu.zelda.businesslogic.models.productiveData.LoginData;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -19,9 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/customers")
@@ -53,8 +54,73 @@ public class CustomerController {
             return new ResponseEntity<>("Error: " + customerResponseEntity.getStatusCode().toString(), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(customerResponseEntity.getBody(), HttpStatus.OK);
+        return new ResponseEntity<>(createCustomerFE(customerResponseEntity.getBody()), HttpStatus.OK);
     }
+
+
+    private CustomerFE createCustomerFE(Customer c){
+        CustomerFE cFE = new CustomerFE();
+        cFE.setId(c.getId());
+        cFE.setAddress(c.getAddress());
+        cFE.setCustomerNumber(c.getCustomerNumber());
+        cFE.setAccounts(sortedAccountsList(c.getAccounts()));
+        cFE.setInvestments(sortedInvestmentsList(c.getInvestments()));
+        cFE.setLoans(sortedLoansList(c.getLoans()));
+        cFE.setFirstName(c.getFirstName());
+        cFE.setLastName(c.getLastName());
+        cFE.setEducation(c.getEducation());
+        cFE.setBirthday(c.getBirthday());
+        cFE.setJob(c.getJob());
+        cFE.setMonthlyIncome(c.getMonthlyIncome());
+        cFE.setRelationshipStatus(c.getRelationshipStatus());
+        cFE.setNumberOfChildren(c.getNumberOfChildren());
+        cFE.setCustomerAdvertisements(c.getCustomerAdvertisements());
+        return cFE;
+    }
+
+    private ArrayList<Account> sortedAccountsList(Set<Account> accounts){
+        ArrayList aList = new ArrayList<Account>();
+        for(Account a: accounts){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Account>() {
+            @Override
+            public int compare(Account a1, Account a2) {
+                return a1.getAccountNumber() - a2.getAccountNumber();
+            }
+        });
+        return aList;
+    }
+
+    private ArrayList<Investment> sortedInvestmentsList(Set<Investment> investments){
+        ArrayList aList = new ArrayList<Investment>();
+        for(Investment a: investments){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Investment>() {
+            @Override
+            public int compare(Investment a1, Investment a2) {
+                return a1.getId() - a2.getId();
+            }
+        });
+        return aList;
+    }
+
+    private ArrayList<Loan> sortedLoansList(Set<Loan> loans){
+        ArrayList aList = new ArrayList<Loan>();
+        for(Loan a: loans){
+            aList.add(a);
+        }
+        Collections.sort(aList, new Comparator<Loan>() {
+            @Override
+            public int compare(Loan a1, Loan a2) {
+                return a1.getId() - a2.getId();
+            }
+        });
+        return aList;
+    }
+
+
 
     @RequestMapping(
             method = RequestMethod.GET,
@@ -63,6 +129,13 @@ public class CustomerController {
     )
     @ResponseBody
     public ResponseEntity<?> login(@RequestParam(value = "customer_number") Integer customer_number, @RequestParam(value = "password") String password ) {
+        // check if customer number is valid
+        try{
+            ResponseEntity test = restTemplate.getForEntity("http://localhost:8080/api/v1/customers/"+ customer_number + "?getBy=customer_number", Customer.class);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>("Error: No customer found with customer number "+customer_number, HttpStatus.NOT_FOUND);
+        }
         // get loginData
         String url = "http://localhost:8082/productive-data-service/v1/loginData/get?customer_number="+customer_number;
         ResponseEntity<?> responseEntity = new ResponseEntity<>("Unerkannter Fehler",HttpStatus.INTERNAL_SERVER_ERROR);
@@ -96,13 +169,19 @@ public class CustomerController {
     )
     @ResponseBody
     /*public ResponseEntity<?> registerCustomer(@RequestBody Customer customer){*/
-    public ResponseEntity<?> registerCustomer(@RequestParam(value = "first_name", required = false, defaultValue = "")@ApiParam(value = "first_name", example = "Test") String firstName,
-                                              @RequestParam(value = "last_name", required = false, defaultValue = "")@ApiParam(value = "last_name", example = "Tester") String lastName,
-                                              @RequestParam(value = "birthday", required = false, defaultValue = "")@ApiParam(value = "birthday", example = "2021-01-20") String birthday,
-                                              @RequestParam(value = "street", required = false, defaultValue = "")@ApiParam(value = "street", example = "Fakestreet") String street,
-                                              @RequestParam(value = "house_number", required = false, defaultValue = "0")@ApiParam(value = "house_number", example = "1") String houseNumber,
-                                              @RequestParam(value = "zip_code", required = false, defaultValue = "-1")@ApiParam(value = "zip_code", example = "12345") Integer zipCode,
-                                              @RequestParam(value = "city", required = false, defaultValue = "")@ApiParam(value = "city", example = "Faketown") String city){
+    public ResponseEntity<?> registerCustomer(@RequestBody RegisterCustomer registerCustomer){
+
+        // reconstruct variables from Request Body
+
+        String firstName = registerCustomer.getFirstName();
+        String lastName = registerCustomer.getLastName();
+        String birthday = registerCustomer.getBirthday();
+        String street = registerCustomer.getStreet();
+        String houseNumber = registerCustomer.getHouseNumber();
+        Integer zipCode = registerCustomer.getZipCode();
+        String city = registerCustomer.getCity();
+
+
         String urlString = "http://localhost:8080/api/v1/customers";
 
 
@@ -171,7 +250,8 @@ public class CustomerController {
 
         Customer savedCustomer = customerResponseEntity.getBody();
         //create customer advertiesements for the savedCustomer
-        savedCustomer.setCustomerAdvertisements(new HashSet<>(createCAsForCustomer(savedCustomer)));
+
+        //savedCustomer.setCustomerAdvertisements(new HashSet<>(createCAsForCustomer(savedCustomer))); NOT WORKING AND NO ERROR HANDLING!
 
         //update the customer
         String updateString = urlString + "/" + savedCustomer.getId();
@@ -250,6 +330,13 @@ public class CustomerController {
     }
 
     private boolean genereateProductiveData(Integer customerId){
+
+
+
+        /*
+                #   Calling this method throws an internal server error in batch process.
+                #   So i just call post into dataBase below
+
         String urlString = "http://localhost:8083/batch-process/v1/updateCustomerProduktiveKennzahlen?customerId=" + customerId;
 
         ResponseEntity<?> customerResponseEntity = null;
@@ -257,7 +344,7 @@ public class CustomerController {
             customerResponseEntity = restTemplate.getForEntity(urlString,Void.class);
         }catch (Exception e){
             //return new ResponseEntity<>("Error: customer not created3", HttpStatus.BAD_REQUEST);
-            System.out.println("Error1: Productive data for user couldn't be geerated");
+            System.out.println("Error1: Productive data for user couldn't be geerated: "+e.toString());
             return false;
         }
 
@@ -267,6 +354,15 @@ public class CustomerController {
         }
 
         return true;
+        */
+
+        try {
+            return restTemplate.getForEntity("http://localhost:8083/batch-process/v1/updateProduktiveKennzahlen",Boolean.class).getBody();
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
     @RequestMapping(
@@ -308,11 +404,14 @@ public class CustomerController {
             value = "/{customer_number}/personal-info"
     )
     public ResponseEntity<?> updatePersonalInfo(@PathVariable(value = "customer_number")String customer_number,
-                                           @RequestParam(value = "education", required = true, defaultValue = "UNKNOWN") Education education,
-                                           @RequestParam(value = "job", required = true, defaultValue = "UNKNOWN") Job job,
-                                           @RequestParam(value = "monthly_income", required = true, defaultValue = "0") Float monthlyIncome,
-                                           @RequestParam(value = "relationship_status", required = true, defaultValue = "SINGLE") RelationshipStatus relationshipStatus,
-                                           @RequestParam(value = "number_of_children", required = true, defaultValue = "0") Integer numberOfChildren){
+                                                @RequestBody UpdatePersonalInfo updatePersonalInfo){
+        // reconstruct variables from Request Body
+        Education education = updatePersonalInfo.getEducation();
+        Job job = updatePersonalInfo.getJob();
+        Float monthlyIncome = updatePersonalInfo.getMonthlyIncome();
+        RelationshipStatus relationshipStatus = updatePersonalInfo.getRelationshipStatus();
+        Integer numberOfChildren = updatePersonalInfo.getNumberOfChildren();
+
         ResponseEntity<?> customerResponse = getCustomer(String.valueOf(customer_number));
         if(customerResponse.getStatusCode()!=HttpStatus.OK || !(customerResponse.getBody() instanceof Customer)){
             return new ResponseEntity<>(customerResponse.getBody(), customerResponse.getStatusCode());
