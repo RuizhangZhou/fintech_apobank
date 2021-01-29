@@ -25,6 +25,7 @@ import { logging } from 'protractor';
 })
 export class LogComponent implements OnInit {
   loginResponse: boolean = false;
+  loginfailed: boolean = false;
   hide = true;
   formm!: FormGroup;
   formm1!:FormGroup;
@@ -72,11 +73,13 @@ export class LogComponent implements OnInit {
       console.log(this.loginResponse);
 
       if(this.loginResponse === true){
+        this.loginfailed = false;
         this.loginResponse = false;
         this.goToPage2('home');
         this.rest.test_customer_number = customer_number;
       }
       else{
+        this.loginfailed = true;
         console.log("Error: Wrong Password");
       }
     });
